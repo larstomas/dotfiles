@@ -1,0 +1,5 @@
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com
+[user]
+	email = tomas.backman@sendify.com
+	name = "Tomas Bäckman"
