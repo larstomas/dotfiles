@@ -1,0 +1,14 @@
+# Files
+## Z shell (also known as zsh). Config files:
+### .zprofile
+### .zshrc
+## Bash shell. Files:
+### .bash_profile - for login shells
+### .bashrc - for non login shells
+
+
+# Run .zshrc file is it exists
+## Customizing Your Terminal: .bash_profile and .bashrc files - https://www.youtube.com/watch?v=vDOVEDl2z84
+if [ -f ~/.zshrc ]; then
+    source ~/.zshrc
+fi
