@@ -1,0 +1,27 @@
+# Custom Dictionary Words
+ALFINE
+autofetch
+caseing
+classpath
+dbhost
+dbname
+dbport
+DEORE
+factorypath
+Fira
+funktel
+Gerret
+Gerrit
+gofiber
+Merga
+mycar
+mydatetime
+oneline
+powerlevel
+Println
+psqlconn
+Scanf
+Shimano
+sslmode
+Ultegra
+yzhang              # "editor.defaultFormatter": "yzhang.markdown-all-in-one"
