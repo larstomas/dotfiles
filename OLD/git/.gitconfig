@@ -1,5 +1,0 @@
-[url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com
-[user]
-	email = ***REMOVED***
-	name = "Tomas Bäckman"
