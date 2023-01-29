@@ -80,9 +80,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     brew
-    git
     docker
     docker-compose
+    git
     zsh-autosuggestions
     zsh-syntax-highlighting
     )
@@ -140,4 +140,3 @@ timezsh() {
 
 ## Load zsh profiling tool 
 ###zmodload zsh/zprof
-
