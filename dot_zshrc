@@ -121,6 +121,13 @@ source $ZSH/oh-my-zsh.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_GITHUB_API_TOKEN=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
 
+## Variables
+export EMAIL="larstomas@gmail.com"
+export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman"
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # bat can be used as a colorizing pager for man, by setting the MANPAGER environment variable:
+export BAT_THEME="Monokai Extended" # Set bat theme. Find theme name with $ bat --list-themes
+export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 
 ## Python
@@ -140,3 +147,6 @@ timezsh() {
 
 ## Load zsh profiling tool 
 ###zmodload zsh/zprof
+
+## Aliases
+alias myip="curl http://ipecho.net/plain; echo"
