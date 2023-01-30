@@ -8,6 +8,12 @@ My dotfiles
 4. Run application installations with chezmoi
 5. Gå igenom https://github.com/eieioxyz/dotfiles_macos
 6. Gå igenom https://github.com/eieioxyz/Dotfiles-Show-and-Tell/
+7.Vad ska vara var
+  $ZDOTDIR/.zshenv 
+  $ZDOTDIR/.zprofile 
+  $ZDOTDIR/.zshrc 
+  $ZDOTDIR/.zlogin 
+  $ZDOTDIR/.zlogout
 
 ## Managed with chezmoi
 1. [Chezmoi Quick Start](https://www.chezmoi.io/quick-start/)
