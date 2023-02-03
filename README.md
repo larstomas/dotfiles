@@ -2,7 +2,7 @@
 My dotfiles
 
 ## TODO
-1. fixa $PATH
+1. [LunarVim  Quick start](https://www.lunarvim.org/docs/quick-start)
 2. Add .ssh
 3. Add ~/.config/bat/themes
 4. Use Brewfile and upgrade with homebrew
