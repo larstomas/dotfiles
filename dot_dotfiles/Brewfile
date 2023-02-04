@@ -1,0 +1,245 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "martido/graph"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Core application library for C
+brew "glib"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Modern replacement for 'ls'
+brew "exa"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
+# Secure Reliable Transport
+brew "srt"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
+# GNU awk utility
+brew "gawk"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Command-line option parsing utility
+brew "gnu-getopt"
+# C code prettifier
+brew "gnu-indent"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Command-line tool for generating regular expressions
+brew "grex"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
+# Access DVDs as block devices without the decryption
+brew "libdvdcss"
+# Mac App Store command-line interface
+brew "mas"
+# Unified display of technical and tag data for audio/video
+brew "media-info"
+# Node version management
+brew "n"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# HTTP/2 C Library
+brew "nghttp2"
+# Port scanning utility for large networks
+brew "nmap"
+# Development kit for the Java programming language
+brew "openjdk"
+# Development kit for the Java programming language
+brew "openjdk@11"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Safe, concurrent, practical language
+brew "rust"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
+# Add a public key to a remote machine's authorized_keys file
+brew "ssh-copy-id"
+# Simplified and community-driven man pages
+brew "tldr"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
+# General-purpose lossless data-compression library
+brew "zlib"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Command-line helper for the 1Password password manager
+cask "1password-cli"
+# Renamer for files, music and photos
+cask "a-better-finder-rename"
+# Application launcher and productivity software
+cask "alfred"
+# Memory training application
+cask "anki"
+# Application uninstaller
+cask "appcleaner"
+# Menu bar icon organizer
+cask "bartender"
+# Tool to customize input devices and automate computer systems
+cask "bettertouchtool"
+# Utility to create and modify archives
+cask "betterzip"
+# Hard disk backup and cloning utility
+cask "carbon-copy-cloner"
+# Open links in any browser
+cask "choosy"
+# Disk space visualizer
+cask "daisydisk"
+# Universal database tool and SQL client
+cask "dbeaver-community"
+# Collect, organize, edit and annotate documents
+cask "devonthink"
+# Client for the Dropbox cloud storage service
+cask "dropbox"
+# Web browser
+cask "firefox"
+# Change the behavior of the fn keys depending on the active application
+cask "fluor"
+cask "fman"
+# Free monospaced font with programming ligatures
+cask "font-fira-code"
+cask "font-inconsolata"
+# Finder replacement and FTP, SFTP, WebDAV and Amazon s3 client
+cask "forklift"
+# Desktop client for GitHub repositories
+cask "github"
+# Web browser
+cask "google-chrome"
+# Open-source video transcoder
+cask "handbrake"
+# App to help keep the desktop organized
+cask "icollections"
+# Free and open-source media player
+cask "iina"
+# IDE for Java development - community edition
+cask "intellij-idea-ce"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# Spot and merge differences in text and image files or folders
+cask "kaleidoscope"
+# Keyboard customizer
+cask "karabiner-elements"
+# Automation software
+cask "keyboard-maestro"
+cask "kite"
+# File system integration
+cask "macfuse"
+# Extensible two-pane file manager
+cask "marta"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
+# Web browser
+cask "microsoft-edge"
+# Meet, chat, call, and collaborate in just one place
+cask "microsoft-teams"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# PDF reader, editor and annotator
+cask "pdf-expert"
+# Thumbnails, static previews, cover art and metadata for video files
+cask "qlvideo"
+# Remote access software focusing on usability
+cask "screens"
+# Music streaming service
+cask "spotify"
+# Remote access and connectivity software focused on security
+cask "teamviewer"
+cask "transmission-remote-gui"
+# File transfer application
+cask "transmit"
+# Configurable document editor that supports Markdown
+cask "typora"
+# Disk encryption software focusing on security based on TrueCrypt
+cask "veracrypt"
+# Open-source code editor
+cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
+mas "1Blocker", id: 1365531024
+mas "1Password for Safari", id: 1569813296
+mas "Accelerate", id: 1459809092
+mas "Affinity Photo", id: 824183456
+mas "Amphetamine", id: 937984704
+mas "Be Focused Pro", id: 961632517
+mas "Copy Link in Markdown", id: 1571033540
+mas "Daglig bakgrundsbild - för Bing", id: 920897043
+mas "Diagrams", id: 1276248849
+mas "Disk Speed Test", id: 425264550
+mas "Exporter", id: 1099120373
+mas "FineReader OCR Pro", id: 687301476
+mas "GarageBand", id: 682658836
+mas "Geekbench 5", id: 1478447657
+mas "GoodTask", id: 1143437985
+mas "Hash", id: 945689735
+mas "LibreOffice Vanilla", id: 921923693
+mas "Mactracker", id: 430255202
+mas "Messenger", id: 1480068668
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
+mas "MindNode", id: 1289197285
+mas "MusicHarbor", id: 1440405750
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "picatext", id: 711411133
+mas "Pins", id: 1547106997
+mas "Pixelmator", id: 407963104
+mas "Pixelmator Pro", id: 1289583905
+mas "PocketTube", id: 1533703891
+mas "rubiTrack 6", id: 1557892760
+mas "Save to Pocket", id: 1477385213
+mas "Slack", id: 803453959
+mas "Super Agent", id: 1568262835
+mas "Tailscale", id: 1475387142
+mas "TestFlight", id: 899247664
+mas "TextSniper", id: 1528890965
+mas "Things", id: 904280696
+mas "Tweetbot", id: 1384080005
+mas "Twitter", id: 1482454543
+mas "URL Linker", id: 1289119450
+mas "Userscripts", id: 1463298887
+mas "Voice Dream Reader", id: 972112040
+mas "WhatsApp", id: 1147396723
+mas "WiFi Explorer", id: 494803304
+mas "Wipr", id: 1320666476
+mas "Xcode", id: 497799835
