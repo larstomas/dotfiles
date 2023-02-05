@@ -40,3 +40,16 @@
 2023-02-03 20:57:36 ADDED /Users/tomas/.zshrc.omz-uninstalled-2023-02-03_20-57-34
 2023-02-03 21:02:12 REMOVED /Users/tomas/.zshrc.omz-uninstalled-2023-02-03_20-57-34
 2023-02-03 21:02:14 ADDED /Users/tomas/.zshrc
+2023-02-04 23:12:59 ADDED /Users/tomas/.chezmoiexternal.toml
+2023-02-04 23:18:01 ADDED /Users/tomas/namnlös mapp
+2023-02-04 23:18:06 ADDED /Users/tomas/namnlös mapp
+2023-02-04 23:18:06 ADDED /Users/tomas/.oh-my-zsh
+2023-02-04 23:22:44 REMOVED /Users/tomas/.chezmoiexternal.toml
+2023-02-04 23:25:35 REMOVED /Users/tomas/.oh-my-zsh
+2023-02-04 23:25:47 ADDED /Users/tomas/.oh-my-zsh
+2023-02-05 00:10:20 ADDED /Users/tomas/$XDG_CACHE_HOME
+2023-02-05 00:11:29 REMOVED /Users/tomas/$XDG_CACHE_HOME
+2023-02-05 01:31:09 ADDED /Users/tomas/
+2023-02-05 02:00:58 ADDED /Users/tomas/.test.swp
+2023-02-05 02:01:04 REMOVED /Users/tomas/.viminfo.tmp
+2023-02-05 02:01:04 REMOVED /Users/tomas/.test.swp

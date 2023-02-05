@@ -60,12 +60,12 @@
 
 
 ## START TB pre oh my zsh
-echo "Start .zshrc"
 
 # Debug
 # Set DEBUGCLI=YES in .zshenv or un comment:
 #export DEBUGCLI=YES
 if [[ $DEBUGCLI == "YES" ]]; then
+  echo "Start .zshrc"
   debug_file_call
 fi
 
@@ -79,7 +79,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 ## Setup 1Password
-source .config/op/plugins.sh
+source $HOME/.config/op/plugins.sh
 
 ## Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -179,6 +179,9 @@ alias exa='exa -laFh --git'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+# Chezmoi add all modifyed files to working copy
+alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}' 
+alias cs='chezmoi status'
 
 # Enable Ctrl-x-e to edit command line
 # https://nuclearsquid.com/writings/edit-long-commands/
@@ -191,9 +194,121 @@ bindkey '^x^e' edit-command-line
 # zle -N edit-command-line
 # bindkey -M vicmd v edit-command-line
 
-if [[ $DEBUGCLI == "YES" ]]; then
-  debug_file_call
+# Load plugins
+ # Download plugins with "chezmoi apply" defined in "~/.local/share/chezmoi/.chezmoiexternal.toml"
+ # Ref: https://www.reddit.com/r/zsh/comments/vryjud/what_is_the_best_plugin_manager_in_your_opinion/
+ZSH_CUSTOM_PLUGINS=$XDG_CACHE_HOME/zsh/plugins
+ZSH_CUSTOM_COMPLETIONS=$XDG_CACHE_HOME/zsh/completions
+alias src='source'
+if [ -d $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions ]; then
+  source $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+fi
+if [ -d $ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting ]; then
+  source $ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+fi
+if [ -d $ZSH_CUSTOM_PLUGINS/history-search-multi-word ]; then
+  source $ZSH_CUSTOM_PLUGINS/history-search-multi-word/H-S-MW.plugin.zsh
+fi
+if [ -d $ZSH_CUSTOM_PLUGINS/zsh-defer ]; then
+  alias src='zsh-defer source'
+  source $ZSH_CUSTOM_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
+fi
+if [ -d $ZSH_CUSTOM_PLUGINS/ohmyzsh ]; then
+  ohmyplugins="$ZSH_CUSTOM_PLUGINS/ohmyzsh/plugins"
+  src "$ohmyplugins/command-not-found/command-not-found.plugin.zsh"
+  if command_exists docker; then
+    fpath=( "$ohmyplugins/docker" $fpath )
+    fpath=( "$ohmyplugins/docker-compose" $fpath )
+  fi
+  if command_exists go; then
+    src "$ohmyplugins/golang/golang.plugin.zsh"
+  fi
+  if command_exists kubectl; then
+    src "$ohmyplugins/kubectl/kubectl.plugin.zsh"
+  fi
 fi
 
-echo "End .zshrc"
 
+# Confugura spaceship prompt
+source /opt/homebrew/opt/spaceship/spaceship.zsh
+
+# Customize Prompt(s)
+source "$DOTFILES/spaceship_shlvl.zsh"
+
+SPACESHIP_CHAR_SYMBOL="$ "
+SPACESHIP_CHAR_SYMBOL_ROOT="# "
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_TIME_SHOW=true
+#SPACESHIP_EXEC_TIME_ELAPSED=0
+SPACESHIP_EXIT_CODE_SHOW=true
+
+
+SPACESHIP_PROMPT_ORDER=(
+  user           # Username section
+  dir            # Current directory section
+  host           # Hostname section
+  git            # Git section (git_branch + git_status)
+#  hg             # Mercurial section (hg_branch  + hg_status)
+  package        # Package version
+#  node           # Node.js section
+#  bun            # Bun section
+#  deno           # Deno section
+#  ruby           # Ruby section
+  python         # Python section
+#  elm            # Elm section
+#  elixir         # Elixir section
+#  xcode          # Xcode section
+#  swift          # Swift section
+#  golang         # Go section
+#  perl           # Perl section
+#  php            # PHP section
+#  rust           # Rust section
+#  haskell        # Haskell Stack section
+#  scala          # Scala section
+#  kotlin         # Kotlin section
+#  java           # Java section
+#  lua            # Lua section
+#  dart           # Dart section
+#  julia          # Julia section
+#  crystal        # Crystal section
+  docker         # Docker section
+  docker_compose # Docker section
+#  aws            # Amazon Web Services section
+#  gcloud         # Google Cloud Platform section
+#  azure          # Azure section
+  venv           # virtualenv section
+#  conda          # conda virtualenv section
+#  dotnet         # .NET section
+#  ocaml          # OCaml section
+#  vlang          # V section
+#  zig            # Zig section
+#  purescript     # PureScript section
+#  erlang         # Erlang section
+#  kubectl        # Kubectl context section
+#  ansible        # Ansible section
+#  terraform      # Terraform workspace section
+#  pulumi         # Pulumi stack section
+#  ibmcloud       # IBM Cloud section
+#  nix_shell      # Nix shell
+#  gnu_screen     # GNU Screen section
+  async          # Async jobs indicator
+  line_sep       # Line break
+  shlvl          # Custom section from spaceship_shlvl.zsh
+#  battery        # Battery level and status
+  jobs           # Background jobs indicator
+  exit_code      # Exit code section
+  sudo           # Sudo indicator
+  char           # Prompt character
+)
+
+SPACESHIP_RPROMPT_ORDER=(
+  exec_time      # Execution time
+  time           # Time stamps section
+)
+
+
+if [[ $DEBUGCLI == "YES" ]]; then
+  debug_file_call
+  echo "End .zshrc"
+fi

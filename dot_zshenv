@@ -1,13 +1,18 @@
-echo "Start .zshenv"
+# Debug
+ # Change the variable to debug
+ #export DEBUGCLI=YES
+if [[ $DEBUGCLI == "YES" ]]; then
+  echo "Start .zshenv"
+fi
 
-# Fuctions
+# Functions
 function debug_file_call() {
   echo "funcfiletrace: $funcfiletrace"
   echo "funcstack: $funcstack"
   echo "PATH: '${(F)path}'"
 }
 
-function exists() {
+function command_exists() {
   # `command -v` is similar to `which`
   # https://stackoverflow.com/a/677212/1341838
   command -v $1 >/dev/null 2>&1
@@ -18,12 +23,17 @@ function mkcd() {
   mkdir -p "$@" && cd "$_";
 }
 
-# Debug
-# Change the variable to debug
-export DEBUGCLI=NO
-if [[ $DEBUGCLI == "YES" ]]; then
-  debug_file_call
-fi
+
+# Setup directories
+export ZDOTDIR="$HOME"
+
+# XDG Base Directory {{{1
+# Ref: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 
 # Exports
 export EMAIL="larstomas@gmail.com"
@@ -37,10 +47,17 @@ export GIT_EDITOR='nvim'
 export DOTFILES="$HOME/.dotfiles"
 export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
 
+
 ## SetUP LunarVim
 path=(
   "$HOME/.local/bin"
   $path
 )
 
-echo "End .zshenv"
+# Debug
+ # Change the variable to debug
+ #export DEBUGCLI=YES
+if [[ $DEBUGCLI == "YES" ]]; then
+  debug_file_call
+  echo "End .zshenv"
+fi

@@ -19,9 +19,9 @@ SPACESHIP_SHLVL_COLOR="${SPACESHIP_SHLVL_COLOR="blue"}"
 spaceship_shlvl() {
   [[ $SPACESHIP_SHLVL_SHOW == false ]] && return
 
-  spaceship::section \
-    "$SPACESHIP_SHLVL_COLOR" \
-    "$SPACESHIP_SHLVL_PREFIX" \
+  spaceship::section::v4 \
+    --color "$SPACESHIP_SHLVL_COLOR" \
+    --prefix "$SPACESHIP_SHLVL_PREFIX" \
     "$SHLVL" \
-    "$SPACESHIP_SHLVL_SUFFIX"
+    --suffix "$SPACESHIP_SHLVL_SUFFIX"
 }
