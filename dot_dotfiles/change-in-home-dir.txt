@@ -53,3 +53,12 @@
 2023-02-05 02:00:58 ADDED /Users/tomas/.test.swp
 2023-02-05 02:01:04 REMOVED /Users/tomas/.viminfo.tmp
 2023-02-05 02:01:04 REMOVED /Users/tomas/.test.swp
+2023-02-12 21:21:38 REMOVED /Users/tomas/
+2023-02-19 19:44:25 ADDED /Users/tomas/.ssh 2
+2023-02-19 19:44:33 ADDED /Users/tomas/.ssh 2
+2023-02-19 19:44:33 ADDED /Users/tomas/.ssh key
+2023-02-19 19:45:10 ADDED /Users/tomas/id_rsa
+2023-02-19 19:45:10 ADDED /Users/tomas/id_rsa.pub
+2023-02-19 19:45:11 REMOVED /Users/tomas/id_rsa
+2023-02-19 19:45:11 REMOVED /Users/tomas/id_rsa.pub
+2023-02-19 19:45:24 REMOVED /Users/tomas/.ssh key
