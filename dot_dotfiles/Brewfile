@@ -1,3 +1,4 @@
+tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -65,12 +66,16 @@ brew "grex"
 brew "iperf3"
 # Access DVDs as block devices without the decryption
 brew "libdvdcss"
+# Keep your Mac's application settings in sync
+brew "mackup"
 # Mac App Store command-line interface
 brew "mas"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Node version management
 brew "n"
+# NCurses Disk Usage
+brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # HTTP/2 C Library
@@ -87,6 +92,8 @@ brew "p7zip"
 brew "rsync"
 # Safe, concurrent, practical language
 brew "rust"
+# Zsh prompt for Astronauts
+brew "spaceship"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
 # Add a public key to a remote machine's authorized_keys file
@@ -103,6 +110,8 @@ brew "youtube-dl"
 brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
 # Renamer for files, music and photos
@@ -113,6 +122,12 @@ cask "alfred"
 cask "anki"
 # Application uninstaller
 cask "appcleaner"
+# Multi-cloud backup application
+cask "arq"
+# Turn audio CDs and files into audiobooks
+cask "audiobook-builder"
+# Two-factor authentication software
+cask "authy"
 # Menu bar icon organizer
 cask "bartender"
 # Tool to customize input devices and automate computer systems
@@ -123,14 +138,20 @@ cask "betterzip"
 cask "carbon-copy-cloner"
 # Open links in any browser
 cask "choosy"
+# Multi-platform client-side cloud file encryption tool
+cask "cryptomator"
 # Disk space visualizer
 cask "daisydisk"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # Collect, organize, edit and annotate documents
 cask "devonthink"
+# App to build and share containerized applications and microservices
+cask "docker"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
+# Find files, folders, or contents in any file
+cask "easyfind"
 # Web browser
 cask "firefox"
 # Change the behavior of the fn keys depending on the active application
@@ -138,9 +159,15 @@ cask "fluor"
 cask "fman"
 # Free monospaced font with programming ligatures
 cask "font-fira-code"
+# Developer targeted fonts with a high number of glyphs
+cask "font-fira-code-nerd-font"
 cask "font-inconsolata"
+# Developer targeted fonts with a high number of glyphs
+cask "font-meslo-lg-nerd-font"
 # Finder replacement and FTP, SFTP, WebDAV and Amazon s3 client
 cask "forklift"
+# Disk space cleaner that finds and deletes duplicated and similar files
+cask "gemini"
 # Desktop client for GitHub repositories
 cask "github"
 # Web browser
@@ -153,6 +180,8 @@ cask "icollections"
 cask "iina"
 # IDE for Java development - community edition
 cask "intellij-idea-ce"
+# System monitoring app
+cask "istat-menus"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Spot and merge differences in text and image files or folders
@@ -161,27 +190,28 @@ cask "kaleidoscope"
 cask "karabiner-elements"
 # Automation software
 cask "keyboard-maestro"
-cask "kite"
 # File system integration
 cask "macfuse"
+# Track and update to the latest versions of installed software
+cask "macupdater"
 # Extensible two-pane file manager
 cask "marta"
-# Provides updates to various Microsoft products
-cask "microsoft-auto-update"
-# Web browser
-cask "microsoft-edge"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Document editor
+cask "onlyoffice"
 # PDF reader, editor and annotator
 cask "pdf-expert"
+# Tool to organize photo libraries
+cask "powerphotos"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
 # Remote access software focusing on usability
 cask "screens"
 # Music streaming service
 cask "spotify"
+# Video game digital distribution service
+cask "steam"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
 cask "transmission-remote-gui"
@@ -189,12 +219,16 @@ cask "transmission-remote-gui"
 cask "transmit"
 # Configurable document editor that supports Markdown
 cask "typora"
+# Log browser
+cask "ulbow"
 # Disk encryption software focusing on security based on TrueCrypt
 cask "veracrypt"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
@@ -204,24 +238,18 @@ mas "Be Focused Pro", id: 961632517
 mas "Copy Link in Markdown", id: 1571033540
 mas "Daglig bakgrundsbild - för Bing", id: 920897043
 mas "Diagrams", id: 1276248849
-mas "Disk Speed Test", id: 425264550
 mas "Exporter", id: 1099120373
 mas "FineReader OCR Pro", id: 687301476
 mas "GarageBand", id: 682658836
-mas "Geekbench 5", id: 1478447657
 mas "GoodTask", id: 1143437985
 mas "Hash", id: 945689735
 mas "LibreOffice Vanilla", id: 921923693
 mas "Mactracker", id: 430255202
 mas "Messenger", id: 1480068668
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
 mas "MindNode", id: 1289197285
 mas "MusicHarbor", id: 1440405750
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "picatext", id: 711411133
 mas "Pins", id: 1547106997
 mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
@@ -239,7 +267,6 @@ mas "Twitter", id: 1482454543
 mas "URL Linker", id: 1289119450
 mas "Userscripts", id: 1463298887
 mas "Voice Dream Reader", id: 972112040
-mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "Wipr", id: 1320666476
 mas "Xcode", id: 497799835
