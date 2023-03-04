@@ -62,3 +62,22 @@
 2023-02-19 19:45:11 REMOVED /Users/tomas/id_rsa
 2023-02-19 19:45:11 REMOVED /Users/tomas/id_rsa.pub
 2023-02-19 19:45:24 REMOVED /Users/tomas/.ssh key
+2023-03-02 10:15:30 ADDED /Users/tomas/.ipython
+2023-03-02 11:00:52 ADDED /Users/tomas/.matplotlib
+2023-03-03 08:28:35 ADDED /Users/tomas/.jupyter
+2023-03-04 10:14:33 ADDED /Users/tomas/.gitconfig
+2023-03-04 10:14:33 ADDED /Users/tomas/.ipython
+2023-03-04 10:14:33  /Users/tomas/.ipython
+2023-03-04 10:14:40 ADDED /Users/tomas/.gitconfig
+2023-03-04 10:19:54 ADDED /Users/tomas/.jupyter
+2023-03-04 10:19:54 ADDED /Users/tomas/.jupyter
+2023-03-04 10:19:57  /Users/tomas/.p10k.zsh
+2023-03-04 10:19:58  /Users/tomas/.zshenv
+2023-03-04 10:19:58  /Users/tomas/.zshrc
+2023-03-04 10:19:58  /Users/tomas/.zprofile
+2023-03-04 10:20:06  /Users/tomas/.zprofile
+2023-03-04 10:20:06  /Users/tomas/.zshenv
+2023-03-04 10:20:06  /Users/tomas/.zshrc
+2023-03-04 10:20:06  /Users/tomas/.p10k.zsh
+2023-03-04 10:56:24 ADDED /Users/tomas/Dropbox.7z
+2023-03-04 10:58:20 REMOVED /Users/tomas/Dropbox.7z
