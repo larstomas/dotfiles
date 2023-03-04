@@ -82,7 +82,8 @@ export LANG=en_US.UTF-8
 source $HOME/.config/op/plugins.sh
 
 ## Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"{{- end }}
 #TODO 1p: export HOMEBREW_GITHUB_API_TOKEN=
 
 # Add Locations to $path Array
@@ -120,7 +121,7 @@ setopt globDots # Do not require a leading ‘.’ in a filename to be matched e
 
 ## Setup Python
 path=(
-  "/opt/homebrew/opt/python@3.10/bin"
+  "$(brew --prefix python)/bin"
   $path
 )
 ### The right and wrong way to set Python 3 as default on a Mac - https://opensource.com/article/19/5/python-3-default-mac
@@ -136,10 +137,8 @@ export EMAIL_USER_T="t.backman@gmail.com"
 ## Not used:export GOROOT="$(brew --prefix golang)/libexec"
 #export GOROOT=/usr/local/go
 ## Not used:export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-## Not used:export GOROOT=/opt/homebrew/opt/go/libexec
 #export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
-## Not used:export GOROOT=/usr/local/opt/go/libexec
 ## Not used:export PATH=$PATH:$GOPATH/bin
 ## Not used:export PATH=$PATH:$GOROOT/bin
 ## Not used:export GO111MODULE=off
@@ -230,7 +229,7 @@ fi
 
 
 # Confugura spaceship prompt
-source /opt/homebrew/opt/spaceship/spaceship.zsh
+source "$(brew --prefix spaceship)/spaceship.zsh"
 
 # Customize Prompt(s)
 source "$DOTFILES/spaceship_shlvl.zsh"
