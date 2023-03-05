@@ -200,7 +200,8 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-
+# Make a new tab or window active when it opens. 
+defaults write com.apple.Safari OpenNewTabsInFront -bool true 
 
 #- General
 # Expand save panel by default
