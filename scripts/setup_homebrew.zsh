@@ -30,7 +30,7 @@ brew bundle --verbose --file ../dot_dotfiles/Brewfile
 
 # VS code is syncing via github
 # Otherwise export vscode extensions
-# code --list-extensions
+# code --list-extensions > extensions.list
 # and:
 #echo "#- Installing VS Code Extensions"
 #cat vscode_extensions | xargs -L 1 code --install-extension
