@@ -83,3 +83,4 @@
 2023-03-04 10:58:20 REMOVED /Users/tomas/Dropbox.7z
 2023-03-04 23:06:42 REMOVED /Users/tomas/Postman Agent
 2023-03-05 00:25:27 REMOVED /Users/tomas/.p10k.zsh
+2023-03-05 09:28:31 ADDED /Users/tomas/.mackup.cfg
