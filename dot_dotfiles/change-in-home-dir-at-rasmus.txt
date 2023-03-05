@@ -1,0 +1,74 @@
+2023-02-02 12:48:45 rasmus ADDED /Users/tomas/.dotfiles
+2023-02-02 12:51:00 rasmus REMOVED /Users/tomas/test.txt
+2023-02-02 13:19:22 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.8.1
+2023-02-02 13:19:22 rasmus ADDED /Users/tomas/.zcompdump-rasmus-5.8.1.rasmus.35412
+2023-02-02 13:19:22 rasmus ADDED /Users/tomas/.zcompdump-rasmus-5.8.1.lock
+2023-02-02 13:19:22 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.8.1.lock
+2023-02-02 13:19:22 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.8.1.zwc.old
+2023-02-02 13:19:29 rasmus ADDED /Users/tomas/.zcompdump-rasmus-5.8.1
+2023-02-02 13:22:11 rasmus REMOVED /Users/tomas/.zsh_history.new
+2023-02-02 13:22:11 rasmus REMOVED /Users/tomas/.zsh_history.new
+2023-02-02 13:25:15 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-02 13:25:15 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.8.1
+2023-02-02 13:25:15 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.8.1.zwc
+2023-02-02 13:25:15 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.9
+2023-02-02 13:25:15 rasmus REMOVED /Users/tomas/.zcompdump-rasmus-5.9.zwc
+2023-02-02 13:28:35 rasmus REMOVED /Users/tomas/.matplotlib
+2023-02-02 13:31:19 rasmus REMOVED /Users/tomas/.openjfx
+2023-02-02 19:44:20 rasmus ADDED /Users/tomas/.zhenv
+2023-02-02 19:50:09 rasmus REMOVED /Users/tomas/.zhenv
+2023-02-02 19:50:12 rasmus ADDED /Users/tomas/.zshenv
+2023-02-02 21:56:55 rasmus REMOVED /Users/tomas/.lesshsQ
+2023-02-02 21:56:55 rasmus REMOVED /Users/tomas/.lesshsQ
+2023-02-03 00:06:09 rasmus ADDED /Users/tomas/.n
+2023-02-03 00:07:18 rasmus REMOVED /Users/tomas/.mcfly
+2023-02-03 01:00:56 rasmus ADDED /Users/tomas/.cargo
+2023-02-03 20:50:58 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:50:58 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-03 20:50:58 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:50:59 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-03 20:50:59 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:51:00 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-03 20:51:00 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:51:02 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-03 20:51:02 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:51:03 rasmus REMOVED /Users/tomas/.zcompdump
+2023-02-03 20:51:03 rasmus REMOVED /Users/tomas/.zcompdump.rasmus.24189
+2023-02-03 20:51:05 rasmus ADDED /Users/tomas/.zcompdump
+2023-02-03 20:57:34 rasmus REMOVED /Users/tomas/.oh-my-zsh
+2023-02-03 20:57:34 rasmus  /Users/tomas/.zshrc
+2023-02-03 20:57:36 rasmus ADDED /Users/tomas/.zshrc.omz-uninstalled-2023-02-03_20-57-34 rasmus
+2023-02-03 21:02:12 rasmus REMOVED /Users/tomas/.zshrc.omz-uninstalled-2023-02-03_20-57-34 rasmus
+2023-02-03 21:02:14 rasmus ADDED /Users/tomas/.zshrc
+2023-02-04 23:12:59 rasmus ADDED /Users/tomas/.chezmoiexternal.toml
+2023-02-04 23:18:01 rasmus ADDED /Users/tomas/namnlös mapp
+2023-02-04 23:18:06 rasmus ADDED /Users/tomas/namnlös mapp
+2023-02-04 23:18:06 rasmus ADDED /Users/tomas/.oh-my-zsh
+2023-02-04 23:22:44 rasmus REMOVED /Users/tomas/.chezmoiexternal.toml
+2023-02-04 23:25:35 rasmus REMOVED /Users/tomas/.oh-my-zsh
+2023-02-04 23:25:47 rasmus ADDED /Users/tomas/.oh-my-zsh
+2023-02-05 00:10:20 rasmus ADDED /Users/tomas/$XDG_CACHE_HOME
+2023-02-05 00:11:29 rasmus REMOVED /Users/tomas/$XDG_CACHE_HOME
+2023-02-05 01:31:09 rasmus ADDED /Users/tomas/
+2023-02-05 02:00:58 rasmus ADDED /Users/tomas/.test.swp
+2023-02-05 02:01:04 rasmus REMOVED /Users/tomas/.viminfo.tmp
+2023-02-05 02:01:04 rasmus REMOVED /Users/tomas/.test.swp
+2023-02-12 21:21:38 rasmus REMOVED /Users/tomas/
+2023-02-19 19:44:25 rasmus ADDED /Users/tomas/.ssh 2
+2023-02-19 19:44:33 rasmus ADDED /Users/tomas/.ssh 2
+2023-02-19 19:44:33 rasmus ADDED /Users/tomas/.ssh key
+2023-02-19 19:45:10 rasmus ADDED /Users/tomas/id_rsa
+2023-02-19 19:45:10 rasmus ADDED /Users/tomas/id_rsa.pub
+2023-02-19 19:45:11 rasmus REMOVED /Users/tomas/id_rsa
+2023-02-19 19:45:11 rasmus REMOVED /Users/tomas/id_rsa.pub
+2023-02-19 19:45:24 rasmus REMOVED /Users/tomas/.ssh key
+2023-03-02 10:15:30 rasmus ADDED /Users/tomas/.ipython
+2023-03-02 11:00:52 rasmus ADDED /Users/tomas/.matplotlib
+2023-03-03 08:28:35 rasmus ADDED /Users/tomas/.jupyter
+2023-03-04 10:14:33 rasmus ADDED /Users/tomas/.gitconfig
+2023-03-04 10:14:33 rasmus ADDED /Users/tomas/.ipython
+2023-03-04 23:06:42 rasmus REMOVED /Users/tomas/Postman Agent
+2023-03-05 00:25:27 rasmus REMOVED /Users/tomas/.p10k.zsh
+2023-03-05 09:28:31 rasmus ADDED /Users/tomas/.mackup.cfg
+2023-03-05 09:43:02 rasmus ADDED /Users/tomas/Desktop alias
+2023-03-05 09:43:02 rasmus ADDED /Users/tomas/Documents alias
