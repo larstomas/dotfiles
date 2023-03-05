@@ -155,9 +155,6 @@ export DB_USER="postgres"
 ## Local DB för skolan
 #TODO 1p: export POSTGRES_PASSWORD="MHdEGYrt48eWdK6kCq"  #TODO
 
-## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 ## Time zsh load time 
 timezsh() {
   shell=${1-$SHELL}
@@ -196,8 +193,8 @@ bindkey '^x^e' edit-command-line
 # Load plugins
  # Download plugins with "chezmoi apply" defined in "~/.local/share/chezmoi/.chezmoiexternal.toml"
  # Ref: https://www.reddit.com/r/zsh/comments/vryjud/what_is_the_best_plugin_manager_in_your_opinion/
-ZSH_CUSTOM_PLUGINS=$XDG_CACHE_HOME/zsh/plugins
-ZSH_CUSTOM_COMPLETIONS=$XDG_CACHE_HOME/zsh/completions
+ZSH_CUSTOM_PLUGINS=$XDG_CONFIG_HOME/zsh/plugins
+ZSH_CUSTOM_COMPLETIONS=$XDG_CONFIG_HOME/zsh/completions
 alias src='source'
 if [ -d $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions ]; then
   source $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
