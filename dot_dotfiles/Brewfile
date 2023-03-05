@@ -1,3 +1,4 @@
+tap "1password/tap"
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -12,8 +13,6 @@ brew "bat"
 brew "btop"
 # Core application library for C
 brew "glib"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
 # GNU File, Shell, and Text utilities
@@ -22,8 +21,6 @@ brew "coreutils"
 brew "exa"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
@@ -54,14 +51,14 @@ brew "gnu-sed"
 brew "gnu-tar"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Command-line tool for generating regular expressions
 brew "grex"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
 # Access DVDs as block devices without the decryption
@@ -88,6 +85,10 @@ brew "openjdk"
 brew "openjdk@11"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Safe, concurrent, practical language
@@ -98,6 +99,8 @@ brew "spaceship"
 brew "speedtest-cli"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
+# Easiest, most secure way to use WireGuard and 2FA
+brew "tailscale"
 # Simplified and community-driven man pages
 brew "tldr"
 # Terminal multiplexer
@@ -196,6 +199,8 @@ cask "macfuse"
 cask "macupdater"
 # Extensible two-pane file manager
 cask "marta"
+# Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
+cask "mouse-fix"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Document editor
@@ -236,16 +241,21 @@ mas "Affinity Photo", id: 824183456
 mas "Amphetamine", id: 937984704
 mas "Be Focused Pro", id: 961632517
 mas "Copy Link in Markdown", id: 1571033540
-mas "Daglig bakgrundsbild - för Bing", id: 920897043
+mas "Daily Wallpaper - for Bing", id: 920897043
 mas "Diagrams", id: 1276248849
+mas "Disk Speed Test", id: 425264550
 mas "Exporter", id: 1099120373
 mas "FineReader OCR Pro", id: 687301476
 mas "GarageBand", id: 682658836
+mas "Geekbench 5", id: 1478447657
 mas "GoodTask", id: 1143437985
 mas "Hash", id: 945689735
 mas "LibreOffice Vanilla", id: 921923693
 mas "Mactracker", id: 430255202
 mas "Messenger", id: 1480068668
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
 mas "MindNode", id: 1289197285
 mas "MusicHarbor", id: 1440405750
 mas "Numbers", id: 409203825
@@ -267,6 +277,7 @@ mas "Twitter", id: 1482454543
 mas "URL Linker", id: 1289119450
 mas "Userscripts", id: 1463298887
 mas "Voice Dream Reader", id: 972112040
+mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "Wipr", id: 1320666476
 mas "Xcode", id: 497799835
