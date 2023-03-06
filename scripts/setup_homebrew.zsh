@@ -2,6 +2,11 @@
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
 
+#- ask for admin password upfront
+sudo -v
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 echo "#- Install Homebrew"
 if command_exists brew; then
   echo "brew exists, skipping install"
