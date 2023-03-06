@@ -1,0 +1,107 @@
+tap "1password/tap"
+tap "buo/cask-upgrade"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "martido/graph"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Modern replacement for 'ls'
+brew "exa"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Keep your Mac's application settings in sync
+brew "mackup"
+# Mac App Store command-line interface
+brew "mas"
+# NCurses Disk Usage
+brew "ncdu"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Port scanning utility for large networks
+brew "nmap"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Zsh prompt for Astronauts
+brew "spaceship"
+# Add a public key to a remote machine's authorized_keys file
+brew "ssh-copy-id"
+# Easiest, most secure way to use WireGuard and 2FA
+brew "tailscale"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Command-line helper for the 1Password password manager
+cask "1password-cli"
+# Application launcher and productivity software
+cask "alfred"
+# Application uninstaller
+cask "appcleaner"
+# Client for the Dropbox cloud storage service
+cask "dropbox"
+# Free monospaced font with programming ligatures
+cask "font-fira-code"
+# Developer targeted fonts with a high number of glyphs
+cask "font-fira-code-nerd-font"
+cask "font-inconsolata"
+# Developer targeted fonts with a high number of glyphs
+cask "font-meslo-lg-nerd-font"
+# Desktop client for GitHub repositories
+cask "github"
+# Web browser
+cask "google-chrome"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# Keyboard customizer
+cask "karabiner-elements"
+# Automation software
+cask "keyboard-maestro"
+# File system integration
+cask "macfuse"
+# Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
+cask "mouse-fix"
+# Thumbnails, static previews, cover art and metadata for video files
+cask "qlvideo"
+# Music streaming service
+cask "spotify"
+# Open-source code editor
+cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"
+mas "1Blocker", id: 1365531024
+mas "1Password for Safari", id: 1569813296
+mas "Accelerate", id: 1459809092
+mas "Amphetamine", id: 937984704
+mas "Copy Link in Markdown", id: 1571033540
+mas "Daily Wallpaper - for Bing", id: 920897043
+mas "Hash", id: 945689735
+mas "Messenger", id: 1480068668
+mas "Slack", id: 803453959
+mas "Tailscale", id: 1475387142
+mas "TextSniper", id: 1528890965
+mas "Things", id: 904280696
+mas "URL Linker", id: 1289119450
+mas "Userscripts", id: 1463298887
+mas "Wipr", id: 1320666476
