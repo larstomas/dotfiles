@@ -175,9 +175,11 @@ alias exa='exa -laFh --git'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-# Chezmoi add all modifyed files to working copy
+#-- Chezmoi add all modifyed files to working copy
 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}' 
 alias cs='chezmoi status'
+#-- Change dir
+alias cdc='cd ~/.local/share/chezmoi'
 
 # Enable Ctrl-x-e to edit command line
 # https://nuclearsquid.com/writings/edit-long-commands/
