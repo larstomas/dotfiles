@@ -11,7 +11,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 # Install Xcode Command Line Tools 
-#xcode-select --install
+xcode-select --install
+read -p "Wait for Xcode Command Line Tools to install \nPress any key to continue "
 xcode_path=$(xcode-select -p)
 if [ "$xcode_path" != "/Library/Developer/CommandLineTools" ]; then
   echo "Installation of Xcode Command Line Tools failed"
