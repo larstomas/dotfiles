@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Starting Homebrew Setup >>>\n"
+echo "\n# Starting Homebrew Setup\n"
 
-#- ask for admin password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+function command_exists() {
+  # `command -v` is similar to `which`
+  # https://stackoverflow.com/a/677212/1341838
+  command -v $1 >/dev/null 2>&1
+}
 
-echo "#- Install Homebrew"
 if command_exists brew; then
   echo "brew exists, skipping install"
 else
@@ -18,18 +18,13 @@ fi
 
 export HOMEBREW_CASK_OPTS="--no-quarantine" 
 
-# Should we wrap this in a conditional?
-echo "Enter superuser (sudo) password to accept Xcode license"
-sudo xcodebuild -license accept
-sudo xcodebuild -runFirstLaunch
-
 # This works to solve the Insecure Directories issue:
 # compaudit | xargs chmod go-w
 # But this is from the Homebrew site, though `-R` was needed:
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 #chmod -R go-w "$(brew --prefix)/share"
 
-echo "#- Install software"
+echo "\n# Start installing my applications\n"
 # Read more on [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
 brew bundle --verbose --file ../dot_dotfiles/Brewfile
 
