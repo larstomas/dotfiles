@@ -9,17 +9,32 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+function command_exists() {
+  # `command -v` is similar to `which`
+  # https://stackoverflow.com/a/677212/1341838
+  command -v $1 >/dev/null 2>&1
+}
 
 # Install Xcode Command Line Tools 
-xcode-select --install
-read -p "Wait for Xcode Command Line Tools to install \nPress any key to continue "
-xcode_path=$(xcode-select -p)
-if [ "$xcode_path" != "/Library/Developer/CommandLineTools" ]; then
-  echo "Installation of Xcode Command Line Tools failed"
-  exit 1
+if !(command_exists xcode-select); then
+  time xcode-select --install
+  echo ">>> Wait for Xcode Command Line Tools to install"
+  read -p "Press any key to continue "
 fi
 
 # Test xcode installation
+if command_exists xcode-select; then
+  xcode_path=$(xcode-select -p)
+  if [ "$xcode_path" != "/Library/Developer/CommandLineTools" ]; then
+    echo "Installation of Xcode Command Line Tools failed, Xcode path not right"
+    exit 1
+  fi
+else
+  echo "Installation of Xcode Command Line Tools failed, xcode-select command not found"
+  exit 1
+fi
+echo "Xcode Command Line Tools is installed"
+
 #echo "Enter superuser (sudo) password to accept Xcode license"
 #sudo xcodebuild -license accept
 #sudo xcodebuild -runFirstLaunch
