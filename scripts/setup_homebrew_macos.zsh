@@ -13,10 +13,12 @@ if command_exists brew; then
 else
   echo "brew doesn't exist, continuing with install"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if $(arch) = "";then 
+  if $(arch) = "i386";then 
+    echo "Setup Homebrew for x86"
     eval "$(/usr/local/bin/brew shellenv)"
   else
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+    echo "Setup Homebrew for ARM"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 fi
 
