@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-echo "\n# Starting Homebrew Setup\n"
+echo "# Starting Homebrew Setup"
 
 function command_exists() {
   # `command -v` is similar to `which`
@@ -13,7 +13,11 @@ if command_exists brew; then
 else
   echo "brew doesn't exist, continuing with install"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if $(arch) = "";then 
+    eval "$(/usr/local/bin/brew shellenv)"
+  else
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 fi
 
 export HOMEBREW_CASK_OPTS="--no-quarantine" 
@@ -24,9 +28,9 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 #chmod -R go-w "$(brew --prefix)/share"
 
-echo "\n# Start installing my applications\n"
+echo "# Start installing my applications"
 # Read more on [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
-brew bundle --verbose --file ../dot_dotfiles/Brewfile
+brew bundle --verbose --file ../home/dot_dotfiles/Brewfile
 
 # VS code is syncing via github
 # Otherwise export vscode extensions
