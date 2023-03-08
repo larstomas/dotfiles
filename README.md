@@ -15,7 +15,7 @@ My dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.i
 ## Restore Instructions
 Exempel: https://github.com/eieioxyz/dotfiles_macos#decommission-computer
 
-1. Install Xcode: `1. xcode-select --install`
+1. Sign in to App Store to be able to install apps via "mas" command
 2. Run: `2. chezmoi init --apply https://github.com/larstomas/dotfiles.git`
 3. Set up 1password with github: https://developer.1password.com/docs/cli/shell-plugins/github/
 4. [Use 1Password to securely authenticate GitHub | 1Password Developer](https://developer.1password.com/docs/cli/shell-plugins/github/)
