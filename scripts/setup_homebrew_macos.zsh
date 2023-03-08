@@ -5,12 +5,17 @@
 
 echo "# Starting Homebrew Setup"
 
+
+
+#- Functions
 function command_exists() {
   # `command -v` is similar to `which`
   # https://stackoverflow.com/a/677212/1341838
   command -v $1 >/dev/null 2>&1
 }
 
+
+#- Install Homebrew
 if command_exists brew; then
   echo "brew exists, skipping install"
 else
