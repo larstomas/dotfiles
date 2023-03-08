@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Inspiration:
+# [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
+
 echo "# Starting Homebrew Setup"
 
 function command_exists() {
@@ -32,7 +35,7 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 echo "# Start installing my applications"
 # Read more on [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
-brew bundle --verbose --file ../home/dot_dotfiles/Brewfile
+time brew bundle --verbose --file ./scripts/Brewfile
 
 # VS code is syncing via github
 # Otherwise export vscode extensions
