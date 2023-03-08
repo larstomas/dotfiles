@@ -5,6 +5,7 @@
 # -e: exit on error
 set -euf -o pipefail
 
+
 #- Ask for admin password upfront
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
@@ -29,4 +30,11 @@ echo "Xcode Command Line Tools is installed"
 #- Install Homebrew with applications
 source ./scripts/setup_homebrew_macos.zsh
 
+
+#- Sign in to 1Password, need 1Password-CLI to be installed
+eval $(op signin)
+
+
+#- Init and apply with chezmoi
+# Same command as: chezmoi init --apply https://github.com/larstomas/dotfiles.git
 chezmoi init --apply larstomas
