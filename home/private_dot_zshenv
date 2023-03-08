@@ -38,7 +38,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # Exports
 export EMAIL="larstomas@gmail.com"
 export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman" # Setup 1Password
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock # Setup 1Password
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock # Setup 1Password: https://developer.1password.com/docs/ssh/agent/compatibility#ssh-auth-sock
 export HOMEBREW_CASK_OPTS="--no-quarantine"  # Disable Gatekeaper warning. Why use "--no-binaries"
 export N_PREFIX="$HOME/.n" # Setup n the Node.js manager
 export PREFIX="$N_PREFIX" # Setup n the Node.js manager
