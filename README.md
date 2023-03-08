@@ -9,17 +9,15 @@ My dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.i
 5. Gå igenom https://github.com/eieioxyz/dotfiles_macos
 
 ## Inspiration
-1. [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
-2. [How To Setup Your Mac Terminal](https://www.josean.com/posts/terminal-setup)
+1. [twpayne/dotfiles: My dotfiles, managed with https://chezmoi.io.](https://github.com/twpayne/dotfiles)
+2. [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
+3. [How To Setup Your Mac Terminal](https://www.josean.com/posts/terminal-setup)
 
 ## Restore Instructions
 Exempel: https://github.com/eieioxyz/dotfiles_macos#decommission-computer
 
 1. Sign in to App Store to be able to install apps via "mas" command
-2. Run: `2. chezmoi init --apply https://github.com/larstomas/dotfiles.git`
-3. Set up 1password with github: https://developer.1password.com/docs/cli/shell-plugins/github/
-4. [Use 1Password to securely authenticate GitHub | 1Password Developer](https://developer.1password.com/docs/cli/shell-plugins/github/)
-5. TODO check 1password config in .zshenv
+2. Run `install.sh`
 
 ## Decommission Computer
 Exempel: https://github.com/eieioxyz/dotfiles_macos#restore-instructions
