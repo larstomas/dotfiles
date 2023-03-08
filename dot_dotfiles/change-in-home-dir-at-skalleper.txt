@@ -1,7 +1,0 @@
-2023-03-05 10:18:55 skalleper ADDED /Users/tomas/untitled folder
-2023-03-05 10:18:58 skalleper ADDED /Users/tomas/untitled folder
-2023-03-05 10:18:58 skalleper ADDED /Users/tomas/git
-2023-03-05 10:34:59 skalleper REMOVED /Users/tomas/.gitconfig copy
-2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized.tmp
-2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized.tmp
-2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized
