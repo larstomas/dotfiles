@@ -1,12 +1,5 @@
 # dotfiles
-My dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/quick-start/)
-
-## TODO
-1. [LunarVim  Quick start](https://www.lunarvim.org/docs/quick-start)
-2. Add .ssh in chezmoi
-3. Use Brewfile and upgrade with homebrew
-4. Run application installations with chezmoi
-5. Gå igenom https://github.com/eieioxyz/dotfiles_macos
+dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/quick-start/)
 
 ## Inspiration
 1. [twpayne/dotfiles: My dotfiles, managed with https://chezmoi.io.](https://github.com/twpayne/dotfiles)
@@ -16,13 +9,19 @@ My dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.i
 ## Restore Instructions
 Exempel: https://github.com/eieioxyz/dotfiles_macos#decommission-computer
 
-1. Sign in to App Store to be able to install apps via "mas" command
-2. Run `install.sh`
+1. Sign in to App Store to be able to install apps via `mas` command
+2. Download zipped version of https://github.com/larstomas/dotfiles
+3. Run `install.sh`
+4. Run `mackup restore`. Consider doing a `mackup restore --dry-run --verbose` first
 
 ## Decommission Computer
 Exempel: https://github.com/eieioxyz/dotfiles_macos#restore-instructions
 
-1. Log out of Dropbox
-2. Log out of iCloud
-3. Log out of Music/iTunes 
-4. Log out of Messages and Facetime
+Deactivate licenses:
+- Dropbox (Preferences > Account > Unlink)
+- ScreenFlow (Preferences > Licenses > Deactivate)
+- Sign Out of App Store (Menu > Store > Sign Out)
+  - Messages
+  - Facetime
+  - iCloud
+- iTunes
