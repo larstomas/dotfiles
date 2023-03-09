@@ -8,4 +8,5 @@ set -euf -o pipefail
 unzip $HOME/Downloads/mackup-backup.zip -d $HOME/.config/
 #mackup restore --dry-run --verbose
 mackup --force restore
+mackup --force uninstall
 mv $HOME/.config/Mackup $HOME/Downloads/
