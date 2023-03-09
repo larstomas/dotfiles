@@ -10,10 +10,15 @@ dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/q
 1. Sign in to App Store to be able to install apps via `mas` command
 2. Download zipped version of https://github.com/larstomas/dotfiles
 3. Run `install.sh`
-4. Run `mackup restore`. Consider doing a `mackup restore --dry-run --verbose` first
+4. With Terminal.app. Run `mackup restore`. Consider doing a `mackup restore --dry-run --verbose` first
+   1. Take `mackup-backup.zip` from backup.
+   2. Place `it in ~/Downloads`
+   3. Run: `scripts/mackup-restore-app-settings.zsh` *OBS*: All old settings will be destroyed.
 
 ## Decommission Computer
-1. Make a backup off settings with [mackup](https://github.com/lra/mackup)
+1. Make a backup of settings with [mackup](https://github.com/lra/mackup)
+   1. Run `scripts/mackup-backup-app-settings.zsh`
+   2. Backup files will be put in `~/Downloads`
 
 Deactivate licenses:
 - Dropbox (Preferences > Account > Unlink)
