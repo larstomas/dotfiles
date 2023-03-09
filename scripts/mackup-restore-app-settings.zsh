@@ -6,5 +6,5 @@
 set -euf -o pipefail
 
 unzip $HOME/Downloads/mackup-backup.zip -d $HOME/.config/
-mackup restore
+mackup --force restore
 mv $HOME/.config/Mackup $HOME/Downloads/
