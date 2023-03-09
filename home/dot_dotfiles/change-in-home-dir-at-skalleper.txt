@@ -5,3 +5,4 @@
 2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized.tmp
 2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized.tmp
 2023-03-05 20:04:03 skalleper ADDED /Users/tomas/Virtual Machines.localized
+2023-03-09 10:14:46 skalleper ADDED /Users/tomas/bin
