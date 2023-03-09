@@ -182,7 +182,7 @@ defaults write com.apple.terminal "Default Window Settings" -string "Pro"
 TERMINAL_PLIST="$HOME/Library/Preferences/com.apple.Terminal.plist"
 TERMINAL_THEME=`/usr/libexec/PlistBuddy -c "Print 'Default Window Settings'" $TERMINAL_PLIST`
 #/usr/libexec/PlistBuddy -c "Set 'SecureKeyboardEntry' YES" $TERMINAL_PLIST
-/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:Bell false" $TERMINAL_PLIST || /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:Bell integer 0" $TERMINAL_PLIST
+/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:Bell false" $TERMINAL_PLIST 2>/dev/null || /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:Bell integer 0" $TERMINAL_PLIST
 #/usr/libexec/PlistBuddy -c "Set 'Window Settings':$TERMINAL_THEME:VisualBellOnlyWhenMuted false" $TERMINAL_PLIST
 
 # Terminal > Preferences > Profiles > Pro > Shell > "When the shell exits" : Close terminal if shell exits cleanly
