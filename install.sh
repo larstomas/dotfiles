@@ -38,7 +38,10 @@ read -p "Then press any key to continue"
 
 
 #- Sign in to 1Password, need 1Password-CLI to be installed
-eval $(op signin)
+SUBDOMAIN="backman"
+EMAIL="larstomas@gmail.com"
+op account add --address $SUBDOMAIN.1password.com --email $EMAIL
+eval $(op signin --account $SUBDOMAIN)
 op whoami
 
 #- Init and apply with chezmoi
