@@ -31,9 +31,15 @@ echo "Xcode Command Line Tools is installed"
 source ./scripts/setup_homebrew_macos.zsh
 
 
+#- Configure 1Password
+open -a 1Password
+echo ">>> Configure 1Password - https://developer.1password.com/docs/cli/get-started/"
+read -p "Then press any key to continue"
+
+
 #- Sign in to 1Password, need 1Password-CLI to be installed
 eval $(op signin)
-
+op whoami
 
 #- Init and apply with chezmoi
 # Same command as: chezmoi init --apply https://github.com/larstomas/dotfiles.git
