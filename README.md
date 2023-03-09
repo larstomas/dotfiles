@@ -25,3 +25,4 @@ Deactivate licenses:
   - Facetime
   - iCloud
 - iTunes
+- 1Password
