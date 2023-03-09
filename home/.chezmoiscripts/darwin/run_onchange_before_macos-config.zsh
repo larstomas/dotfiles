@@ -6,7 +6,12 @@
 # [awesome-macos-command-line - Use your macOS terminal shell to do awesome things.](https://git.herrbischoff.com/awesome-macos-command-line/about/#desktop)
 # [dotfiles/setup-macos.sh at master · pawelgrzybek/dotfiles](https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh)
 
-echo "\n<<< Starting macOS Setup >>>\n"
+echo "# Starting macOS Setup"
+
+#- Error handling 
+# [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
+# -e: exit on error
+set -euf -o pipefail
 
 #- ask for admin password upfront
 sudo -v
@@ -132,8 +137,6 @@ defaults write com.apple.finder ShowPathbar -bool true
 
 # Unhide and alias in home dir
 chflags nohidden $HOME/Library
-ln -s "$HOME/Desktop" "$HOME/Desktop alias"
-ln -s "$HOME/Documents" "$HOME/Documents alias" 
 
 # Show all file extensions inside the Finder
 defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"

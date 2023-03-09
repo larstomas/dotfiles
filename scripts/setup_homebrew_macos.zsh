@@ -1,10 +1,9 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # Inspiration:
 # [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
 
 echo "# Starting Homebrew Setup"
-
 
 
 #- Functions
@@ -38,9 +37,9 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 #chmod -R go-w "$(brew --prefix)/share"
 
-echo "# Start installing my applications"
+echo "# Start installing basic applications"
 # Read more on [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
-time brew bundle --verbose --file ./scripts/Brewfile
+time brew bundle --file ./scripts/Brewfile
 
 # VS code is syncing via github
 # Otherwise export vscode extensions
