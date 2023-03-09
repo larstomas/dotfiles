@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+echo "### Test ###"
+
+echo "Test 1password"
+tbtest='{{ onepasswordRead "op://Personal/Github SSH key/public key" }}'
+echo $tbtest
+
+{{ if eq .chezmoi.arch "amd64" -}}echo "arm64"{{ end -}}
