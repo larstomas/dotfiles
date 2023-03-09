@@ -16,7 +16,7 @@ Exempel: https://github.com/eieioxyz/dotfiles_macos#decommission-computer
 
 ## Decommission Computer
 Exempel: https://github.com/eieioxyz/dotfiles_macos#restore-instructions
-
+1. Make a backup off settings with [mackup](https://github.com/lra/mackup)
 Deactivate licenses:
 - Dropbox (Preferences > Account > Unlink)
 - ScreenFlow (Preferences > Licenses > Deactivate)
