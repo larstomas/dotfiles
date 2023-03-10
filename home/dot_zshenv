@@ -49,6 +49,11 @@ export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
 export HOMEBREW_BUNDLE_NO_LOCK=true
 export HISTIGNORE='*sudo -S*'
 
+## Setup 1Password
+# First run, for example:
+# $ op plugin init brew
+source $HOME/.config/op/plugins.sh
+
 
 ## SetUP LunarVim
 path=(
