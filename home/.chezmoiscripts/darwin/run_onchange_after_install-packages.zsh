@@ -6,6 +6,9 @@
 # -e: exit on error
 set -euf -o pipefail
 
+echo "Running script has basename $( basename -- "$0"; ), dirname $( dirname -- "$0"; )";
+echo "The present working directory is $( pwd; )";
+
 export HOMEBREW_CASK_OPTS="--no-quarantine" 
 export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
 
