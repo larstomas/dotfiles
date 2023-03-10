@@ -46,7 +46,8 @@ export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 export DOTFILES="$HOME/.dotfiles"
 export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
-export HOMEBREW_GITHUB_API_TOKEN="op://Personal/Github/1PASSWORD_API_TOKEN"
+export HOMEBREW_BUNDLE_NO_LOCK=true
+export HISTIGNORE='*sudo -S*'
 
 
 ## SetUP LunarVim
