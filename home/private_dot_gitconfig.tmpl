@@ -6,6 +6,7 @@
 [user]
 	name = Tomas Bäckman
 	email = {{ .email }}
+{{ if (eq .chezmoi.os "darwin") }}eval
 	signingkey = ssh-ed25519 ***REMOVED***
 [credential]
 	helper = osxkeychain
@@ -15,3 +16,4 @@
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
 	gpgsign = true
+{{- end }}
