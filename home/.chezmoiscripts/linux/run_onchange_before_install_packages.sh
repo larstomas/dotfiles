@@ -1,16 +1,20 @@
 #!/bin/bash
 
-LOGFILE=$HOME/Desktop/"$0.log"
-TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+sudo add-apt-repository universe -y
+sudo add-apt-repository restricted -y
+sudo add-apt-repository multiverse -y
 
-echo $TIMESTAMP > $LOGFILE 2>&1
-
-echo "# Update reops" >> $LOGFILE 2>&1
-sudo apt update >> $LOGFILE 2>&1
+echo "# Update reops"
+sudo apt update
 
 sudo apt-get install build-essential -y
 sudo apt install git -y
 sudo apt install curl -y
+sudo apt install exa -y
+sudo apt install bat -y
+
+sudo apt install fonts-firacode
+fc-cache -fv # Reload font cache
 
 #- Functions
 function command_exists() {
@@ -20,23 +24,28 @@ function command_exists() {
 }
 
 
+#- Install Z shell (zsh)
+sudo apt install zsh -y
+sudo chsh -s $(which zsh)
+
+
 #- Install 1Password
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --yes --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
 sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
 curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --yes --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 sudo apt update -y
 sudo apt install 1password -y
 
-
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+# https://developer.1password.com/docs/cli/get-started/#install
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --yes --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list
 sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
 curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
-curl -sS https://downloads.1password.com/linux/keys/1password.asc |  sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+curl -sS https://downloads.1password.com/linux/keys/1password.asc |  sudo gpg --yes --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 sudo apt update -y
 sudo apt install 1password-cli -y
 op --version
@@ -46,6 +55,8 @@ sudo groupadd onepassword-cli
 
 sudo chown root:onepassword-cli /usr/local/bin/op && \
   sudo chmod g+s /usr/local/bin/op
+
+eval $(op signin --account backman.1password.com)
 
 #- Install Homebrew
 if command_exists brew; then
@@ -58,3 +69,4 @@ else
 fi
 
 brew install chezmoi
+brew install spaceship
