@@ -117,6 +117,10 @@ setopt share_history          # share command history data
 ###zmodload zsh/zprof
 setopt globDots # Do not require a leading ‘.’ in a filename to be matched explicitly.
 
+## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
+bindkey -e
+
+
 ## Setup Python
 path=(
   "$(brew --prefix python)/bin"
@@ -205,6 +209,10 @@ fi
 if [ -d $ZSH_CUSTOM_PLUGINS/history-search-multi-word ]; then
   source $ZSH_CUSTOM_PLUGINS/history-search-multi-word/H-S-MW.plugin.zsh
 fi
+# load spaceship
+if [ -d $ZSH_CUSTOM_PLUGINS/spaceship-prompt ]; then
+  source $ZSH_CUSTOM_PLUGINS/spaceship-prompt/spaceship.zsh
+fi
 if [ -d $ZSH_CUSTOM_PLUGINS/zsh-defer ]; then
   alias src='zsh-defer source'
   source $ZSH_CUSTOM_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
@@ -226,7 +234,7 @@ fi
 
 
 # Configure spaceship prompt
-source "$(brew --prefix spaceship)/spaceship.zsh"
+#source "$(brew --prefix spaceship)/spaceship.zsh"
 
 # Customize Prompt(s)
 source "$DOTFILES/spaceship_shlvl.zsh"
