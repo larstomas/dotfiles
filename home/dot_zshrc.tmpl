@@ -117,6 +117,10 @@ setopt share_history          # share command history data
 ###zmodload zsh/zprof
 setopt globDots # Do not require a leading ‘.’ in a filename to be matched explicitly.
 
+## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
+bindkey -e
+
+
 ## Setup Python
 path=(
   "$(brew --prefix python)/bin"
