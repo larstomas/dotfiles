@@ -6,8 +6,7 @@
 [user]
 	name = Tomas Bäckman
 	email = {{ .email }}
-{{ if (eq .chezmoi.os "darwin") }}eval
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFcqfIx1KghKXzehtx4IbwsZ1CDQKWQrvAxC4T5Ba9T
+{{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFcqfIx1KghKXzehtx4IbwsZ1CDQKWQrvAxC4T5Ba9T
 [credential]
 	helper = osxkeychain
 [gpg]
@@ -17,3 +16,12 @@
 [commit]
 	gpgsign = true
 {{- end }}
+{{ if (eq .chezmoi.os "linux") }}
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+{{ end }}
+
