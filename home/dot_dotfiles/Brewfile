@@ -101,8 +101,6 @@ brew "rsync"
 brew "rust"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-# Zsh prompt for Astronauts
-brew "spaceship"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
 # Add a public key to a remote machine's authorized_keys file
