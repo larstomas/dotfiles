@@ -100,10 +100,9 @@ if command_exists brew; then
   echo "# brew exists, skipping install"
 else
   echo "# brew doesn't exist, continuing with install"
-  NONINTERACTIVE=1
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  #echo "eval \"\$($(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> ~/.profile
-  #source $HOME/.profile
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  touch $HOME/.profile
+  echo "eval \"\$($(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> $HOME/.profile
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
