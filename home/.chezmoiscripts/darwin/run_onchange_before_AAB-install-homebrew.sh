@@ -30,6 +30,7 @@ if command_exists brew; then
   echo "brew exists, skipping install"
 else
   echo "brew doesn't exist, continuing with install"
+  NONINTERACTIVE=1
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if $(arch) = "i386";then 
     echo "Setup Homebrew for x86"
