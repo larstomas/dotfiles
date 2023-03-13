@@ -12,14 +12,16 @@
 # -e: exit on error
 set -euf -o pipefail
 
-echo "# Starting macOS Setup"
 echo "Running script has basename $( basename -- "$0"; ), dirname $( dirname -- "$0"; )";
 echo "The present working directory is $( pwd; )";
 
-#- ask for admin password upfront
+#- Ask for admin password upfront
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+echo "# Starting macOS Setup"
 
 # Close System Preferences
 osascript -e 'tell application "System Preferences" to quit'
