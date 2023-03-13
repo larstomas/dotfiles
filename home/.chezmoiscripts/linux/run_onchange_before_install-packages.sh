@@ -5,7 +5,9 @@
 # -e: exit on error
 set -euf -o pipefail
 
-#exit 0
+echo "#- Redirect STDOUT and STDERR to log file"
+exec 1>>$HOME/Downloads/install.log
+exec 2>&1
 
 echo "#- Ask for admin password upfront"
 sudo -v
