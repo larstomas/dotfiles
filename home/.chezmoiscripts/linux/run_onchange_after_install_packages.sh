@@ -99,8 +99,9 @@ if command_exists brew; then
 else
   echo "# brew doesn't exist, continuing with install"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+  echo "eval \"\$($(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> ~/.profile
   source $HOME/.profile
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 echo "#- Install Homebrew packages"
