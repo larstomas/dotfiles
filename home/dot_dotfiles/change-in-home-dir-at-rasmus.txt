@@ -72,3 +72,5 @@
 2023-03-05 09:28:31 rasmus ADDED /Users/tomas/.mackup.cfg
 2023-03-05 09:43:02 rasmus ADDED /Users/tomas/Desktop alias
 2023-03-05 09:43:02 rasmus ADDED /Users/tomas/Documents alias
+2023-03-14 20:50:50 rasmus REMOVED /Users/tomas/.COVolumes
+2023-03-14 20:50:50 rasmus REMOVED /Users/tomas/.COVolumes
