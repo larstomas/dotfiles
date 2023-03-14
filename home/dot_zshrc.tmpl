@@ -78,13 +78,11 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-## Setup 1Password
-source $HOME/.config/op/plugins.sh
-
 ## Homebrew
 {{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"{{- end }}
-#TODO 1p: export HOMEBREW_GITHUB_API_TOKEN=
+{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"
+{{ else if (eq .chezmoi.os "linux")}}eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"{{- end }}
+
 
 # Add Locations to $path Array
 typeset -U path
@@ -118,6 +116,10 @@ setopt share_history          # share command history data
 ## Load zsh profiling tool 
 ###zmodload zsh/zprof
 setopt globDots # Do not require a leading ‘.’ in a filename to be matched explicitly.
+
+## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
+bindkey -e
+
 
 ## Setup Python
 path=(
@@ -153,7 +155,7 @@ export DB_USER="postgres"
 #TODO 1p: export DB_PASS="" 
 
 ## Local DB för skolan
-#TODO 1p: export POSTGRES_PASSWORD="MHdEGYrt48eWdK6kCq"  #TODO
+#TODO 1p: export POSTGRES_PASSWORD="MHd..."  #TODO
 
 ## Time zsh load time 
 timezsh() {
@@ -207,6 +209,10 @@ fi
 if [ -d $ZSH_CUSTOM_PLUGINS/history-search-multi-word ]; then
   source $ZSH_CUSTOM_PLUGINS/history-search-multi-word/H-S-MW.plugin.zsh
 fi
+# load spaceship
+if [ -d $ZSH_CUSTOM_PLUGINS/spaceship-prompt ]; then
+  source $ZSH_CUSTOM_PLUGINS/spaceship-prompt/spaceship.zsh
+fi
 if [ -d $ZSH_CUSTOM_PLUGINS/zsh-defer ]; then
   alias src='zsh-defer source'
   source $ZSH_CUSTOM_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
@@ -227,8 +233,8 @@ if [ -d $ZSH_CUSTOM_PLUGINS/ohmyzsh ]; then
 fi
 
 
-# Confugura spaceship prompt
-source "$(brew --prefix spaceship)/spaceship.zsh"
+# Configure spaceship prompt
+#source "$(brew --prefix spaceship)/spaceship.zsh"
 
 # Customize Prompt(s)
 source "$DOTFILES/spaceship_shlvl.zsh"

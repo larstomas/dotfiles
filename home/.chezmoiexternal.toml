@@ -30,5 +30,9 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-
-   
+[".config/zsh/plugins/spaceship-prompt"]
+    type = "archive"
+    url = "https://github.com/spaceship-prompt/spaceship-prompt/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"

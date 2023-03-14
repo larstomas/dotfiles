@@ -6,12 +6,22 @@
 [user]
 	name = Tomas Bäckman
 	email = {{ .email }}
-	signingkey = {{ .gitsigningkey }}
+{{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFcqfIx1KghKXzehtx4IbwsZ1CDQKWQrvAxC4T5Ba9T
 [credential]
 	helper = osxkeychain
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
 	gpgsign = true
+{{- end }}
+{{ if (eq .chezmoi.os "linux") }}
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+{{ end }}
+

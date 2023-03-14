@@ -6,12 +6,22 @@
 # [awesome-macos-command-line - Use your macOS terminal shell to do awesome things.](https://git.herrbischoff.com/awesome-macos-command-line/about/#desktop)
 # [dotfiles/setup-macos.sh at master · pawelgrzybek/dotfiles](https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh)
 
-echo "\n<<< Starting macOS Setup >>>\n"
 
-#- ask for admin password upfront
+#- Error handling 
+# [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
+# -e: exit on error
+set -euf -o pipefail
+
+echo "Running script has basename $( basename -- "$0"; ), dirname $( dirname -- "$0"; )";
+echo "The present working directory is $( pwd; )";
+
+#- Ask for admin password upfront
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+echo "# Starting macOS Setup"
 
 # Close System Preferences
 osascript -e 'tell application "System Preferences" to quit'
@@ -132,8 +142,6 @@ defaults write com.apple.finder ShowPathbar -bool true
 
 # Unhide and alias in home dir
 chflags nohidden $HOME/Library
-ln -s "$HOME/Desktop" "$HOME/Desktop alias"
-ln -s "$HOME/Documents" "$HOME/Documents alias" 
 
 # Show all file extensions inside the Finder
 defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
@@ -179,7 +187,7 @@ defaults write com.apple.terminal "Default Window Settings" -string "Pro"
 TERMINAL_PLIST="$HOME/Library/Preferences/com.apple.Terminal.plist"
 TERMINAL_THEME=`/usr/libexec/PlistBuddy -c "Print 'Default Window Settings'" $TERMINAL_PLIST`
 #/usr/libexec/PlistBuddy -c "Set 'SecureKeyboardEntry' YES" $TERMINAL_PLIST
-/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:Bell false" $TERMINAL_PLIST
+/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:Bell false" $TERMINAL_PLIST 2>/dev/null || /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:Bell integer 0" $TERMINAL_PLIST
 #/usr/libexec/PlistBuddy -c "Set 'Window Settings':$TERMINAL_THEME:VisualBellOnlyWhenMuted false" $TERMINAL_PLIST
 
 # Terminal > Preferences > Profiles > Pro > Shell > "When the shell exits" : Close terminal if shell exits cleanly

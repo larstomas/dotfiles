@@ -1,0 +1,22 @@
+tap "1password/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Modern replacement for 'ls'
+brew "exa"
+# Zsh prompt for Astronauts
+brew "spaceship"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Command-line helper for the 1Password password manager
+cask "1password-cli"
+# Application uninstaller
+cask "appcleaner"
+mas "1Password for Safari", id: 1569813296
+mas "Accelerate", id: 1459809092
+mas "Amphetamine", id: 937984704

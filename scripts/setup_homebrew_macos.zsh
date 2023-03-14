@@ -1,27 +1,35 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "\n<<< Starting Homebrew Setup >>>\n"
+# Inspiration:
+# [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
 
-#- ask for admin password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+echo "# Starting Homebrew Setup"
 
-echo "#- Install Homebrew"
+
+#- Functions
+function command_exists() {
+  # `command -v` is similar to `which`
+  # https://stackoverflow.com/a/677212/1341838
+  command -v $1 >/dev/null 2>&1
+}
+
+
+#- Install Homebrew
 if command_exists brew; then
   echo "brew exists, skipping install"
 else
   echo "brew doesn't exist, continuing with install"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  if $(arch) = "i386";then 
+    echo "Setup Homebrew for x86"
+    eval "$(/usr/local/bin/brew shellenv)"
+  else
+    echo "Setup Homebrew for ARM"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 fi
 
 export HOMEBREW_CASK_OPTS="--no-quarantine" 
-
-# Should we wrap this in a conditional?
-echo "Enter superuser (sudo) password to accept Xcode license"
-sudo xcodebuild -license accept
-sudo xcodebuild -runFirstLaunch
 
 # This works to solve the Insecure Directories issue:
 # compaudit | xargs chmod go-w
@@ -29,9 +37,9 @@ sudo xcodebuild -runFirstLaunch
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 #chmod -R go-w "$(brew --prefix)/share"
 
-echo "#- Install software"
+echo "# Start installing basic applications"
 # Read more on [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
-brew bundle --verbose --file ../dot_dotfiles/Brewfile
+time brew bundle --file ./scripts/Brewfile
 
 # VS code is syncing via github
 # Otherwise export vscode extensions
