@@ -86,7 +86,13 @@ sudo apt-get install -y open-vm-tools                           # VMWare tools
 sudo apt-get install -y open-vm-tools-desktop                   # VMWare tools Desktop
 
 
+echo "#- Install Snap Store"
+sudo apt install snapd
+sudo snap install core
+
+
 echo "#- Install VS Code"
+sudo snap install btop
 sudo snap install --classic code
 
 
