@@ -13,10 +13,14 @@ brew "bat"
 brew "btop"
 # Core application library for C
 brew "glib"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# CPU architecture fetching tool
+brew "cpufetch"
 # Modern replacement for 'ls'
 brew "exa"
 # Perl lib for reading and writing EXIF metadata
@@ -39,6 +43,8 @@ brew "ffmpeg"
 brew "findutils"
 # GNU awk utility
 brew "gawk"
+# Disk usage analyzer with console interface written in Go
+brew "gdu"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -53,6 +59,8 @@ brew "gnu-sed"
 brew "gnu-tar"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # GNU grep, egrep and fgrep
@@ -75,22 +83,22 @@ brew "media-info"
 brew "n"
 # NCurses Disk Usage
 brew "ncdu"
+# Fast, highly customisable system info script
+brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # HTTP/2 C Library
 brew "nghttp2"
 # Port scanning utility for large networks
 brew "nmap"
+# Tiny, lightning fast, feature-packed file manager
+brew "nnn"
 # Development kit for the Java programming language
 brew "openjdk"
 # Development kit for the Java programming language
 brew "openjdk@11"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # File browser
 brew "ranger"
 # Search tool like grep and The Silver Searcher
@@ -149,6 +157,8 @@ cask "betterzip"
 cask "carbon-copy-cloner"
 # Open links in any browser
 cask "choosy"
+# Two-panel file manager
+cask "commander-one"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # Disk space visualizer
