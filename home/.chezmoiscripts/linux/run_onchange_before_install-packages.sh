@@ -5,9 +5,9 @@
 # -e: exit on error
 set -euf -o pipefail
 
-echo "#- Redirect STDOUT and STDERR to log file"
-exec 1>>$HOME/Downloads/install.log
-exec 2>&1
+# echo "#- Redirect STDOUT and STDERR to log file"
+# exec 1>>$HOME/Downloads/install.log
+# exec 2>&1
 
 echo "#- Ask for admin password upfront"
 sudo -v
@@ -143,6 +143,7 @@ sudo apt-get install -y gh
 echo "#-- Test 1Password installation"
 op --version
 # Login
+op account add --address backman.1password.com --email larstomas@gmail.com
 eval $(op signin --account backman.1password.com)
 # Test read from 1password
 op read "op://Personal/test_read_from_1password_vault/text"
