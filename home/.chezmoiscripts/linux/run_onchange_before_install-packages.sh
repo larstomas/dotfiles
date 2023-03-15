@@ -72,7 +72,7 @@ sudo apt-get install -y fd-find
 #sudo apt-get install localepurge                                # Localepurge - removed all localization of the installed packages except for the selected system language.
 sudo apt-get install -y nmap
 sudo apt-get install -y tree
-sudo apt-get install -y btop
+#TODO Not working on debian sudo apt-get install -y btop
 sudo apt-get install -y htop
 sudo apt-get install -y shellcheck                              # lint tool for shell scripts
 sudo apt-get install -y ncdu                                    # Ncdu is a ncurses-based du viewer
