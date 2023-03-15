@@ -87,7 +87,7 @@ sudo apt-get install -y open-vm-tools-desktop                   # VMWare tools D
 
 
 echo "#- Install Snap Store"
-sudo apt install snapd
+sudo apt install -y snapd
 sudo snap install core
 
 
