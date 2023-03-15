@@ -22,7 +22,7 @@ function command_exists() {
 }
 
 
-#echo "#- Adding ubuntu repositories"
+#TODO echo "#- Adding ubuntu repositories"
 #sudo add-apt-repository universe -y
 #sudo add-apt-repository restricted -y
 #sudo add-apt-repository multiverse -y
