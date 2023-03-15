@@ -5,9 +5,9 @@
 # -e: exit on error
 set -euf -o pipefail
 
-echo "#- Redirect STDOUT and STDERR to log file"
-exec 1>>$HOME/Downloads/install.log
-exec 2>&1
+# echo "#- Redirect STDOUT and STDERR to log file"
+# exec 1>>$HOME/Downloads/install.log
+# exec 2>&1
 
 echo "#- Ask for admin password upfront"
 sudo -v
@@ -21,10 +21,11 @@ function command_exists() {
   command -v $1 >/dev/null 2>&1
 }
 
-echo "#- Adding ubuntu repositories"
-sudo add-apt-repository universe -y
-sudo add-apt-repository restricted -y
-sudo add-apt-repository multiverse -y
+
+#TODO echo "#- Adding ubuntu repositories"
+#sudo add-apt-repository universe -y
+#sudo add-apt-repository restricted -y
+#sudo add-apt-repository multiverse -y
 
 echo "#- Update reops"
 sudo apt-get update -y
@@ -71,7 +72,7 @@ sudo apt-get install -y fd-find
 #sudo apt-get install localepurge                                # Localepurge - removed all localization of the installed packages except for the selected system language.
 sudo apt-get install -y nmap
 sudo apt-get install -y tree
-sudo apt-get install -y btop
+#TODO Not working on debian sudo apt-get install -y btop
 sudo apt-get install -y htop
 sudo apt-get install -y shellcheck                              # lint tool for shell scripts
 sudo apt-get install -y ncdu                                    # Ncdu is a ncurses-based du viewer
@@ -85,7 +86,13 @@ sudo apt-get install -y open-vm-tools                           # VMWare tools
 sudo apt-get install -y open-vm-tools-desktop                   # VMWare tools Desktop
 
 
+echo "#- Install Snap Store"
+sudo apt install -y snapd
+sudo snap install core
+
+
 echo "#- Install VS Code"
+sudo snap install btop
 sudo snap install --classic code
 
 
@@ -143,6 +150,7 @@ sudo apt-get install -y gh
 echo "#-- Test 1Password installation"
 op --version
 # Login
+op account add --address backman.1password.com --email larstomas@gmail.com
 eval $(op signin --account backman.1password.com)
 # Test read from 1password
 op read "op://Personal/test_read_from_1password_vault/text"
