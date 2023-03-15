@@ -21,10 +21,11 @@ function command_exists() {
   command -v $1 >/dev/null 2>&1
 }
 
-echo "#- Adding ubuntu repositories"
-sudo add-apt-repository universe -y
-sudo add-apt-repository restricted -y
-sudo add-apt-repository multiverse -y
+
+#echo "#- Adding ubuntu repositories"
+#sudo add-apt-repository universe -y
+#sudo add-apt-repository restricted -y
+#sudo add-apt-repository multiverse -y
 
 echo "#- Update reops"
 sudo apt-get update -y
