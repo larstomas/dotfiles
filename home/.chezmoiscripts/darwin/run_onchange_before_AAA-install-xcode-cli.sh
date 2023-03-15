@@ -14,14 +14,14 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 #- Install Xcode Command Line Tools 
-if [ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ]; then
+if [ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ] && [ "$(xcode-select -p)" != "/Applications/Xcode.app/Contents/Developer" ]; then
   xcode-select --install
   echo ">>> Wait for Xcode Command Line Tools to install"
   read -p "Press any key to continue "
 fi
 
 #-- Test xcode installation
-if [ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ]; then
+if [ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ] && [ "$(xcode-select -p)" != "/Applications/Xcode.app/Contents/Developer" ]; then
   echo "Installation of Xcode Command Line Tools failed, Xcode path not right"
   exit 1
 fi
