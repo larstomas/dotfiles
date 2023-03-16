@@ -253,9 +253,9 @@ cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # Create, manage, and run virtual machines
-cask "vmware-fusion"
+#cask "vmware-fusion"
 # Video communication and virtual meeting platform
-cask "zoom"
+#cask "zoom"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
@@ -289,16 +289,16 @@ mas "PocketTube", id: 1533703891
 mas "rubiTrack 6", id: 1557892760
 mas "Save to Pocket", id: 1477385213
 mas "Slack", id: 803453959
-mas "Super Agent", id: 1568262835
+#mas "Super Agent", id: 1568262835
 mas "Tailscale", id: 1475387142
 mas "TextSniper", id: 1528890965
 mas "Things", id: 904280696
-mas "Tweetbot", id: 1384080005
-mas "Twitter", id: 1482454543
+#mas "Tweetbot", id: 1384080005
+#mas "Twitter", id: 1482454543
 mas "URL Linker", id: 1289119450
 mas "Userscripts", id: 1463298887
-mas "Voice Dream Reader", id: 972112040
-mas "WhatsApp", id: 1147396723
-mas "WiFi Explorer", id: 494803304
-mas "Wipr", id: 1320666476
-mas "Xcode", id: 497799835
+#mas "Voice Dream Reader", id: 972112040
+#mas "WhatsApp", id: 1147396723
+#mas "WiFi Explorer", id: 494803304
+#mas "Wipr", id: 1320666476
+#mas "Xcode", id: 497799835

@@ -6,8 +6,9 @@
 set -euf -o pipefail
 
 mackup --force backup
-sleep 1
+sleep 2
 cd $HOME/.config/
 zip -r $HOME/Downloads/mackup-backup.zip ./Mackup -x "*.DS_Store"
 mackup --force uninstall
+sleep 2
 mv $HOME/.config/Mackup $HOME/Downloads/
