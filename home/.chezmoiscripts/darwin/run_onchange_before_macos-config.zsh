@@ -1,13 +1,13 @@
 #!/bin/zsh
 
-# Inspiration: 
+# Inspiration:
 # [dotfiles/.macos at main · mathiasbynens/dotfiles](http://mths.be/osx)
 # [freshinstall/1.macos-settings.sh at master · bramus/freshinstall](https://github.com/bramus/freshinstall/blob/master/steps/1.macos-settings.sh)
 # [awesome-macos-command-line - Use your macOS terminal shell to do awesome things.](https://git.herrbischoff.com/awesome-macos-command-line/about/#desktop)
 # [dotfiles/setup-macos.sh at master · pawelgrzybek/dotfiles](https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh)
 
 
-#- Error handling 
+#- Error handling
 # [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
 # -e: exit on error
 set -euf -o pipefail
@@ -41,12 +41,12 @@ osascript -e 'tell application "System Preferences" to quit'
 # sudo scutil --set LocalHostName $computername
 # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $computername
 
-#- System Preferences (in macOS Ventura 13) 
+#- System Preferences (in macOS Ventura 13)
 #-- Sound
 # "Play feedback when volume is changed" : true
 defaults write -g "com.apple.sound.beep.feedback" -int 1
 
-#-- Appearance 
+#-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
@@ -67,7 +67,7 @@ defaults write com.apple.dock mru-spaces -bool false
 defaults write -g AppleSpacesSwitchOnActivate -bool true
 
 # Dock icon size of 36 pixels.
-defaults write com.apple.dock "tilesize" -int "36" 
+defaults write com.apple.dock "tilesize" -int "36"
 
 # System Preferences > Dock > Automatically hide and show the Dock:
 defaults write com.apple.dock autohide -bool true
@@ -163,7 +163,7 @@ defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
 defaults write com.apple.finder "FXEnableRemoveFromICloudDriveWarning" -bool false
 
 # Save to disk or iCloud by default
-defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false" 
+defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false"
 
 # Show connected servers
 defaults write com.apple.finder "ShowMountedServersOnDesktop" -bool "true"
@@ -206,8 +206,8 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-# Make a new tab or window active when it opens. 
-defaults write com.apple.Safari OpenNewTabsInFront -bool true 
+# Make a new tab or window active when it opens.
+defaults write com.apple.Safari OpenNewTabsInFront -bool true
 
 #- General
 # Expand save panel by default

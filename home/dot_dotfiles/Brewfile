@@ -44,7 +44,7 @@ brew "findutils"
 # GNU awk utility
 brew "gawk"
 # Disk usage analyzer with console interface written in Go
-brew "gdu"
+#brew "gdu"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -58,7 +58,7 @@ brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
 # Open source programming language to build simple/reliable/efficient software
-brew "go"
+#brew "go"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
 # Generate introspection data for GObject libraries
@@ -122,9 +122,9 @@ brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Download YouTube videos from the command-line
-brew "youtube-dl"
+#brew "youtube-dl"
 # Fork of youtube-dl with additional features and fixes
-brew "yt-dlp"
+#brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
 # UNIX shell (command interpreter)
@@ -142,9 +142,9 @@ cask "anki"
 # Application uninstaller
 cask "appcleaner"
 # Multi-cloud backup application
-cask "arq"
+#cask "arq"
 # Turn audio CDs and files into audiobooks
-cask "audiobook-builder"
+#cask "audiobook-builder"
 # Two-factor authentication software
 cask "authy"
 # Menu bar icon organizer
@@ -156,13 +156,13 @@ cask "betterzip"
 # Hard disk backup and cloning utility
 cask "carbon-copy-cloner"
 # Open links in any browser
-cask "choosy"
+#cask "choosy"
 # Two-panel file manager
 cask "commander-one"
 # Multi-platform client-side cloud file encryption tool
-cask "cryptomator"
+#cask "cryptomator"
 # Disk space visualizer
-cask "daisydisk"
+#cask "daisydisk"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # Collect, organize, edit and annotate documents
@@ -196,13 +196,13 @@ cask "google-chrome"
 # Desktop automation application
 cask "hammerspoon"
 # Open-source video transcoder
-cask "handbrake"
+#cask "handbrake"
 # App to help keep the desktop organized
 cask "icollections"
 # Free and open-source media player
 cask "iina"
 # IDE for Java development - community edition
-cask "intellij-idea-ce"
+#cask "intellij-idea-ce"
 # System monitoring app
 cask "istat-menus"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -210,11 +210,11 @@ cask "iterm2"
 # Spot and merge differences in text and image files or folders
 cask "kaleidoscope"
 # Keyboard customizer
-cask "karabiner-elements"
+#cask "karabiner-elements"
 # Automation software
 cask "keyboard-maestro"
 # File system integration
-cask "macfuse"
+#cask "macfuse"
 # Track and update to the latest versions of installed software
 cask "macupdater"
 # Extensible two-pane file manager
@@ -224,7 +224,7 @@ cask "mouse-fix"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Document editor
-cask "onlyoffice"
+#cask "onlyoffice"
 # PDF reader, editor and annotator
 cask "pdf-expert"
 # Tool to organize photo libraries
@@ -232,14 +232,14 @@ cask "powerphotos"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
 # Remote access software focusing on usability
-cask "screens"
+#cask "screens"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
-cask "steam"
+#cask "steam"
 # Remote access and connectivity software focused on security
-cask "teamviewer"
-cask "transmission-remote-gui"
+#cask "teamviewer"
+#cask "transmission-remote-gui"
 # File transfer application
 cask "transmit"
 # Configurable document editor that supports Markdown
@@ -247,7 +247,7 @@ cask "typora"
 # Log browser
 cask "ulbow"
 # Disk encryption software focusing on security based on TrueCrypt
-cask "veracrypt"
+#cask "veracrypt"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
@@ -261,33 +261,33 @@ mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
 mas "Affinity Photo", id: 824183456
 mas "Amphetamine", id: 937984704
-mas "Be Focused Pro", id: 961632517
+#mas "Be Focused Pro", id: 961632517
 mas "Copy Link in Markdown", id: 1571033540
 mas "Daily Wallpaper - for Bing", id: 920897043
 mas "Diagrams", id: 1276248849
-mas "Disk Speed Test", id: 425264550
-mas "Exporter", id: 1099120373
+#mas "Disk Speed Test", id: 425264550
+#mas "Exporter", id: 1099120373
 mas "FineReader OCR Pro", id: 687301476
-mas "GarageBand", id: 682658836
-mas "Geekbench 5", id: 1478447657
+#mas "GarageBand", id: 682658836
+#mas "Geekbench 5", id: 1478447657
 mas "GoodTask", id: 1143437985
 mas "Hash", id: 945689735
-mas "LibreOffice Vanilla", id: 921923693
-mas "Mactracker", id: 430255202
+#mas "LibreOffice Vanilla", id: 921923693
+#mas "Mactracker", id: 430255202
 mas "Messenger", id: 1480068668
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
+#mas "Microsoft Excel", id: 462058435
+#mas "Microsoft PowerPoint", id: 462062816
+#mas "Microsoft Word", id: 462054704
 mas "MindNode", id: 1289197285
-mas "MusicHarbor", id: 1440405750
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+#mas "MusicHarbor", id: 1440405750
+#mas "Numbers", id: 409203825
+#mas "Pages", id: 409201541
 mas "Pins", id: 1547106997
 mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
 mas "PocketTube", id: 1533703891
-mas "rubiTrack 6", id: 1557892760
-mas "Save to Pocket", id: 1477385213
+#mas "rubiTrack 6", id: 1557892760
+#mas "Save to Pocket", id: 1477385213
 mas "Slack", id: 803453959
 #mas "Super Agent", id: 1568262835
 mas "Tailscale", id: 1475387142

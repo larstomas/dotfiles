@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#- Error handling 
+#- Error handling
 # [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
 # -e: exit on error
 set -euf -o pipefail
@@ -31,7 +31,7 @@ if command_exists brew; then
 else
   echo "brew doesn't exist, continuing with install"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if $(arch) = "i386";then 
+  if $(arch) = "i386";then
     echo "Setup Homebrew for x86"
     eval "$(/usr/local/bin/brew shellenv)"
   else
@@ -43,7 +43,7 @@ fi
 
 #- Install Homebrew with applications
 #source ./scripts/setup_homebrew_macos.zsh
-export HOMEBREW_CASK_OPTS="--no-quarantine" 
+export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "1password/tap"
