@@ -29,3 +29,8 @@ Deactivate licenses:
   - iCloud
 - iTunes
 - 1Password
+
+## TODO
+- Set $XDG_CONFIG_HOME in linux
+- export PATH="/snap/bin:$PATH"       for debian
+
