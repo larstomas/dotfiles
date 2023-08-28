@@ -1,27 +1,58 @@
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+#[filter "lfs"]
+#	smudge = git-lfs smudge -- %f
+#	process = git-lfs filter-process
+#	required = true
+#	clean = git-lfs clean -- %f
 [user]
 	name = Tomas Bäckman
-	email = {{ .email }}
+#	email = {{ .email }}
 {{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFcqfIx1KghKXzehtx4IbwsZ1CDQKWQrvAxC4T5Ba9T
-[credential]
-	helper = osxkeychain
+#[credential]
+#	helper = osxkeychain
 [gpg]
+	# used in 1Password:
 	format = ssh
 [gpg "ssh"]
+	# used in 1Password:
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
+	# used in 1Password:
 	gpgsign = true
 {{- end }}
 {{ if (eq .chezmoi.os "linux") }}
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 {{ end }}
 
+[core]
+	editor = vim
+[alias]
+	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+	pm = push origin HEAD:refs/for/master
+	rhm = reset --hard origin/master
+	rsm = reset --soft origin/master
+	st = status
+	co = checkout
+	br = branch
+	c = commit
+	a = add -pi
+	ca = commit --amend
+	pb ="!f() { git push origin HEAD:refs/for/$(git branch --show-current);}; f"
+	can = commit --amend --no-edit
+	current = branch --show-current
+	conf = config --global -e
+	rsb = "!f() { git reset --soft origin/$(git branch --show-current);}; f"
+	rhb = "!f() { git reset --hard origin/$(git branch --show-current);}; f"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[includeIf "gitdir:repos/github/"]
+	path = .gitconfig-github
+[includeIf "gitdir:repos/zenseact/"]
+	path = .gitconfig-zenseact

@@ -27,39 +27,30 @@ function mkcd() {
 # Setup directories
 export ZDOTDIR="$HOME"
 
-# XDG Base Directory {{{1
+# XDG Base Directory [[[1
 # Ref: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# and: https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-
 # Exports
 export EMAIL="larstomas@gmail.com"
 export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman" # Setup 1Password
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock # Setup 1Password: https://developer.1password.com/docs/ssh/agent/compatibility#ssh-auth-sock
+source $HOME/.config/op/plugins.sh # Setup 1Password # First run, for example: $ op plugin init brew
 export HOMEBREW_CASK_OPTS="--no-quarantine"  # Disable Gatekeaper warning. Why use "--no-binaries"
-export N_PREFIX="$HOME/.n" # Setup n the Node.js manager
-export PREFIX="$N_PREFIX" # Setup n the Node.js manager
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 export DOTFILES="$HOME/.dotfiles"
 export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
 export HOMEBREW_BUNDLE_NO_LOCK=true
+export HOMEBREW_GITHUB_API_TOKEN={{ onepasswordRead "op://Personal/Github/HOMEBREW_API_TOKEN" }}
 export HISTIGNORE='*sudo -S*'
 
-## Setup 1Password
-# First run, for example:
-# $ op plugin init brew
-source $HOME/.config/op/plugins.sh
-
-
-## SetUP LunarVim
-path=(
-  "$HOME/.local/bin"
-  $path
-)
+export N_PREFIX="$HOME/.n" # Setup n the Node.js manager
+export PREFIX="$N_PREFIX" # Setup n the Node.js manager
 
 # Debug
  # Change the variable to debug
