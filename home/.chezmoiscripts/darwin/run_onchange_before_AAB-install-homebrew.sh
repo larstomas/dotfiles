@@ -62,3 +62,4 @@ mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
 mas "Amphetamine", id: 937984704
 EOF
+

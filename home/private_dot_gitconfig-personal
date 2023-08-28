@@ -5,36 +5,26 @@
 #	clean = git-lfs clean -- %f
 [user]
 	name = Tomas Bäckman
-#	email = {{ .email }}
-{{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 ***REMOVED***
+        email = ***REMOVED***
+	# email = ***REMOVED***
+    # signingkey = ssh-rsa ***REMOVED***==
+	#signingkey = ssh-ed25519 ***REMOVED***
 #[credential]
 #	helper = osxkeychain
 [gpg]
-	# used in 1Password:
 	format = ssh
 [gpg "ssh"]
-	# used in 1Password:
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
-	# used in 1Password:
 	gpgsign = true
-{{- end }}
-{{ if (eq .chezmoi.os "linux") }}
-[credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
-{{ end }}
 
 [core]
 	editor = vim
 [alias]
-	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
-	pm = push origin HEAD:refs/for/master
-	rhm = reset --hard origin/master
-	rsm = reset --soft origin/master
+    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+    pm = push origin HEAD:refs/for/master
+    rhm = reset --hard origin/master
+    rsm = reset --soft origin/master
 	st = status
 	co = checkout
 	br = branch
@@ -52,7 +42,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[includeIf "gitdir:repos/github/"]
-	path = .gitconfig-github
-[includeIf "gitdir:repos/***REMOVED***/"]
-	path = .gitconfig-***REMOVED***
