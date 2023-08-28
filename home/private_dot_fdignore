@@ -1,0 +1,7 @@
+/Databases
+/Library/CloudStorage/ShellFish/
+/Library/
+
+# Include colon
+/repos/zenseact/artifactory/
+/Pictures/Photos Library.photoslibrary/private/com.apple.photolibraryd/caches/
