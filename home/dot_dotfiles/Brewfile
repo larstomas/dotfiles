@@ -245,6 +245,8 @@ cask "docker"
 cask "dropbox"
 # Find files, folders, or contents in any file
 cask "easyfind"
+# Reimagine your terminal
+cask "fig"
 # Web browser
 cask "firefox"
 # Change the behavior of the fn keys depending on the active application
