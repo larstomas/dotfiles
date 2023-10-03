@@ -13,6 +13,10 @@ brew "python@3.11"
 brew "ansible"
 # Checks ansible playbooks for practices and behaviour
 brew "ansible-lint"
+# New file format for still image compression
+brew "jpeg-xl"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -61,6 +65,10 @@ brew "findutils"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# Library for encoding and decoding .avif files
+brew "libavif"
+# Graphics library to dynamically manipulate images
+brew "gd"
 # Disk usage analyzer with console interface written in Go
 #brew "gdu"
 # GitHub command-line tool
@@ -79,6 +87,8 @@ brew "gnu-tar"
 brew "go"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# GNU triangulated surface library
+brew "gts"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # GNU grep, egrep and fgrep
@@ -147,6 +157,8 @@ brew "ranger"
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Extremely fast Python linter, written in Rust
+brew "ruff"
 # Safe, concurrent, practical language
 brew "rust"
 # Static analysis and lint tool, for (ba)sh scripts
@@ -155,6 +167,8 @@ brew "shellcheck"
 brew "spaceship"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
+# SQL linter to do sanity checks on your queries and bring errors back from the DB
+brew "sql-lint"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
 # Easiest, most secure way to use WireGuard and 2FA
@@ -179,7 +193,7 @@ brew "zsh"
 brew "artginzburg/tap/sudo-touchid"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
-# Command-line helper for the 1Password password manager
+# Command-line interface for 1Password
 cask "1password-cli"
 # Renamer for files, music and photos
 cask "a-better-finder-rename"
@@ -323,6 +337,8 @@ cask "visual-studio-code"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
+# Rust-based terminal
+cask "warp"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
@@ -357,6 +373,8 @@ vscode "adpyke.vscode-sql-formatter"
 vscode "akamud.vscode-theme-onedark"
 vscode "almenon.arepl"
 vscode "Asuka.insertnumbers"
+vscode "charliermarsh.ruff"
+
 vscode "dan-c-underwood.arm"
 vscode "DavidAnson.vscode-markdownlint"
 vscode "dustypomerleau.rust-syntax"
@@ -391,6 +409,8 @@ vscode "nyxiative.rust-and-friends"
 vscode "PascalReitermann93.vscode-yaml-sort"
 vscode "PKief.material-icon-theme"
 vscode "PolyMeilex.rust-targets"
+vscode "qufiwefefwoyn.inline-sql-syntax"
+
 vscode "qwtel.sqlite-viewer"
 vscode "rangav.vscode-thunder-client"
 vscode "redhat.vscode-yaml"
