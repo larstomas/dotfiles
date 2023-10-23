@@ -196,7 +196,15 @@ alias alembic-primary="alembic -c alembic_primary.ini"
 alias alembic-primary-history="alembic -c alembic_primary.ini history -i | head"
 alias alembic-playground="alembic -c alembic_playground.ini"
 alias alembic-playground-history="alembic -c alembic_playground.ini history -i | head"
+alias alembic-localhost="alembic -c alembic_localhost.ini"
+alias alembic-localhost-history="alembic -c alembic_localhost.ini history -i | head"
+
 alias ansible-lint-check="$HOME/repos/oxygen/oxygen_config/check/ansible_lint.sh"
+
+alias psql-carbon-primary-bouncer="psql -h carbon-primary-bouncer.internal.odencluster.com -p 6432 -U carbon_admin -d carbon"
+alias psql-carbon-playground-bouncer="psql -h carbon-playground-bouncer.internal.odencluster.com -p 6432 -U carbon_admin -d carbon"
+alias psql-kraken-primary-bouncer="psql -h kraken-primary-bouncer.internal.odencluster.com -p 6432 -U dev_admin -d kraken"
+alias psql-kraken-playground-bouncer="psql -h kraken-playground-bouncer.internal.odencluster.com -p 6432 -U dev_admin -d kraken"
 
 
 ## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
