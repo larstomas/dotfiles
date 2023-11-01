@@ -76,14 +76,6 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-## Homebrew
-{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"
-{{ else if (eq .chezmoi.os "linux")}}eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{- end }}
-### Homebrew zsh autocompletions
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
 # Add Locations to $path Array
 typeset -U path
 path=(
@@ -167,9 +159,9 @@ alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 alias debugOn='DEBUGCLI=YES exec zsh'
 alias debugOff='DEBUGCLI=NO exec zsh'
-alias bbd="brew bundle dump --force --describe"
-alias ll='exa --long --all --classify --header --git --time-style=long-iso --icons --tree -L=1 --color-scale'
-alias ls='exa --grid --icons'
+alias bbd="brew bundle dump --force cleanup --describe"
+alias ll='eza --long --all --classify --header --git --time-style=long-iso --icons --tree -L=1 --color-scale'
+alias ls='eza --grid --icons'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
@@ -186,7 +178,7 @@ alias tbls='ls'
 #source $HOME/.dotfiles/nnn.zsh
 
 ### Jump command
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f $HOMEBREW_PREFIX/etc/profile.d/autojump.sh ] && . $HOMEBREW_PREFIX/etc/profile.d/autojump.sh
 
 {{ onepasswordRead "op://Personal/dot_files_z/z_conf" }}
 
@@ -292,12 +284,6 @@ SPACESHIP_RPROMPT_ORDER=(
 
 # iTerm
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
-
-# libpq aka Postgres C API library
-export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Load plugins
 # Download plugins with "chezmoi apply" defined in "~/.local/share/chezmoi/home/.chezmoiexternal.toml"
