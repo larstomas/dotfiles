@@ -20,14 +20,15 @@ function command_exists() {
 
 # Write Handy Functions
 function mkcd() {
-  mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_" || exit; # [ShellCheck: SC2164 – Use `cd ... || exit` in case `cd` fails.](https://www.shellcheck.net/wiki/SC2164)
 }
 
+# Exports
 
-# Setup directories
+## Setup directories
 export ZDOTDIR="$HOME"
 
-# XDG Base Directory [[[1
+## XDG Base Directory [[[1
 # Ref: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # and: https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -35,27 +36,55 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-# Repositories
+## Personal config
+export EMAIL="larstomas@gmail.com"
+export HISTIGNORE='*sudo -S*'
+
+## 1Password
+export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman" # Setup 1Password
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock # Setup 1Password: https://developer.1password.com/docs/ssh/agent/compatibility#ssh-auth-sock
+source $HOME/.config/op/plugins.sh # Setup 1Password # First run, for example: $ op plugin init brew
+
+## Homebrew
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"
+{{ else if (eq .chezmoi.os "linux")}}eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+HOMEBREW_PREFIX="$(brew --prefix)" # [ShellCheck: SC2155 – Declare and assign separately to avoid masking return values.](https://www.shellcheck.net/wiki/SC2155)
+export HOMEBREW_PREFIX
+HOMEBREW_CELLAR="$(brew --cellar)"
+export HOMEBREW_CELLAR
+HOMEBREW_REPOSITORY="$(brew --repository)"
+export HOMEBREW_REPOSITORY
+export HOMEBREW_CASK_OPTS="--no-quarantine"  # Disable Gatekeaper warning. Why use "--no-binaries"
+export HOMEBREW_GITHUB_API_TOKEN={{ onepasswordRead "op://Personal/Github/HOMEBREW_API_TOKEN" }}
+### Homebrew zsh autocompletions
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+## Nvim
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+## Chezmoi
+export DOTFILES="$HOME/.dotfiles"
+export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
+export HOMEBREW_BUNDLE_NO_LOCK=true
+
+## libpq aka Postgres C API library
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libpq/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libpq/include"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libpq/lib/pkgconfig"
+export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
+
+## n the Node.js manager
+export N_PREFIX="$HOME/.n"
+export PREFIX="$N_PREFIX"
+
+## Repositories
 export ZENSEACT_REPOS="$HOME/repos/zenseact"
 export OXYGEN_REPO="$ZENSEACT_REPOS/oxygen"
 export CARBONSERVICES_REPO="$ZENSEACT_REPOS/carbonservices"
 
-# Exports
-export EMAIL="larstomas@gmail.com"
-export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman" # Setup 1Password
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock # Setup 1Password: https://developer.1password.com/docs/ssh/agent/compatibility#ssh-auth-sock
-source $HOME/.config/op/plugins.sh # Setup 1Password # First run, for example: $ op plugin init brew
-export HOMEBREW_CASK_OPTS="--no-quarantine"  # Disable Gatekeaper warning. Why use "--no-binaries"
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
-export DOTFILES="$HOME/.dotfiles"
-export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
-export HOMEBREW_BUNDLE_NO_LOCK=true
-export HOMEBREW_GITHUB_API_TOKEN={{ onepasswordRead "op://Personal/Github/HOMEBREW_API_TOKEN" }}
-export HISTIGNORE='*sudo -S*'
-
-export N_PREFIX="$HOME/.n" # Setup n the Node.js manager
-export PREFIX="$N_PREFIX" # Setup n the Node.js manager
 
 # Debug
  # Change the variable to debug
