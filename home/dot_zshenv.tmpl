@@ -57,6 +57,7 @@ export HOMEBREW_CELLAR
 HOMEBREW_REPOSITORY="$(brew --repository)"
 export HOMEBREW_REPOSITORY
 export HOMEBREW_CASK_OPTS="--no-quarantine"  # Disable Gatekeaper warning. Why use "--no-binaries"
+export HOMEBREW_AUTOREMOVE=1
 export HOMEBREW_GITHUB_API_TOKEN={{ onepasswordRead "op://Personal/Github/HOMEBREW_API_TOKEN" }}
 ### Homebrew zsh autocompletions
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
