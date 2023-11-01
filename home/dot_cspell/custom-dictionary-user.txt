@@ -8,7 +8,6 @@ binnary
 bitnami
 bpytop
 btop
-callerid
 caseing
 chage
 cifs
@@ -21,14 +20,12 @@ czvf
 dbhost
 dbname
 dbport
-defaultsauto
 DEORE
 DLGLS
 drwxrwxrwt
 Exampel
 factorypath
 Fira
-flcw
 fullscreen
 funktel
 Gerret
@@ -55,8 +52,6 @@ kmsg
 lastb
 Listart
 loadavg
-lrbl
-lrbr
 lsusb
 maxdepth
 Merga
@@ -105,7 +100,6 @@ softlink
 spacebar
 sqlalchemy
 squery
-srcx
 sslmode
 statio
 sytem
