@@ -159,7 +159,7 @@ alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 alias debugOn='DEBUGCLI=YES exec zsh'
 alias debugOff='DEBUGCLI=NO exec zsh'
-alias bbd="brew bundle dump --force cleanup --describe"
+alias updatebrewfile="brew bundle dump --force cleanup && chezmoi add .dotfiles/Brewfile"
 alias ll='eza --long --all --classify --header --git --time-style=long-iso --icons --tree -L=1 --color-scale'
 alias ls='eza --grid --icons'
 alias egrep='egrep --color=auto'
