@@ -179,7 +179,7 @@ alias fzfkill='ps aux | fzf | awk '{print $2}' | xargs kill'
 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}'
 alias cs='chezmoi status'
 #-- Change dir
-alias cdc='cd ~/.local/share/chezmoi'
+alias cdchezmoi='cd ~/.local/share/chezmoi'
 alias tbls='ls'
 
 ### NNN
@@ -188,24 +188,7 @@ alias tbls='ls'
 ### Jump command
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-### Zenseact
-export ARTIFACTORY_API_KEY={{ onepasswordRead "op://Personal/Zenseact Artifactory/ARTIFACTORY_API_KEY" }}
-export ARTIFACTORY_USER=tomas.backman@zenseact.com
-
-alias alembic-primary="alembic -c alembic_primary.ini"
-alias alembic-primary-history="alembic -c alembic_primary.ini history -i | head"
-alias alembic-playground="alembic -c alembic_playground.ini"
-alias alembic-playground-history="alembic -c alembic_playground.ini history -i | head"
-alias alembic-localhost="alembic -c alembic_localhost.ini"
-alias alembic-localhost-history="alembic -c alembic_localhost.ini history -i | head"
-
-alias ansible-lint-check="$HOME/repos/oxygen/oxygen_config/check/ansible_lint.sh"
-
-alias psql-carbon-primary-bouncer="psql -h carbon-primary-bouncer.internal.odencluster.com -p 6432 -U carbon_admin -d carbon"
-alias psql-carbon-playground-bouncer="psql -h carbon-playground-bouncer.internal.odencluster.com -p 6432 -U carbon_admin -d carbon"
-alias psql-kraken-primary-bouncer="psql -h kraken-primary-bouncer.internal.odencluster.com -p 6432 -U dev_admin -d kraken"
-alias psql-kraken-playground-bouncer="psql -h kraken-playground-bouncer.internal.odencluster.com -p 6432 -U dev_admin -d kraken"
-
+{{ onepasswordRead "op://Personal/dot_files_z/z_conf" }}
 
 ## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
 bindkey -e
