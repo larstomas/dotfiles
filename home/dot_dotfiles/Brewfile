@@ -117,7 +117,6 @@ cask "dbeaver-community"
 cask "devonthink"
 cask "displaylink"
 cask "docker"
-cask "dropbox"
 cask "easyfind"
 cask "fig"
 cask "firefox"
@@ -127,7 +126,6 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-inconsolata"
 cask "font-meslo-lg-nerd-font"
-cask "forklift"
 cask "gemini"
 cask "github"
 cask "google-chrome"
@@ -143,6 +141,7 @@ cask "mac-mouse-fix"
 cask "macfuse"
 cask "macupdater"
 cask "marta"
+cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-teams"
 cask "obsidian"
@@ -166,6 +165,7 @@ cask "vagrant-vmware-utility"
 cask "visual-studio-code"
 cask "vlc"
 cask "vmware-fusion"
+cask "warp"
 cask "zoom"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
@@ -186,10 +186,8 @@ mas "MindNode", id: 1289197285
 mas "Pins", id: 1547106997
 mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
-mas "PocketTube", id: 1533703891
 mas "Reeder", id: 1529448980
 mas "rubiTrack 6", id: 1557892760
-mas "Slack", id: 803453959
 mas "Super Agent", id: 1568262835
 mas "Tailscale", id: 1475387142
 mas "TextSniper", id: 1528890965
