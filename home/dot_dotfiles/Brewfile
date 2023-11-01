@@ -8,13 +8,12 @@ brew "xz"
 brew "python@3.11"
 brew "ansible"
 brew "ansible-lint"
-brew "jpeg-xl"
-brew "aom"
 brew "autojump"
 brew "bash"
 brew "bat"
 brew "btop"
 brew "glib"
+brew "python@3.9"
 brew "chezmoi"
 brew "coreutils"
 brew "cpufetch"
@@ -33,8 +32,7 @@ brew "ffmpeg"
 brew "findutils"
 brew "fzf"
 brew "gawk"
-brew "libavif"
-brew "gd"
+brew "gdu"
 brew "gh"
 brew "git"
 brew "git-branchless"
@@ -44,7 +42,6 @@ brew "gnu-sed"
 brew "gnu-tar"
 brew "go"
 brew "gobject-introspection"
-brew "gts"
 brew "graphviz"
 brew "grep"
 brew "grex"
@@ -70,6 +67,7 @@ brew "openjdk"
 brew "openjdk@11"
 brew "openshift-cli"
 brew "p7zip"
+brew "pandoc"
 brew "qemu"
 brew "podman"
 brew "pspg"
@@ -156,12 +154,15 @@ cask "spacelauncher"
 cask "spotify"
 cask "steam"
 cask "syncthing"
+cask "teamviewer"
+cask "transmission-remote-gui"
 cask "transmit"
 cask "typora"
 cask "ulbow"
 cask "utm"
 cask "vagrant"
 cask "vagrant-vmware-utility"
+cask "veracrypt"
 cask "visual-studio-code"
 cask "vlc"
 cask "vmware-fusion"
@@ -175,12 +176,15 @@ mas "Amphetamine", id: 937984704
 mas "Copy Link in Markdown", id: 1571033540
 mas "Daily Wallpaper - for Bing", id: 920897043
 mas "Diagrams", id: 1276248849
+mas "Exporter", id: 1099120373
 mas "FineReader OCR Pro", id: 687301476
 mas "Flow", id: 1423210932
 mas "GoodTask", id: 1143437985
+mas "Guru Maps", id: 321745474
 mas "Hash", id: 945689735
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
+mas "Mactracker", id: 430255202
 mas "Messenger", id: 1480068668
 mas "MindNode", id: 1289197285
 mas "Pins", id: 1547106997
@@ -188,6 +192,7 @@ mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "rubiTrack 6", id: 1557892760
+mas "Slack", id: 803453959
 mas "Super Agent", id: 1568262835
 mas "Tailscale", id: 1475387142
 mas "TextSniper", id: 1528890965
@@ -195,7 +200,6 @@ mas "Things", id: 904280696
 mas "URL Linker", id: 1289119450
 mas "Userscripts-Mac-App", id: 1463298887
 mas "Voice Dream Reader", id: 972112040
-mas "World Clock", id: 956377119
 vscode "1Password.op-vscode"
 vscode "adpyke.vscode-sql-formatter"
 vscode "akamud.vscode-theme-onedark"
