@@ -1,368 +1,175 @@
 tap "1password/tap"
-tap "artginzburg/tap"
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "martido/graph"
-# General-purpose data compression with high compression ratio
 brew "xz"
-# Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
-# Automate deployment, configuration, and upgrading
 brew "ansible"
-# Checks ansible playbooks for practices and behaviour
 brew "ansible-lint"
-# New file format for still image compression
 brew "jpeg-xl"
-# Codec library for encoding and decoding AV1 video streams
 brew "aom"
-# Shell extension to jump to frequently used directories
 brew "autojump"
-# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Core application library for C
 brew "glib"
-# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
-# GNU File, Shell, and Text utilities
 brew "coreutils"
-# CPU architecture fetching tool
 brew "cpufetch"
-# Bash, Zsh and Fish completion for Docker
 brew "docker-completion"
-# Isolated development environments using Docker
 brew "docker-compose"
-# Modern replacement for 'ls'
-brew "exa"
-# Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# Modern, maintained replacement for ls
 brew "eza"
-# Simple, fast and user-friendly alternative to find
 brew "fd"
-# Validating, recursive, caching DNS resolver
 brew "unbound"
-# GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# OpenType text shaping engine
 brew "harfbuzz"
-# Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
-# Secure Reliable Transport
 brew "srt"
-# OCR (Optical Character Recognition) engine
 brew "tesseract"
-# Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Collection of GNU find, xargs, and locate
 brew "findutils"
-# Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU awk utility
 brew "gawk"
-# Library for encoding and decoding .avif files
 brew "libavif"
-# Graphics library to dynamically manipulate images
 brew "gd"
-# Disk usage analyzer with console interface written in Go
-#brew "gdu"
-# GitHub command-line tool
 brew "gh"
-# Distributed revision control system
 brew "git"
-# Command-line option parsing utility
+brew "git-branchless"
 brew "gnu-getopt"
-# C code prettifier
 brew "gnu-indent"
-# GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU version of the tar archiving utility
 brew "gnu-tar"
-# Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Generate introspection data for GObject libraries
 brew "gobject-introspection"
-# GNU triangulated surface library
 brew "gts"
-# Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# GNU grep, egrep and fgrep
 brew "grep"
-# Command-line tool for generating regular expressions
 brew "grex"
-# GNU Ubiquitous Intelligent Language for Extensions
 brew "guile"
-# Improved top (interactive process viewer)
 brew "htop"
-# Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
-# Network authentication protocol
 brew "krb5"
-# Kubernetes command-line interface
 brew "kubernetes-cli"
-# Access DVDs as block devices without the decryption
 brew "libdvdcss"
-# Postgres C API library
 brew "libpq"
-# Keep your Mac's application settings in sync
 brew "mackup"
-# Mac App Store command-line interface
 brew "mas"
-# Unified display of technical and tag data for audio/video
 brew "media-info"
-# Run a Kubernetes cluster locally
 brew "minikube"
-# Node version management
 brew "n"
-# NCurses Disk Usage
 brew "ncdu"
-# Fast, highly customisable system info script
 brew "neofetch"
-# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# HTTP/2 C Library
 brew "nghttp2"
-# Port scanning utility for large networks
 brew "nmap"
-# Tiny, lightning fast, feature-packed file manager
 brew "nnn"
-# Development kit for the Java programming language
 brew "openjdk"
-# Development kit for the Java programming language
 brew "openjdk@11"
-# OpenShift command-line interface tools
 brew "openshift-cli"
-# 7-Zip (high compression file archiver) implementation
 brew "p7zip"
-# Emulator for x86 and PowerPC
 brew "qemu"
-# Tool for managing OCI containers and pods
 brew "podman"
-# Object-relational database system
-brew "postgresql@14", restart_service: true
-# Unix pager optimized for psql
 brew "pspg"
-# Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
-# File browser
 brew "ranger"
-# Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Utility that provides fast incremental file transfer
 brew "rsync"
-# Extremely fast Python linter, written in Rust
 brew "ruff"
-# Safe, concurrent, practical language
 brew "rust"
-# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-# Zsh prompt for Astronauts
 brew "spaceship"
-# Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
-# SQL linter to do sanity checks on your queries and bring errors back from the DB
 brew "sql-lint"
-# Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
-# Easiest, most secure way to use WireGuard and 2FA
 brew "tailscale"
-# Simplified and community-driven man pages
 brew "tldr"
-# Terminal multiplexer
 brew "tmux"
-# Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Download YouTube videos from the command-line
-brew "youtube-dl"
-# Fork of youtube-dl with additional features and fixes
-brew "yt-dlp"
-# Executes a program periodically, showing output fullscreen
 brew "watch"
-# General-purpose lossless data-compression library
+brew "youtube-dl"
+brew "yt-dlp"
 brew "zlib"
-# UNIX shell (command interpreter)
 brew "zsh"
-# Permanent TouchID support for sudo
-brew "artginzburg/tap/sudo-touchid"
-# Password manager that keeps all passwords secure behind one password
 cask "1password"
-# Command-line interface for 1Password
 cask "1password-cli"
-# Renamer for files, music and photos
 cask "a-better-finder-rename"
-# Application launcher and productivity software
 cask "alfred"
-# Automatic tiling window manager similar to xmonad
-cask "amethyst"
-# Memory training application
 cask "anki"
-# Application uninstaller
 cask "appcleaner"
-# Multi-cloud backup application
-cask "arq"
-# Turn audio CDs and files into audiobooks
-cask "audiobook-builder"
-# Chromium based browser
 cask "arc"
-# Multi-cloud backup application
 cask "arq"
-# Turn audio CDs and files into audiobooks
 cask "audiobook-builder"
-# Two-factor authentication software
 cask "authy"
-# Audio utility
 cask "background-music"
-# Menu bar icon organizer
 cask "bartender"
-# Tool to customize input devices and automate computer systems
 cask "bettertouchtool"
-# Utility to create and modify archives
 cask "betterzip"
-# Hard disk backup and cloning utility
 cask "carbon-copy-cloner"
-# Multi-platform client-side cloud file encryption tool
-cask "cryptomator"
-# Disk space visualizer
-cask "daisydisk"
-# Open links in any browser
 cask "choosy"
-# Turn websites into apps
-cask "coherence-x"
-# Two-panel file manager
 cask "commander-one"
-# Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
-# Disk space visualizer
 cask "daisydisk"
-# Universal database tool and SQL client
 cask "dbeaver-community"
-# Collect, organize, edit and annotate documents
 cask "devonthink"
-# Drivers for DisplayLink docks, adapters and monitors
 cask "displaylink"
-# App to build and share containerized applications and microservices
 cask "docker"
-# Client for the Dropbox cloud storage service
 cask "dropbox"
-# Find files, folders, or contents in any file
 cask "easyfind"
-# Reimagine your terminal
 cask "fig"
-# Web browser
 cask "firefox"
-# Change the behavior of the fn keys depending on the active application
 cask "fluor"
 cask "fman"
-# Free monospaced font with programming ligatures
 cask "font-fira-code"
-# Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
 cask "font-inconsolata"
-# Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
-# Finder replacement and FTP, SFTP, WebDAV and Amazon s3 client
 cask "forklift"
-# Disk space cleaner that finds and deletes duplicated and similar files
 cask "gemini"
-# Desktop client for GitHub repositories
 cask "github"
-# Web browser
 cask "google-chrome"
-# Desktop automation application
 cask "hammerspoon"
-# App to help keep the desktop organized
 cask "icollections"
-# Free and open-source media player
 cask "iina"
-# File system integration
-cask "macfuse"
-# System monitoring app
 cask "istat-menus"
-# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Spot and merge differences in text and image files or folders
 cask "kaleidoscope"
-# Keyboard customizer
 cask "karabiner-elements"
-# Automation software
 cask "keyboard-maestro"
-# File system integration
-cask "macfuse"
-# Document editor
-cask "onlyoffice"
-# Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
 cask "mac-mouse-fix"
-# Track and update to the latest versions of installed software
+cask "macfuse"
 cask "macupdater"
-# Extensible two-pane file manager
 cask "marta"
-# Web browser
 cask "microsoft-edge"
-# Remote access software focusing on usability
-cask "screens"
-# Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
-# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Document editor
 cask "onlyoffice"
-# PDF reader, editor and annotator
 cask "pdf-expert"
-# Administration and development platform for PostgreSQL
-cask "pgadmin4"
-# Video game digital distribution service
-cask "steam"
-# Tool to organize photo libraries
 cask "powerphotos"
-# Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
-# Remote access software focusing on usability
-cask "screens"
-# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Team communication and collaboration software
+cask "screens"
 cask "slack"
-# App launcher/switcher
 cask "spacelauncher"
-# Music streaming service
 cask "spotify"
-# Real time file synchronization software
-cask "syncthing"
-# Video game digital distribution service
 cask "steam"
-# Video communication and virtual meeting platform
-cask "zoom"
-# File transfer application
+cask "syncthing"
 cask "transmit"
-# Configurable document editor that supports Markdown
 cask "typora"
-# Log browser
 cask "ulbow"
-# Virtual machines UI using QEMU
 cask "utm"
-# Development environment
 cask "vagrant"
-# Gives Vagrant VMware plugin access to various VMware functionalities
 cask "vagrant-vmware-utility"
-# Open-source code editor
 cask "visual-studio-code"
-# Multimedia player
 cask "vlc"
-# Video communication and virtual meeting platform
+cask "vmware-fusion"
 cask "zoom"
-# Rust-based terminal
-cask "warp"
 mas "1Blocker", id: 1365531024
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
-mas "rubiTrack 6", id: 1557892760
 mas "Affinity Photo", id: 824183456
 mas "Amphetamine", id: 937984704
 mas "Copy Link in Markdown", id: 1571033540
@@ -373,6 +180,7 @@ mas "Flow", id: 1423210932
 mas "GoodTask", id: 1143437985
 mas "Hash", id: 945689735
 mas "Instapaper Save", id: 1481302432
+mas "Keynote", id: 409183694
 mas "Messenger", id: 1480068668
 mas "MindNode", id: 1289197285
 mas "Pins", id: 1547106997
@@ -382,6 +190,7 @@ mas "PocketTube", id: 1533703891
 mas "Reeder", id: 1529448980
 mas "rubiTrack 6", id: 1557892760
 mas "Slack", id: 803453959
+mas "Super Agent", id: 1568262835
 mas "Tailscale", id: 1475387142
 mas "TextSniper", id: 1528890965
 mas "Things", id: 904280696
@@ -395,7 +204,6 @@ vscode "akamud.vscode-theme-onedark"
 vscode "almenon.arepl"
 vscode "Asuka.insertnumbers"
 vscode "charliermarsh.ruff"
-
 vscode "dan-c-underwood.arm"
 vscode "DavidAnson.vscode-markdownlint"
 vscode "dustypomerleau.rust-syntax"
@@ -431,11 +239,11 @@ vscode "PascalReitermann93.vscode-yaml-sort"
 vscode "PKief.material-icon-theme"
 vscode "PolyMeilex.rust-targets"
 vscode "qufiwefefwoyn.inline-sql-syntax"
-
 vscode "qwtel.sqlite-viewer"
 vscode "rangav.vscode-thunder-client"
 vscode "redhat.vscode-yaml"
 vscode "serayuzgur.crates"
+vscode "shaharkazaz.git-merger"
 vscode "shd101wyy.markdown-preview-enhanced"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-swedish"
