@@ -37,6 +37,7 @@
 	rsm = reset --soft origin/master
 	st = status
 	co = checkout
+	com = checkout master
 	br = branch
 	c = commit
 	a = add -pi
@@ -47,6 +48,7 @@
 	conf = config --global -e
 	rsb = "!f() { git reset --soft origin/$(git branch --show-current);}; f"
 	rhb = "!f() { git reset --hard origin/$(git branch --show-current);}; f"
+	alias = config --get-regexp ^alias
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
