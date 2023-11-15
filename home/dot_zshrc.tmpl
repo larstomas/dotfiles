@@ -169,6 +169,7 @@ alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/.rangerdir; LASTDIR=`cat $HOME/.config/ranger/.rangerdir`; cd "$LASTDIR"'
 alias fzfkill='ps aux | fzf | awk '{print $2}' | xargs kill'
+alias openports='sudo lsof -i -P | grep -i "listen"'
 #-- Chezmoi add all modifyed files to working copy
 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}'
 alias cs='chezmoi status'
