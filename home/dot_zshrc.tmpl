@@ -76,13 +76,22 @@ export ZSH_COMPDUMP=$XDG_CACHE_HOME/cache/.zcompdump-$HOST
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Add homebrew first in path (also in .zshenv-file)
+# shellcheck disable=SC1054,SC1073,SC1009,SC1065,SC1050,SC1072  # Template code
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}eval "$(/usr/local/bin/brew shellenv)"
+{{ else if (eq .chezmoi.os "linux")}}eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+
 # Add Locations to $path Array
-typeset -U path
 path=(
   "$N_PREFIX/bin" # n for NodeJS
   $path
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 )
+
+# Deduplicate path
+typeset -U path
 
 ## Set Variables
 export NULLCMD=bat                                # Change from the dafault cat
@@ -154,7 +163,7 @@ timezsh() {
 }
 
 ## Aliases
-alias myip="curl http://ipecho.net/plain; echo"
+alias mypublicip='curl http://ipecho.net/plain; echo'
 alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 alias debugOn='DEBUGCLI=YES exec zsh'
@@ -171,7 +180,7 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/.rangerdir; LASTDIR=`cat $
 alias fzfkill='ps aux | fzf | awk '{print $2}' | xargs kill'
 alias openports='sudo lsof -i -P | grep -i "listen"'
 #-- Chezmoi add all modifyed files to working copy
-alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}'
+#2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}'
 alias cs='chezmoi status'
 #-- Change dir
 alias cdchezmoi='cd ~/.local/share/chezmoi'
