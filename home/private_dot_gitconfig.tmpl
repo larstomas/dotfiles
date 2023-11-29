@@ -3,26 +3,32 @@
 #	process = git-lfs filter-process
 #	required = true
 #	clean = git-lfs clean -- %f
+
 [user]
 	name = Tomas Bäckman
 #	email = {{ .email }}
 {{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINFcqfIx1KghKXzehtx4IbwsZ1CDQKWQrvAxC4T5Ba9T
 #[credential]
 #	helper = osxkeychain
+
 [gpg]
 	# used in 1Password:
 	format = ssh
+
 [gpg "ssh"]
 	# used in 1Password:
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [commit]
 	# used in 1Password:
 	gpgsign = true
 {{- end }}
 {{ if (eq .chezmoi.os "linux") }}
+
 [credential "https://github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
@@ -30,6 +36,21 @@
 
 [core]
 	editor = vim
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true		# use n and N to move between diff sections
+	light = false		# set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
 [alias]
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
 	changes = "!git log --oneline --decorate --graph"
@@ -52,14 +73,17 @@
 	alias = config --get-regexp ^alias
 	fix = commit --amend --no-edit # Add fix to commit. Good for use in Gerrit
 	my-open-changes = "!f() { \
-        ssh -p 29418 s0001741@gerrit.cicd.autoheim.net gerrit query '(owner:self OR reviewer:self) status:open'; \
-    }; f"
+		ssh -p 29418 s0001741@gerrit.cicd.autoheim.net gerrit query '(owner:self OR reviewer:self) status:open'; \
+	}; f"
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [includeIf "gitdir:repos/github/"]
 	path = .gitconfig-github
+
 [includeIf "gitdir:repos/zenseact/"]
 	path = .gitconfig-zenseact
