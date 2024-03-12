@@ -105,6 +105,7 @@ cask "docker"
 cask "easyfind"
 cask "firefox"
 cask "fluor"
+cask "focus"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-inconsolata"
@@ -155,48 +156,18 @@ cask "vlc"
 cask "vmware-fusion"
 cask "warp"
 cask "zoom"
-mas "1Blocker", id: 1365531024
-mas "1Password for Safari", id: 1569813296
-mas "Accelerate", id: 1459809092
-mas "Affinity Photo", id: 824183456
-mas "Amphetamine", id: 937984704
-mas "Copy Link in Markdown", id: 1571033540
-mas "Daily Wallpaper - for Bing", id: 920897043
-mas "Diagrams", id: 1276248849
-mas "Exporter", id: 1099120373
-mas "FineReader OCR Pro", id: 687301476
-mas "Flow", id: 1423210932
-mas "GoodTask", id: 1143437985
-mas "Guru Maps", id: 321745474
-mas "Hash", id: 945689735
-mas "Instapaper Save", id: 1481302432
-mas "Keynote", id: 409183694
-mas "Mactracker", id: 430255202
-mas "Mercury", id: 1621800675
-mas "Messenger", id: 1480068668
-mas "MindNode", id: 1289197285
-mas "Pins", id: 1547106997
-mas "Pixelmator", id: 407963104
-mas "Pixelmator Pro", id: 1289583905
-mas "Reeder", id: 1529448980
-mas "rubiTrack 6", id: 1557892760
-mas "Slack", id: 803453959
-mas "Super Agent", id: 1568262835
-mas "Tailscale", id: 1475387142
-mas "TextSniper", id: 1528890965
-mas "Things", id: 904280696
-mas "URL Linker", id: 1289119450
-mas "Userscripts-Mac-App", id: 1463298887
-mas "Voice Dream Reader", id: 972112040
 vscode "1password.op-vscode"
 vscode "adpyke.vscode-sql-formatter"
 vscode "akamud.vscode-theme-onedark"
+vscode "alefragnani.bookmarks"
 vscode "almenon.arepl"
 vscode "charliermarsh.ruff"
 vscode "dan-c-underwood.arm"
+vscode "dotjoshjohnson.xml"
 vscode "dracula-theme.theme-dracula"
 vscode "dustypomerleau.rust-syntax"
 vscode "eamodio.gitlens"
+vscode "esbenp.prettier-vscode"
 vscode "evgeniypeshkov.syntax-highlighter"
 vscode "foxundermoon.shell-format"
 vscode "frhtylcn.pythonsnippets"
@@ -205,6 +176,7 @@ vscode "github.copilot-chat"
 vscode "golang.go"
 vscode "huangbaoshan.comment-aligner"
 vscode "janisdd.vscode-edit-csv"
+vscode "johnpapa.vscode-peacock"
 vscode "kortina.vscode-markdown-notes"
 vscode "liviuschera.noctis"
 vscode "lorenzopirro.rust-flash-snippets"
