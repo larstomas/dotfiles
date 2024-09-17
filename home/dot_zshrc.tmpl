@@ -67,10 +67,6 @@ if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
 fi
 
-### Move zcompdump to cache
-### https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
-export ZSH_COMPDUMP=$XDG_CACHE_HOME/cache/.zcompdump-$HOST
-
 # Set your language environment
 # To make git use english
 export LC_ALL=en_US.UTF-8
@@ -216,6 +212,12 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
+
+# Move zcompdump to cache
+# https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
+# https://stackoverflow.com/questions/47745184/change-location-of-zcompdump-files
+export ZSH_COMPDUMP=$XDG_CACHE_HOME/zsh/zcompdump-omz-$HOST
+compinit -d $XDG_CACHE_HOME/zsh/
 
 # Configure spaceship prompt
 #source "$(brew --prefix spaceship)/spaceship.zsh"
