@@ -96,7 +96,7 @@ export BAT_THEME="Monokai Extended"               # Set bat theme. Find theme na
 #export PAGER=bat # Discussion: a builtin pager for 'bat' #1053 - https://github.com/sharkdp/bat/issues/158
 
 ## History file configuration
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ -z "$HISTFILE" ] && HISTFILE="${HOME}/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000 # Session Memory Limit
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000 # File Memory Limit
 
@@ -130,7 +130,7 @@ export EMAIL_USER_T="t.backman@gmail.com"
 #TODO 1p: export EMAIL_PASSWORD_T=""
 
 # Golang
-#export GOPATH=$HOME/go
+#export GOPATH=${HOME}/go
 ## Not used:export GOROOT="$(brew --prefix golang)/libexec"
 #export GOROOT=/usr/local/go
 ## Not used:export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
@@ -164,29 +164,30 @@ alias trail='<<<${(F)path}'
 alias ftrail='<<<${(F)fpath}'
 alias debugOn='DEBUGCLI=YES exec zsh'
 alias debugOff='DEBUGCLI=NO exec zsh'
-alias brewfile-check="code $HOME/.local/share/chezmoi"
-alias brewfile-push="brew bundle dump --force --cleanup && chezmoi add $HOME/.dotfiles/Brewfile"
-alias brewfile-apply="chezmoi apply $HOME/.dotfiles/Brewfile && brew bundle install && brew bundle cleanup --force"
+alias brewfile-check="code ${HOME}/.local/share/chezmoi"
+alias brewfile-push="brew bundle dump --force --cleanup && chezmoi add ${HOME}/.dotfiles/Brewfile"
+alias brewfile-apply="chezmoi apply ${HOME}/.dotfiles/Brewfile && brew bundle install && brew bundle cleanup --force"
 alias ll='eza --long --all --classify --header --git --time-style=long-iso --icons --tree -L=1 --color-scale'
 alias ls='eza --grid --icons'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias ranger='ranger --choosedir=$HOME/.config/ranger/.rangerdir; LASTDIR=`cat $HOME/.config/ranger/.rangerdir`; cd "$LASTDIR"'
+alias ranger='ranger --choosedir=${HOME}/.config/ranger/.rangerdir; LASTDIR=`cat ${HOME}/.config/ranger/.rangerdir`; cd "$LASTDIR"'
 alias fzfkill='ps aux | fzf | awk '{print $2}' | xargs kill'
 alias openports='sudo lsof -i -P | grep -i "listen"'
 #-- Chezmoi add all modifyed files to working copy
-#2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "$HOME"/{}'
+#2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "${HOME}"/{}'
 alias cs='chezmoi status'
 #-- Change dir
-alias cdchezmoi='cd ~/.local/share/chezmoi'
+alias cdchezmoi='cd ${HOME}/.local/share/chezmoi'
 alias tbls='ls'
+alias cddbeaverscripts cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/General/Scripts/
 
 ### NNN
-#source $HOME/.dotfiles/nnn.zsh
+#source ${HOME}/.dotfiles/nnn.zsh
 
 ### Jump command
-[ -f $HOMEBREW_PREFIX/etc/profile.d/autojump.sh ] && . $HOMEBREW_PREFIX/etc/profile.d/autojump.sh
+[ -f ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh ] && . ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
 
 {{ onepasswordRead "op://Personal/dot_files_z/z_conf" }}
 
@@ -300,7 +301,7 @@ SPACESHIP_RPROMPT_ORDER=(
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 
 # Load plugins
-# Download plugins with "chezmoi apply" defined in "~/.local/share/chezmoi/home/.chezmoiexternal.toml"
+# Download plugins with "chezmoi apply" defined in "${HOME}/.local/share/chezmoi/home/.chezmoiexternal.toml"
 # Ref: https://www.reddit.com/r/zsh/comments/vryjud/what_is_the_best_plugin_manager_in_your_opinion/
 # Run autoload before or after plugins?
 ZSH_CUSTOM_PLUGINS=$XDG_CONFIG_HOME/zsh/plugins
@@ -346,7 +347,7 @@ if [ -d $ZSH_CUSTOM_PLUGINS/ohmyzsh ]; then
 fi
 
 # Fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
 
 if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
