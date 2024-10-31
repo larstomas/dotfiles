@@ -1,7 +1,6 @@
 tap "1password/tap"
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "martido/graph"
 brew "xz"
