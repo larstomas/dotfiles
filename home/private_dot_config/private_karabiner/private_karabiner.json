@@ -298,6 +298,7 @@
                     },
                     {
                         "description": "Disabling command+control+option+shift+w. This triggers wifi logging.",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -330,6 +331,7 @@
                     },
                     {
                         "description": "Change F6 key to command+control+option+shift+F6. ",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -427,6 +429,40 @@
                         {
                             "from": { "key_code": "scroll_lock" },
                             "to": [{ "key_code": "fn" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 833,
+                        "vendor_id": 1452
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "non_us_backslash" }]
+                        },
+                        {
+                            "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 620,
+                        "vendor_id": 76
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "non_us_backslash" }]
+                        },
+                        {
+                            "from": { "key_code": "non_us_backslash" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
                         }
                     ]
                 }
