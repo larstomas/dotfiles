@@ -5,7 +5,7 @@ tap "homebrew/services"
 tap "martido/graph"
 brew "xz"
 brew "alembic"
-brew "python@3.12"
+brew "cryptography"
 brew "ansible-lint"
 brew "ansible@9"
 brew "python@3.11"
@@ -14,7 +14,6 @@ brew "bash"
 brew "bat"
 brew "black"
 brew "btop"
-brew "glib"
 brew "chezmoi"
 brew "coreutils"
 brew "cpufetch"
@@ -42,7 +41,6 @@ brew "guile"
 brew "helm"
 brew "htop"
 brew "iperf3"
-brew "krb5"
 brew "kubernetes-cli"
 brew "kustomize"
 brew "mackup"
@@ -144,7 +142,6 @@ cask "steam"
 cask "syncthing"
 cask "syntax-highlight"
 cask "teamviewer"
-cask "thunderbird"
 cask "transmission-remote-gui"
 cask "transmit"
 cask "typora"
@@ -164,7 +161,7 @@ mas "Accelerate", id: 1459809092
 mas "Affinity Photo", id: 824183456
 mas "Amphetamine", id: 937984704
 mas "Copy Link in Markdown", id: 1571033540
-mas "Daily Wallpaper - for Bing", id: 920897043
+mas "Daglig bakgrundsbild - för Bing", id: 920897043
 mas "Diagrams", id: 1276248849
 mas "Exporter", id: 1099120373
 mas "FineReader OCR Pro", id: 687301476
@@ -172,6 +169,7 @@ mas "Flow", id: 1423210932
 mas "GoodTask", id: 1143437985
 mas "Guru Maps", id: 321745474
 mas "Hash", id: 945689735
+mas "Instapaper", id: 288545208
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Mactracker", id: 430255202
@@ -191,6 +189,7 @@ mas "TextSniper", id: 1528890965
 mas "Things", id: 904280696
 mas "URL Linker", id: 1289119450
 mas "Userscripts-Mac-App", id: 1463298887
+mas "Vinegar", id: 1591303229
 mas "Voice Dream Reader", id: 972112040
 vscode "1password.op-vscode"
 vscode "adpyke.vscode-sql-formatter"
