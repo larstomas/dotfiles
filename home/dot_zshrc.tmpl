@@ -349,8 +349,11 @@ if [ -d $ZSH_CUSTOM_PLUGINS/ohmyzsh ]; then
   fi
 fi
 
-# Fuzzy finder
+# Fuzzy finder - https://github.com/junegunn/fzf
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+
+# zoxide - https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
 if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
