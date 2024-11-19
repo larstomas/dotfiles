@@ -83,6 +83,7 @@ brew "tree"
 brew "watch"
 brew "yt-dlp"
 brew "zlib"
+brew "zoxide"
 brew "zsh"
 cask "1password"
 cask "1password-cli"
@@ -170,7 +171,6 @@ mas "GoodTask", id: 1143437985
 mas "Guru Maps", id: 321745474
 mas "Hash", id: 945689735
 mas "Instapaper", id: 288545208
-mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Mactracker", id: 430255202
 mas "Mercury", id: 1621800675
