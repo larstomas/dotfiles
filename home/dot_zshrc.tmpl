@@ -353,7 +353,7 @@ fi
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
 
 # zoxide - https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
