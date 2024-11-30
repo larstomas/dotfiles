@@ -170,8 +170,9 @@ alias debugOff='DEBUGCLI=NO exec zsh'
 alias brewfile-check="code ${HOME}/.local/share/chezmoi"
 alias brewfile-push="brew bundle dump --force --cleanup && chezmoi add ${HOME}/.dotfiles/Brewfile"
 alias brewfile-apply="chezmoi apply ${HOME}/.dotfiles/Brewfile && brew bundle install && brew bundle cleanup --force"
-alias ll='eza --long --all --classify --header --git --time-style=long-iso --icons --tree -L=1 --color-scale'
-alias ls='eza --grid --icons'
+alias l='eza --long --classify=always --time-style=long-iso --icons'
+alias ll='eza --long --classify=always --time-style=long-iso --icons --group --git --header --all'
+alias ls='eza --grid --icons -1'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
