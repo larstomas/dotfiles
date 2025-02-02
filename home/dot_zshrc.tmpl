@@ -352,6 +352,18 @@ fi
 
 # Fuzzy finder - https://github.com/junegunn/fzf
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+# fzf
+# Follow symbolic links and don't exclude hidden files
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# Open in tmux popup if on tmux, otherwise use --height mode
+export FZF_DEFAULT_OPTS='--height 40% --inline-info --tmux bottom,40% --layout reverse --border top'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+
+export FZF_ALT_C_COMMAND='fd --type d . --hidden'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
 
 # zoxide - https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init --cmd cd zsh)"
