@@ -96,7 +96,6 @@ cask "appcleaner"
 cask "arq"
 cask "audiobook-builder"
 cask "bartender"
-cask "bettertouchtool"
 cask "betterzip"
 cask "carbon-copy-cloner"
 cask "choosy"
@@ -179,7 +178,6 @@ mas "Messenger", id: 1480068668
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pins", id: 1547106997
-mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "rubiTrack 6", id: 1557892760
