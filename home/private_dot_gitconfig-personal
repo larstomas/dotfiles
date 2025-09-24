@@ -5,10 +5,7 @@
 #	clean = git-lfs clean -- %f
 [user]
 	name = Tomas Bäckman
-        email = ***REMOVED***
-	# email = ***REMOVED***
-    # signingkey = ssh-rsa ***REMOVED***==
-	#signingkey = ssh-ed25519 ***REMOVED***
+	email = ***REMOVED***
 #[credential]
 #	helper = osxkeychain
 [gpg]
