@@ -7,7 +7,8 @@
 [user]
 	name = Tomas Bäckman
 #	email = {{ .email }}
-{{ if (eq .chezmoi.os "darwin") }}
+{{ if (eq .chezmoi.os "darwin") }} 	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
+
 #[credential]
 #	helper = osxkeychain
 
