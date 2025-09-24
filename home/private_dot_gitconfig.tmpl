@@ -7,8 +7,7 @@
 [user]
 	name = Tomas Bäckman
 #	email = {{ .email }}
-{{ if (eq .chezmoi.os "darwin") }}	signingkey = ssh-ed25519 ***REMOVED***
-#	email = ***REMOVED***
+{{ if (eq .chezmoi.os "darwin") }}
 #[credential]
 #	helper = osxkeychain
 
@@ -74,9 +73,6 @@
 	rhb = "!f() { git reset --hard origin/$(git branch --show-current);}; f"
 	alias = config --get-regexp ^alias
 	fix = commit --amend --no-edit # Add fix to commit. Good for use in Gerrit
-	my-open-changes = "!f() { \
-		ssh -p 29418 ***REMOVED*** gerrit query '(owner:self OR reviewer:self) status:open'; \
-	}; f"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -89,4 +85,3 @@
 
 [includeIf "gitdir:repos/redacted-org/"]
 	path = .gitconfig-redacted-org
-
