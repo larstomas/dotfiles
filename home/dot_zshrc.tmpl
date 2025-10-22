@@ -374,3 +374,7 @@ if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
   echo "End .zshrc"
 fi
+
+# Azure cli
+export AZURE_DEVOPS_EXT_PAT={{ onepasswordRead "op://Private/Microsoft - Redacted-Org/az-cli-token" }}
+
