@@ -6,6 +6,7 @@ if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
 fi
 
+# Use this file to override /etc/zprofile
 
 # Run .zshrc file is it exists
 ## Customizing Your Terminal: .bash_profile and .bashrc files - https://www.youtube.com/watch?v=vDOVEDl2z84
