@@ -1,15 +1,19 @@
 # Debug
- # Change the variable to debug
- #export DEBUGCLI=YES
+## Change the variable to debug
+#export DEBUGCLI=YES
 if [[ $DEBUGCLI == "YES" ]]; then
-  echo "Start .zshenv"
+  # Print current file in magenta
+  print -P "%F{magenta}Start ${(%):-%x}%f"
 fi
 
 # Functions
 function debug_file_call() {
-  echo "funcfiletrace: $funcfiletrace"
-  echo "funcstack: $funcstack"
-  echo "PATH: '${(F)path}'"
+  # echo "funcfiletrace: \n$funcfiletrace"
+  print -P "%F{cyan}funcfiletrace:%f\n$funcfiletrace"
+  # echo "funcstack: \n$funcstack"
+  print -P "%F{cyan}funcstack:%f\n$funcstack"
+  # echo "PATH: \n'${(F)path}'"
+  print -P "%F{cyan}PATH:%f\n${(F)path}"
 }
 
 function command_exists() {
@@ -25,20 +29,24 @@ function mkcd() {
 
 # Exports
 
-## Setup directories
-export ZDOTDIR="$HOME"
-
 ## XDG Base Directory [[[1
 # Ref: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # and: https://wiki.archlinux.org/title/XDG_Base_Directory
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+## XDG_RUNTIME_DIR is normally provided by systemd.
+# If it's missing (macOS, non-systemd), make a safe per-user tmp dir.
+if [ -z "${XDG_RUNTIME_DIR:-}" ]; then
+  export XDG_RUNTIME_DIR="/tmp/xdg-runtime-$UID"
+  mkdir -p "$XDG_RUNTIME_DIR"
+  chmod 700 "$XDG_RUNTIME_DIR"
+fi
 
 ## Personal config
 export EMAIL="11527327+larstomas@users.noreply.github.com"
-export HISTIGNORE='*sudo -S*'
 
 ## 1Password
 export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman" # Setup 1Password
@@ -90,9 +98,8 @@ export USER_SCRIPTS="${HOME}/Sync/Programmering/scripts"
 export PATH="${USER_SCRIPTS}:${PATH}"
 
 # Debug
- # Change the variable to debug
- #export DEBUGCLI=YES
 if [[ $DEBUGCLI == "YES" ]]; then
   debug_file_call
-  echo "End .zshenv"
+  # Print current file in magenta
+  print -P "%F{magenta}End ${(%):-%x}%f"
 fi

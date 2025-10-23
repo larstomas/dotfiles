@@ -60,11 +60,11 @@
 ## START TB pre oh my zsh
 
 # Debug
-# Set DEBUGCLI=YES in .zshenv or un comment:
+## Change the variable to debug
 #export DEBUGCLI=YES
 if [[ $DEBUGCLI == "YES" ]]; then
-  echo "Start .zshrc"
-  debug_file_call
+  # Print current file in magenta
+  print -P "%F{magenta}Start ${(%):-%x}%f"
 fi
 
 # Set your language environment
@@ -96,7 +96,7 @@ export BAT_THEME="Monokai Extended"               # Set bat theme. Find theme na
 #export PAGER=bat # Discussion: a builtin pager for 'bat' #1053 - https://github.com/sharkdp/bat/issues/158
 
 ## History file configuration
-[ -z "$HISTFILE" ] && HISTFILE="${HOME}/.zsh_history"
+HISTFILE="${ZDOTDIR}/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000 # Session Memory Limit
 [ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000 # File Memory Limit
 
@@ -109,7 +109,7 @@ setopt hist_reduce_blanks     # Remove superfluous blanks from each command line
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 setopt interactivecomments    # allow comments even in interactive shells
-HISTORY_IGNORE="(ls|pwd|exit)"  # Ignore some commands
+HISTORY_IGNORE="(ls|pwd|exit|*sudo -S*)"  # Ignore some commands
 
 
 ## ZSH-settings
@@ -180,7 +180,7 @@ alias ranger='ranger --choosedir=${HOME}/.config/ranger/.rangerdir; LASTDIR=`cat
 alias fzfkill='ps aux | fzf | awk '{print $2}' | xargs kill'
 alias openports='sudo lsof -i -P | grep -i "listen"'
 #-- Chezmoi add all modifyed files to working copy
-#2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "${HOME}"/{}'
+# 2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "${HOME}"/{}'
 alias cs='chezmoi status'
 #-- Change dir
 alias cdchezmoi='cd ${HOME}/.local/share/chezmoi'
@@ -192,8 +192,6 @@ alias cddbeaverscripts cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/Gener
 
 ### Jump command
 [ -f ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh ] && . ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
-
-{{ onepasswordRead "op://Personal/dot_files_z/z_conf" }}
 
 ## Use emacs key bindings. [zsh: highlighting, autosuggestion, themes, binding, alias, fzf | SmartTech101](https://smarttech101.com/zsh-highlighting-autosuggestion-themes-binding-alias-fzf/#emacs_keybindings)
 bindkey -e
@@ -370,11 +368,12 @@ eval "$(zoxide init --cmd cd zsh)"
 # OpenAI codex
 export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI API Key - Summarize/duz4wa47xpwnsuqnzirsn3x5k4" }}
 
-if [[ $DEBUGCLI == "YES" ]]; then
-  debug_file_call
-  echo "End .zshrc"
-fi
-
 # Azure cli
 export AZURE_DEVOPS_EXT_PAT={{ onepasswordRead "op://Private/Microsoft - Redacted-Org/az-cli-token" }}
 
+# Debug
+if [[ $DEBUGCLI == "YES" ]]; then
+  debug_file_call
+  # Print current file in magenta
+  print -P "%F{magenta}End ${(%):-%x}%f"
+fi
