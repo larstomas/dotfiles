@@ -77,7 +77,7 @@ if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
 fi
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 export HOMEBREW_AUTOREMOVE=1
-export HOMEBREW_GITHUB_API_TOKEN=***REMOVED***
+#TODO Rotare: export HOMEBREW_GITHUB_API_TOKEN="$(op read --no-newline 'op://Private/Github/HOMEBREW_API_TOKEN')"
 
 ## Library and header paths
 if [[ -n ${HOMEBREW_PREFIX:-} ]]; then

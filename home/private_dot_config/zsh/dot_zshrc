@@ -205,7 +205,7 @@ fi
 
 # --- Temp
 # OpenAI codex
-export OPENAI_API_KEY=***REMOVED***
+#TODO Rotare:  #export OPENAI_API_KEY="$(op read --no-newline 'op://Private/OpenAI API Key - Summarize/duz4wa47xpwnsuqnzirsn3x5k4')"
 
 # Azure cli
-export AZURE_DEVOPS_EXT_PAT=2MRQzNk2uQE5w8qBTzURI2ubqSKjfFzX78CuDhCrhoGx92KVo6auJQQJ99BJACAAAAAUvjtWAAASAZDO2CtX
+#TODO Rotare:  #export AZURE_DEVOPS_EXT_PAT="$(op read --no-newline 'op://Private/Microsoft - Redacted-Org/az-cli-token')"
