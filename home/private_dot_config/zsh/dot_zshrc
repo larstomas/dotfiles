@@ -1,0 +1,211 @@
+# --- Locale ---
+# Ensure consistent language/encoding for CLI tools and git
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# --- History ---
+# Ref: https://zsh.sourceforge.io/Doc/Release/Options.html
+HISTFILE="${USER_CONFIG_HOME}/zsh/zsh_history_${HOST}"
+HISTSIZE=100000
+SAVEHIST=100000
+HISTORY_IGNORE="(ls|pwd|exit|*sudo -S*)"
+setopt APPEND_HISTORY            # append rather than overwrite
+setopt EXTENDED_HISTORY          # timestamp history entries
+setopt HIST_EXPIRE_DUPS_FIRST    # drop duplicates before older entries
+setopt HIST_FCNTL_LOCK           # lock file on write
+setopt HIST_IGNORE_DUPS          # avoid storing consecutive duplicates
+setopt HIST_IGNORE_SPACE         # ignore commands prefixed with space
+setopt HIST_REDUCE_BLANKS        # trim redundant whitespace in history
+setopt HIST_VERIFY               # confirm history substitutions before running
+setopt INC_APPEND_HISTORY_TIME   # write incrementally with timestamps
+setopt INTERACTIVE_COMMENTS      # allow inline comments at the prompt
+setopt SHARE_HISTORY             # share history across sessions
+
+# --- Core Options & Helpers ---
+setopt globDots
+
+timezsh() {
+  local shell_cmd="${1:-$SHELL}"
+  for _ in {1..10}; do
+    /usr/bin/time "$shell_cmd" -i -c exit
+  done
+}
+
+# --- PATH & Tools ---
+path_prepend_if_exists "${HOMEBREW_PREFIX:-}/opt/python@3.12/bin"
+if command -v python3 >/dev/null 2>&1; then
+  python3_path="$(command -v python3)"
+  path_prepend "${python3_path:h}"
+  unset python3_path
+fi
+alias python=python3
+alias pip=pip3
+
+typeset -gU path
+
+# --- Aliases ---
+alias mypublicip='curl http://ipecho.net/plain; echo'
+
+alias trail='<<<${(F)path}'
+alias ftrail='<<<${(F)fpath}'
+
+alias debugOn='DEBUGCLI=YES exec zsh'
+alias debugOff='DEBUGCLI=NO exec zsh'
+
+alias brewfile-check="code ${HOME}/.local/share/chezmoi"
+alias brewfile-push="brew bundle dump --force --cleanup && chezmoi add ${HOME}/.dotfiles/Brewfile"
+alias brewfile-apply="chezmoi apply ${HOME}/.dotfiles/Brewfile && brew bundle install && brew bundle cleanup --force"
+
+alias l='eza --long --classify=always --time-style=long-iso --icons'
+alias ll='eza --long --classify=always --time-style=long-iso --icons --group --git --header --all'
+alias ls='eza --grid --icons -1'
+
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ranger='ranger --choosedir=${HOME}/.config/ranger/.rangerdir; LASTDIR=$(cat ${HOME}/.config/ranger/.rangerdir); cd "$LASTDIR"'
+
+alias fzfkill="ps aux | fzf | awk '{print $2}' | xargs kill"
+alias openports='sudo lsof -i -P | grep -i "listen"'
+# 2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "${HOME}"/{}'
+alias cs='chezmoi status'
+alias cdchezmoi='cd ${HOME}/.local/share/chezmoi'
+alias tbls='ls'
+alias cddbeaverscripts='cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/General/Scripts/'
+
+# --- Key Bindings ---
+bindkey -e
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+bindkey "^[[3~" delete-char
+
+# --- Plugin Manager (Zinit) ---
+if [[ ! -d "$ZINIT_HOME" ]] && command -v git >/dev/null 2>&1; then
+  mkdir -p "${ZINIT_HOME:h}"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" >/dev/null 2>&1
+fi
+source_if_exists "$ZINIT_HOME/zinit.zsh"
+
+# --- Plugins & Snippets ---
+if (( $+functions[zinit] )); then
+  zinit_light_plugins=(
+    Aloxaf/fzf-tab
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions
+    zsh-users/zsh-syntax-highlighting
+  )
+  for plugin in "${zinit_light_plugins[@]}"; do
+    zinit ice wait"0" lucid
+    zinit light "$plugin"
+  done
+  unset zinit_light_plugins
+
+  zinit_snippets=(
+    OMZL::git.zsh
+    OMZP::git
+    OMZP::sudo
+  )
+  for snippet in "${zinit_snippets[@]}"; do
+    zinit ice wait"0" lucid
+    zinit snippet "$snippet"
+  done
+  unset zinit_snippets
+fi
+
+# --- Completion System ---
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zmodload zsh/complist
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump-${HOST}-${ZSH_VERSION}"
+typeset -g ZSH_COMPDUMP
+if [[ -s $ZSH_COMPDUMP ]]; then
+  compinit_opts=(-C -i)
+  if comp_mtime=$(stat -f %m "$ZSH_COMPDUMP" 2>/dev/null || stat -c %Y "$ZSH_COMPDUMP" 2>/dev/null); then
+    if (( EPOCHSECONDS - comp_mtime > ${ZSH_COMPDUMP_MAX_AGE:-86400} )); then
+      compinit_opts=(-i)
+    fi
+  fi
+  compinit "${compinit_opts[@]}" -d "$ZSH_COMPDUMP"
+else
+  compinit -i -d "$ZSH_COMPDUMP"
+fi
+unset compinit_opts comp_mtime
+_comp_options+=(globdots)
+
+# --- Spaceship Prompt ---
+if [[ -n ${HOMEBREW_PREFIX:-} ]] && [[ -r "${HOMEBREW_PREFIX}/opt/spaceship/spaceship.zsh" ]]; then
+  source "${HOMEBREW_PREFIX}/opt/spaceship/spaceship.zsh"
+fi
+
+SPACESHIP_CHAR_SYMBOL="$ "
+SPACESHIP_CHAR_SYMBOL_ROOT="# "
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_PROMPT_ORDER=(
+  user           # Username section
+  dir            # Current directory section
+  host           # Hostname section
+  git            # Git section (git_branch + git_status)
+  package        # Package version
+  # node           # Node.js section
+  # bun            # Bun section
+  python         # Python section
+  golang         # Go section
+  # docker         # Docker section
+  # docker_compose # Docker section
+  # aws            # Amazon Web Services section
+  # azure          # Azure section
+  venv           # virtualenv section
+  # kubectl        # Kubectl context section
+  # ansible        # Ansible section
+  # terraform      # Terraform workspace section
+  async          # Async jobs indicator
+  line_sep       # Line break
+  # shlvl          # Custom section from spaceship_shlvl.zsh
+  jobs           # Background jobs indicator
+  exit_code      # Exit code section
+  sudo           # Sudo indicator
+  char           # Prompt character
+)
+SPACESHIP_RPROMPT_ORDER=(
+  exec_time # Execution time
+  time      # Time stamps section
+)
+
+# --- Shell Integrations ---
+# zoxide - https://github.com/ajeetdsouza/zoxide
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
+
+# Load Go environment
+source_if_exists "$HOME/.config/zsh/go.zsh"
+
+# Zinit maintenance tasks
+source_if_exists "$HOME/.config/zsh/zinit-maint.zsh"
+
+# Load iTerm2 shell integration via zinit (only on macOS + inside iTerm2)
+if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == "iTerm.app" ]]; then
+  zinit ice wait"1" lucid
+  zinit snippet "https://iterm2.com/shell_integration/zsh"
+fi
+
+# --- Temp
+# OpenAI codex
+export OPENAI_API_KEY=***REMOVED***
+
+# Azure cli
+export AZURE_DEVOPS_EXT_PAT=2MRQzNk2uQE5w8qBTzURI2ubqSKjfFzX78CuDhCrhoGx92KVo6auJQQJ99BJACAAAAAUvjtWAAASAZDO2CtX

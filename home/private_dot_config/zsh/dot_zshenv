@@ -1,0 +1,116 @@
+# Minimal environment setup; heavier interactive configuration lives in .zshrc
+
+# Helper utilities shared with interactive shells
+source_if_exists() {
+  [[ -r "$1" ]] || return 0
+  source "$1"
+}
+
+path_prepend() {
+  local dir="$1"
+  [[ -n "$dir" ]] || return 0
+  path=("$dir" "${path[@]}")
+}
+
+path_prepend_if_exists() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  path_prepend "$dir"
+}
+
+fpath_prepend_if_exists() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  fpath=("$dir" "${fpath[@]}")
+}
+
+## XDG Base Directory [[[1
+# Ref: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# and: https://wiki.archlinux.org/title/XDG_Base_Directory
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+## XDG_RUNTIME_DIR is normally provided by systemd.
+# If it's missing (macOS, non-systemd), make a safe per-user tmp dir.
+if [[ -z ${XDG_RUNTIME_DIR:-} ]]; then
+  export XDG_RUNTIME_DIR="/tmp/xdg-runtime-$UID"
+  mkdir -p "$XDG_RUNTIME_DIR"
+  chmod 700 "$XDG_RUNTIME_DIR"
+fi
+
+## Personal config
+export USER_EMAIL="11527327+larstomas@users.noreply.github.com"
+export USER_ALL_REPOS="${HOME}/repos"
+export USER_HW_ARC="$(uname -m)"
+export USER_CONFIG_HOME="${HOME}/Sync/.config"
+export USER_BIN_HOME="${HOME}/Sync/.local/bin"
+export USER_SCRIPTS="${HOME}/Sync/Programmering/scripts"
+
+## Editors
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+## 1Password
+export PRIVATE_ONEPASSWORD_SUBDOMAIN="backman"
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+source_if_exists "$HOME/.config/op/plugins.sh"
+
+## Homebrew (avoid invoking `brew` on every shell startup)
+if [[ -z ${HOMEBREW_PREFIX:-} ]]; then
+  case "$USER_HW_ARC" in
+    arm64)
+      [[ -d /opt/homebrew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+      ;;
+    x86_64)
+      [[ -d /usr/local/Homebrew ]] && eval "$(/usr/local/bin/brew shellenv)"
+      ;;
+  esac
+  if [[ -z ${HOMEBREW_PREFIX:-} ]] && command -v brew >/dev/null 2>&1; then
+    export HOMEBREW_PREFIX="$(brew --prefix)"
+  fi
+fi
+if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+fi
+export HOMEBREW_CASK_OPTS="--no-quarantine"
+export HOMEBREW_AUTOREMOVE=1
+export HOMEBREW_GITHUB_API_TOKEN=***REMOVED***
+
+## Library and header paths
+if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
+  export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/libpq/lib"
+  export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/libpq/include"
+  export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/libpq/lib/pkgconfig"
+fi
+
+## Node via `n`
+export N_PREFIX="$XDG_DATA_HOME/n"
+export PREFIX="$N_PREFIX"
+
+## Bat overrides
+export NULLCMD=bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BAT_THEME="Monokai Extended"
+
+## Path configuration (deduplicated later)
+path_prepend "${USER_BIN_HOME}"
+path_prepend "${USER_SCRIPTS}"
+path_prepend "${N_PREFIX}/bin"
+
+if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
+  path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/ansible@9/bin"
+  path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/libpq/bin"
+  path_prepend_if_exists "${HOMEBREW_PREFIX}/bin"
+  path_prepend_if_exists "${HOMEBREW_PREFIX}/sbin"
+  fpath_prepend_if_exists "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+fi
+
+path_prepend_if_exists "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+typeset -gU path fpath
+
+## Zinit location
+export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
