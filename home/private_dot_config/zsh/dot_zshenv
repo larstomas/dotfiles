@@ -95,6 +95,9 @@ export NULLCMD=bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="Monokai Extended"
 
+# eza (ls) config
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+
 ## Path configuration (deduplicated later)
 path_prepend "${USER_BIN_HOME}"
 path_prepend "${USER_SCRIPTS}"
