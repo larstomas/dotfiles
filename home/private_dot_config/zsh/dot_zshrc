@@ -145,8 +145,6 @@ if [[ -n ${HOMEBREW_PREFIX:-} ]] && [[ -r "${HOMEBREW_PREFIX}/opt/spaceship/spac
   source "${HOMEBREW_PREFIX}/opt/spaceship/spaceship.zsh"
 fi
 
-SPACESHIP_CHAR_SYMBOL="$ "
-SPACESHIP_CHAR_SYMBOL_ROOT="# "
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=true
