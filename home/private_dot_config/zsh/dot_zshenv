@@ -93,7 +93,6 @@ export PREFIX="$N_PREFIX"
 ## Bat overrides
 export NULLCMD=bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="Monokai Extended"
 
 # eza (ls) config
 export EZA_CONFIG_DIR="$HOME/.config/eza"
