@@ -1,16 +1,17 @@
 # --- Go (Homebrew) ---
-# XDG dirs already set
 
 # Go workspace + binaries
-export GOPATH="${GOPATH:-$XDG_DATA_HOME/go}"
-export GOBIN="${GOBIN:-$HOME/.local/bin}"
+export GOPATH="${HOME}/go"
+# export GOPATH="${GOPATH:-$XDG_DATA_HOME/go}"
+export GOBIN="${GOPATH}bin"
+# export GOBIN="${GOBIN:-$HOME/.local/bin}"
 
 # Build/module caches under XDG
-export GOCACHE="${GOCACHE:-$XDG_CACHE_HOME/go-build}"
-export GOMODCACHE="${GOMODCACHE:-$GOPATH/pkg/mod}"
+# export GOCACHE="${GOCACHE:-$XDG_CACHE_HOME/go-build}"
+# export GOMODCACHE="${GOMODCACHE:-$GOPATH/pkg/mod}"
 
 # Ensure dirs exist
-mkdir -p "$GOBIN" "$GOPATH" "$GOCACHE" "$GOMODCACHE"
+# mkdir -p "$GOBIN" "$GOPATH" "$GOCACHE" "$GOMODCACHE"
 
 # Prepend ~/.local/bin if missing
 case ":$PATH:" in (*":$GOBIN:"*) ;; (*) PATH="$GOBIN:$PATH" ;; esac
@@ -28,14 +29,14 @@ if ! command -v go >/dev/null 2>&1; then
 fi
 
 # Toolchain behavior (Go 1.21+)
-export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
+# export GOTOOLCHAIN="${GOTOOLCHAIN:-auto}"
 
 # Module proxy/sumdb
-export GOPROXY="${GOPROXY:-https://proxy.golang.org,direct}"
-export GOSUMDB="${GOSUMDB:-sum.golang.org}"
+# export GOPROXY="${GOPROXY:-https://proxy.golang.org,direct}"
+# export GOSUMDB="${GOSUMDB:-sum.golang.org}"
 
 # Private modules (adjust as needed)
-export GOPRIVATE="${GOPRIVATE:-dev.azure.com/redacted-org/*}"
+# export GOPRIVATE="${GOPRIVATE:-dev.azure.com/redacted-org/*}"
 
 # Handy aliases (optional)
 alias g='go'
