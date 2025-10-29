@@ -6,11 +6,11 @@
 
 [user]
 	name = Tomas Bäckman
-#	email = {{ .email }}
-{{ if (eq .chezmoi.os "darwin") }} 	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
+	email = 11527327+larstomas@users.noreply.github.com
+	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
 
-#[credential]
-#	helper = osxkeychain
+[credential]
+	helper = osxkeychain
 
 [gpg]
 	# used in 1Password:
@@ -23,17 +23,6 @@
 [commit]
 	# used in 1Password:
 	gpgsign = true
-{{- end }}
-{{ if (eq .chezmoi.os "linux") }}
-
-[credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
-
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
-{{ end }}
 
 [core]
 	editor = vim
@@ -47,11 +36,17 @@
 	light = false		# set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 	side-by-side = true
 
+[pull]
+	ff = only
+
 [merge]
 	conflictstyle = diff3
 
 [diff]
 	colorMoved = default
+
+[init]
+	defaultBranch = main
 
 [alias]
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
@@ -74,6 +69,8 @@
 	rhb = "!f() { git reset --hard origin/$(git branch --show-current);}; f"
 	alias = config --get-regexp ^alias
 	fix = commit --amend --no-edit # Add fix to commit. Good for use in Gerrit
+	pr = "!f() { exec az repos pr \"$@\"; }; f"
+	repo = "!f() { exec az repos \"$@\"; }; f"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -86,3 +83,4 @@
 
 [includeIf "gitdir:repos/redacted-org/"]
 	path = .gitconfig-redacted-org
+

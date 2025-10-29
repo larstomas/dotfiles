@@ -5,9 +5,9 @@
 #	clean = git-lfs clean -- %f
 [user]
 	name = Tomas Bäckman
-	email = ***REMOVED***
-#[credential]
-#	helper = osxkeychain
+	email = $(op read "op://Private/Github/github-email")
+[credential]
+	helper = osxkeychain
 [gpg]
 	format = ssh
 [gpg "ssh"]
