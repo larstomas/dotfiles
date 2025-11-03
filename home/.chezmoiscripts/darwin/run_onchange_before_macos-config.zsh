@@ -128,6 +128,8 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Disable popup showing accented characters when holding down a key
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 #- Finder
 # Finder showX settings
