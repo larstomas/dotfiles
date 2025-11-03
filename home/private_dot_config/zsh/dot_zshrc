@@ -60,9 +60,8 @@ alias l='eza --long --classify=always --time-style=long-iso --icons'
 alias ll='eza --long --classify=always --time-style=long-iso --icons --group --git --header --all'
 alias ls='eza --grid --icons -1'
 
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias grep='grep --color=auto'
+alias vim='nvim'
+
 alias ranger='ranger --choosedir=${HOME}/.config/ranger/.rangerdir; LASTDIR=$(cat ${HOME}/.config/ranger/.rangerdir); cd "$LASTDIR"'
 
 alias fzfkill="ps aux | fzf | awk '{print $2}' | xargs kill"
