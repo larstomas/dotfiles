@@ -207,3 +207,8 @@ fi
 
 # Azure cli
 #TODO Rotare:  #export AZURE_DEVOPS_EXT_PAT="$(op read --no-newline 'op://Private/Microsoft - Redacted-Org/az-cli-token')"
+
+# iTerm2
+test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
+
+
