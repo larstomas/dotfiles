@@ -3,15 +3,15 @@
 # Go workspace + binaries
 export GOPATH="${HOME}/go"
 # export GOPATH="${GOPATH:-$XDG_DATA_HOME/go}"
-export GOBIN="${GOPATH}bin"
+export GOBIN="${GOPATH}/bin"
 # export GOBIN="${GOBIN:-$HOME/.local/bin}"
 
 # Build/module caches under XDG
-# export GOCACHE="${GOCACHE:-$XDG_CACHE_HOME/go-build}"
-# export GOMODCACHE="${GOMODCACHE:-$GOPATH/pkg/mod}"
+export GOCACHE="${XDG_CACHE_HOME}/go-build"
+export GOMODCACHE="${GOMODCACHE:-$GOPATH/pkg/mod}"
 
 # Ensure dirs exist
-# mkdir -p "$GOBIN" "$GOPATH" "$GOCACHE" "$GOMODCACHE"
+mkdir -p "$GOBIN" "$GOPATH" "$GOCACHE" "$GOMODCACHE"
 
 # Prepend ~/.local/bin if missing
 case ":$PATH:" in (*":$GOBIN:"*) ;; (*) PATH="$GOBIN:$PATH" ;; esac
