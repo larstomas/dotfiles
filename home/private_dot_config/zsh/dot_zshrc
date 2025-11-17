@@ -201,13 +201,3 @@ if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == "iTerm.app" ]]; then
 fi
 
 # --- Temp
-# OpenAI codex
-#TODO Rotare:  #export OPENAI_API_KEY="$(op read --no-newline 'op://Private/OpenAI API Key - Summarize/duz4wa47xpwnsuqnzirsn3x5k4')"
-
-# Azure cli
-#TODO Rotare:  #export AZURE_DEVOPS_EXT_PAT="$(op read --no-newline 'op://Private/Microsoft - Redacted-Org/az-cli-token')"
-
-# iTerm2
-test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
-
-
