@@ -114,5 +114,9 @@ path_prepend_if_exists "/Applications/Visual Studio Code.app/Contents/Resources/
 
 typeset -gU path fpath
 
+## Java
+export PATH="$(brew --prefix openjdk)/bin:$PATH"
+export JAVA_HOME="$(brew --prefix openjdk)"
+
 ## Zinit location
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
