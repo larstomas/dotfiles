@@ -69,6 +69,7 @@ alias openports='sudo lsof -i -P | grep -i "listen"'
 # 2023-11-29 alias caa='chezmoi status | grep ^MM | awk "{print \$2}" | xargs -n1 -I {} chezmoi add -v "${HOME}"/{}'
 alias cs='chezmoi status'
 alias cdchezmoi='cd ${HOME}/.local/share/chezmoi'
+alias cdmybin='cd ${HOME}/Sync/.local/bin'
 alias tbls='ls'
 alias cddbeaverscripts='cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/General/Scripts/'
 
