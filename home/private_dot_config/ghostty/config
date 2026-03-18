@@ -62,3 +62,5 @@ theme = Rose Pine
 
 font-family = "FiraCode Nerd Font Mono"
 font-size = 15
+
+# auto-update-channel = tip
