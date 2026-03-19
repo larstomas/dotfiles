@@ -90,11 +90,14 @@ source_if_exists "$ZINIT_HOME/zinit.zsh"
 
 # --- Plugins & Snippets ---
 if (( $+functions[zinit] )); then
+  # Load immediately (no turbo) so suggestions/highlighting work on first prompt
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light zsh-users/zsh-syntax-highlighting
+
+  # Turbo-load the rest (not needed at first prompt)
   zinit_light_plugins=(
     Aloxaf/fzf-tab
-    zsh-users/zsh-autosuggestions
     zsh-users/zsh-completions
-    zsh-users/zsh-syntax-highlighting
   )
   for plugin in "${zinit_light_plugins[@]}"; do
     zinit ice wait"0" lucid
