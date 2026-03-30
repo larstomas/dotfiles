@@ -21,6 +21,27 @@ setopt INC_APPEND_HISTORY_TIME   # write incrementally with timestamps
 setopt INTERACTIVE_COMMENTS      # allow inline comments at the prompt
 setopt SHARE_HISTORY             # share history across sessions
 
+# Only persist successful commands to history file.
+# return 2 = keep in session (up-arrow works), skip file write.
+autoload -Uz add-zsh-hook
+zmodload -F zsh/datetime +p:EPOCHSECONDS
+zshaddhistory() {
+  __zsh_hist_cmd="${1%%$'\n'}"
+  __zsh_hist_start=$EPOCHSECONDS
+  return 2
+}
+__persist_hist_on_success() {
+  local s=$?
+  if (( s == 0 )) && [[ -n "${__zsh_hist_cmd:-}" ]]; then
+    local dur=$(( EPOCHSECONDS - __zsh_hist_start ))
+    local esc="${__zsh_hist_cmd//$'\n'/$'\\\n'}"
+    print -r -- ": ${__zsh_hist_start}:${dur};${esc}" >> "$HISTFILE"
+  fi
+  unset __zsh_hist_cmd __zsh_hist_start
+  return $s
+}
+add-zsh-hook precmd __persist_hist_on_success
+
 # --- Core Options & Helpers ---
 setopt globDots
 
