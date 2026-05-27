@@ -100,6 +100,7 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 path_prepend "${USER_BIN_HOME}"
 path_prepend "${USER_SCRIPTS}"
 path_prepend "${N_PREFIX}/bin"
+path_prepend_if_exists "${HOME}/.local/bin"
 
 if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
   path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/ansible@9/bin"
