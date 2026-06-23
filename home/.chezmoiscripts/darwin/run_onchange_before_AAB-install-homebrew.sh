@@ -49,7 +49,7 @@ brew tap 1password/tap
 brew tap homebrew/cask-fonts
 
 # Formler
-brew install chezmoi exa eza spaceship zsh
+brew install chezmoi exa eza mackup spaceship zsh
 
 # Casks
 brew install --cask 1password 1password-cli appcleaner
