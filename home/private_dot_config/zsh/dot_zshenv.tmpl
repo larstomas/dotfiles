@@ -43,7 +43,7 @@ fi
 ## Personal config
 export USER_EMAIL="11527327+larstomas@users.noreply.github.com"
 export USER_ALL_REPOS="${HOME}/repos"
-export USER_HW_ARC="$(uname -m)"
+USER_HW_ARC="$(uname -m)"; export USER_HW_ARC
 export USER_CONFIG_HOME="${HOME}/Sync/.config"
 export USER_BIN_HOME="${HOME}/Sync/.local/bin"
 export USER_SCRIPTS="${HOME}/Sync/Programmering/scripts"
@@ -68,7 +68,7 @@ if [[ -z ${HOMEBREW_PREFIX:-} ]]; then
       ;;
   esac
   if [[ -z ${HOMEBREW_PREFIX:-} ]] && command -v brew >/dev/null 2>&1; then
-    export HOMEBREW_PREFIX="$(brew --prefix)"
+    HOMEBREW_PREFIX="$(brew --prefix)"; export HOMEBREW_PREFIX
   fi
 fi
 if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
@@ -116,8 +116,10 @@ path_prepend_if_exists "/Applications/Visual Studio Code.app/Contents/Resources/
 typeset -gU path fpath
 
 ## Java
-export PATH="$(brew --prefix openjdk)/bin:$PATH"
-export JAVA_HOME="$(brew --prefix openjdk)"
+_java_prefix="$(brew --prefix openjdk)"
+export PATH="${_java_prefix}/bin:$PATH"
+export JAVA_HOME="${_java_prefix}"
+unset _java_prefix
 
 ## Zinit location
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
