@@ -78,7 +78,7 @@ sudo apt-get install -y shellcheck                              # lint tool for 
 sudo apt-get install -y ncdu                                    # Ncdu is a ncurses-based du viewer
 sudo apt-get install -y ranger                                  # Console File Manager with VI Key Bindings. https://ranger.github.io
 sudo apt-get install -y neovim
-sudo apt-get install -y exa
+# exa utfasat 2023 → eza installeras via brew längre ner (apt saknar eza på äldre Ubuntu)
 
 
 echo "#- VMWare tools"
@@ -109,12 +109,13 @@ else
   echo "# brew doesn't exist, continuing with install"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   touch $HOME/.profile
-  echo "eval \"\$($(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> $HOME/.profile
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.profile
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 echo "#- Install Homebrew packages"
 brew install chezmoi
+brew install eza
 brew install yt-dlp
 brew install tldr
 
@@ -136,9 +137,10 @@ sudo apt-get install -y 1password
 
 echo "#-- Install 1Password CLI"
 # https://developer.1password.com/docs/cli/about-biometric-unlock/?utm_medium=organic&utm_source=oph&utm_campaign=linux
-sudo groupadd -f onepassword-cli
-sudo chown root:onepassword-cli /usr/local/bin/op && sudo chmod g+s /usr/local/bin/op
 sudo apt-get install -y 1password-cli
+# Biometrisk upplåsning kräver setgid på op-binären — kör EFTER install, mot faktisk sökväg (apt lägger op i /usr/bin/op)
+sudo groupadd -f onepassword-cli
+sudo chgrp onepassword-cli "$(command -v op)" && sudo chmod g+s "$(command -v op)"
 
 echo "#-- Install 1Password Github Plugin"
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -152,8 +154,8 @@ op --version
 # Login
 op account add --address backman.1password.com --email 11527327+larstomas@users.noreply.github.com
 eval $(op signin --account backman.1password.com)
-# Test read from 1password
-op read "op://Personal/test_read_from_1password_vault/text"
+# Test read from 1password (icke-fatal: ska inte avbryta hela bootstrappen om objektet saknas)
+op read "op://Personal/test_read_from_1password_vault/text" || echo ">>> VARNING: test-read från 1Password misslyckades (kontrollera att objektet finns)"
 
 echo "#-- Setup 1Password GitHub plugin"
 op plugin init gh 
