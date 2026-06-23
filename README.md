@@ -31,5 +31,5 @@ Deactivate licenses:
 - 1Password
 
 ## TODO
-- export PATH="/snap/bin:$PATH"       for debian
+_(inga öppna punkter)_
 

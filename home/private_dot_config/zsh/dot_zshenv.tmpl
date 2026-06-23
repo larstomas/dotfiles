@@ -101,6 +101,7 @@ path_prepend "${USER_BIN_HOME}"
 path_prepend "${USER_SCRIPTS}"
 path_prepend "${N_PREFIX}/bin"
 path_prepend_if_exists "${HOME}/.local/bin"
+path_prepend_if_exists "/snap/bin"  # snap-verktyg (linux/debian: /snap/bin saknas ofta i PATH by default); no-op på macOS
 
 if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
   path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/ansible@9/bin"
