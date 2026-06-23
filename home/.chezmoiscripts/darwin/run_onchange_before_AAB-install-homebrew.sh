@@ -41,24 +41,21 @@ else
 fi
 
 
-#- Install Homebrew with applications
-#source ./scripts/setup_homebrew_macos.zsh
+#- Installera appar med Homebrew (explicita brew install, ingen brew bundle)
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "1password/tap"
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-brew "chezmoi"
-brew "exa"
-brew "eza"
-brew "spaceship"
-brew "zsh"
-cask "1password"
-cask "1password-cli"
-cask "appcleaner"
-mas "1Password for Safari", id: 1569813296
-mas "Accelerate", id: 1459809092
-mas "Amphetamine", id: 937984704
-EOF
+# Taps
+brew tap 1password/tap
+brew tap homebrew/cask-fonts
 
+# Formler
+brew install chezmoi exa eza spaceship zsh
+
+# Casks
+brew install --cask 1password 1password-cli appcleaner
+
+# Mac App Store (kräver mas)
+brew install mas
+mas install 1569813296  # 1Password for Safari
+mas install 1459809092  # Accelerate
+mas install 937984704   # Amphetamine
