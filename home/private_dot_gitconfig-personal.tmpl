@@ -5,7 +5,7 @@
 #	clean = git-lfs clean -- %f
 [user]
 	name = Tomas Bäckman
-	email = $(op read "op://Private/Github/github-email")
+	email = {{ onepasswordRead "op://Private/Github/github-email" }}
 [credential]
 	helper = osxkeychain
 [gpg]
