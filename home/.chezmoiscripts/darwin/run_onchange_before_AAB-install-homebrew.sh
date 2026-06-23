@@ -46,7 +46,6 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 # Taps
 brew tap 1password/tap
-# (homebrew/cask-fonts borttagen — utfasad/tom uppströms, gav hårt fel; font-casks ligger nu i homebrew/cask, ingen tap behövs)
 
 # Formler
 brew install chezmoi eza mackup spaceship zsh
