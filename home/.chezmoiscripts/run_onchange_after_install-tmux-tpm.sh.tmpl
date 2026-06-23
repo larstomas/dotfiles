@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Installera tmux plugin manager (tpm) + de plugins som deklareras i tmux.conf.
+# Utan tpm laddas inga @plugin-rader (de gör tyst ingenting).
+# run_onchange: kör om när tmux.conf ändras (hash nedan).
+# tmux.conf-hash: {{ include "private_dot_config/tmux/tmux.conf" | sha256sum }}
+
+set -eu
+
+# XDG-sökväg: tpm härleder plugin-pathen från ~/.config/tmux/tmux.conf → ~/.config/tmux/plugins/
+TPM_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/tmux/plugins/tpm"
+
+if command -v tmux >/dev/null 2>&1; then
+  if [ ! -d "$TPM_DIR" ]; then
+    echo ">>> Klonar tpm till $TPM_DIR"
+    git clone --depth 1 https://github.com/tmux-plugins/tpm "$TPM_DIR"
+  fi
+  # Installera/uppdatera deklarerade plugins icke-interaktivt (best-effort; faila inte hela apply).
+  echo ">>> tpm install_plugins"
+  "$TPM_DIR/bin/install_plugins" || echo ">>> VARNING: tpm install_plugins misslyckades — kör prefix+I i tmux manuellt"
+fi
