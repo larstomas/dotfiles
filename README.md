@@ -29,7 +29,3 @@ Deactivate licenses:
   - iCloud
 - Music / TV
 - 1Password
-
-## TODO
-_(inga öppna punkter)_
-
