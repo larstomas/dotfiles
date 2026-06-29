@@ -53,6 +53,9 @@ timezsh() {
 }
 
 # --- PATH & Tools ---
+path_prepend_if_exists "${HOME}/.local/bin"
+
+# Python
 path_prepend_if_exists "${HOMEBREW_PREFIX:-}/opt/python@3.12/bin"
 if command -v python3 >/dev/null 2>&1; then
   python3_path="$(command -v python3)"
