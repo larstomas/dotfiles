@@ -15,6 +15,19 @@ dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/q
    2. Place it in `~/Downloads`
    3. Run: `scripts/mackup-restore-app-settings.zsh` *OBS*: All old settings will be destroyed. (Tip: preview first with `mackup restore --dry-run --verbose`.)
 
+## Secret Scanning (pre-commit hook)
+A `gitleaks` pre-commit hook (`.githooks/pre-commit`) blocks commits that introduce
+secrets. `gitleaks` is installed automatically via the Homebrew bootstrap script.
+
+The hook lives in the tracked `.githooks/` directory, but `core.hooksPath` is local
+git config and is **not** cloned. Enable it once per machine:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Bypass for a single commit (use sparingly): `git commit --no-verify`.
+
 ## Decommission Computer
 1. Make a backup of settings with [mackup](https://github.com/lra/mackup)
    1. Run `scripts/mackup-backup-app-settings.zsh`

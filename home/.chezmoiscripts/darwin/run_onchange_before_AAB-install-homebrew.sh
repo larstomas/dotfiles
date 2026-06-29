@@ -48,7 +48,7 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 brew tap 1password/tap
 
 # Formler
-brew install chezmoi eza mackup spaceship zsh
+brew install chezmoi eza gitleaks mackup spaceship zsh
 
 # Casks
 brew install --cask 1password 1password-cli appcleaner

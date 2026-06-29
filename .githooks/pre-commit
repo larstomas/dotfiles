@@ -1,0 +1,20 @@
+#!/bin/sh
+# Block commits that introduce secrets. Scans only staged changes.
+# Enabled via: git config core.hooksPath .githooks
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks not installed — skipping secret scan." >&2
+  echo "            install with: brew install gitleaks" >&2
+  exit 0
+fi
+
+gitleaks git --staged --redact --verbose
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  echo >&2
+  echo "pre-commit: gitleaks found potential secrets in staged changes (above)." >&2
+  echo "            fix them, or bypass with: git commit --no-verify" >&2
+fi
+
+exit "$status"
