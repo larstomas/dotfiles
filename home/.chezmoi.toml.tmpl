@@ -4,6 +4,6 @@
 {{- end -}}
 
 [data]
-    email = "11527327+larstomas@users.noreply.github.com"
+    email = {{ promptStringOnce . "email" "1Password account email (lmail)" | quote }}
     onepasswordAccount = "4MRZYKZV3FBLJNPBDUWTF36IF4"
     osid = {{ $osID | quote }}

@@ -152,7 +152,7 @@ sudo apt-get install -y gh
 echo "#-- Test 1Password installation"
 op --version
 # Login
-op account add --address backman.1password.com --email 11527327+larstomas@users.noreply.github.com
+op account add --address backman.1password.com --email {{ .email }}
 eval $(op signin --account backman.1password.com)
 # Test read from 1password (icke-fatal: ska inte avbryta hela bootstrappen om objektet saknas)
 op read "op://Personal/test_read_from_1password_vault/text" || echo ">>> VARNING: test-read från 1Password misslyckades (kontrollera att objektet finns)"
