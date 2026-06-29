@@ -36,7 +36,7 @@ fi
 # export GOSUMDB="${GOSUMDB:-sum.golang.org}"
 
 # Private modules (adjust as needed)
-# export GOPRIVATE="${GOPRIVATE:-dev.azure.com/redacted-org/*}"
+# export GOPRIVATE="${GOPRIVATE:-dev.azure.com/your-org/*}"
 
 # Handy aliases (optional)
 alias g='go'
