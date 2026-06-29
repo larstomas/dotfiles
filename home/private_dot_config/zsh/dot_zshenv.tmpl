@@ -41,7 +41,7 @@ if [[ -z ${XDG_RUNTIME_DIR:-} ]]; then
 fi
 
 ## Personal config
-export USER_EMAIL="11527327+larstomas@users.noreply.github.com"
+export USER_EMAIL="{{ onepasswordRead "op://Private/shell/email" }}"
 export USER_ALL_REPOS="${HOME}/repos"
 USER_HW_ARC="$(uname -m)"; export USER_HW_ARC
 export USER_CONFIG_HOME="${HOME}/Sync/.config"

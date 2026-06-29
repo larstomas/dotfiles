@@ -1,6 +1,6 @@
 [user]
-	name = Tomas Bäckman
-	email = 11527327+larstomas@users.noreply.github.com
+	name = {{ onepasswordRead "op://Private/Github/personal-name" }}
+	email = {{ onepasswordRead "op://Private/Github/personal-email" }}
 	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
 
 [credential]
