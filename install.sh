@@ -15,7 +15,51 @@ echo "Logging installation to $log_file"
 # tee loses the pipeline's exit status in POSIX sh, so capture it via a temp file.
 status_file="$(mktemp)"
 
+# On macOS, chezmoi needs git to clone the dotfiles, and git ships with the Xcode
+# Command Line Tools. Install them BEFORE `chezmoi init`, otherwise the clone fails.
+# This must happen here (not in a chezmoi script) because those scripts live inside
+# the repo we cannot clone yet. No-op if the tools are present or on non-macOS.
+ensure_xcode_clt() {
+  [ "$(uname -s)" = "Darwin" ] || return 0
+  xcode-select -p >/dev/null 2>&1 && return 0
+  echo ">>> Installing Xcode Command Line Tools (git is required to clone the dotfiles)..."
+  xcode-select --install >/dev/null 2>&1 || true
+  echo ">>> Click \"Install\" in the dialog; waiting for the tools to finish..."
+  i=0
+  while ! xcode-select -p >/dev/null 2>&1; do
+    i=$((i + 1))
+    [ "$i" -ge 240 ] && { echo "Timed out waiting for Xcode Command Line Tools." >&2; return 1; }
+    sleep 5
+  done
+  echo ">>> Xcode Command Line Tools installed."
+}
+
+# Ensure git exists before `chezmoi init` clones the repo. On macOS git ships with
+# the Command Line Tools; on Linux install it with the available package manager
+# (the linux install-packages script installs git too, but that runs post-clone).
+ensure_git() {
+  if [ "$(uname -s)" = "Darwin" ]; then
+    ensure_xcode_clt
+    return
+  fi
+  command -v git >/dev/null 2>&1 && return 0
+  echo ">>> Installing git (required to clone the dotfiles)..."
+  if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get update -y && sudo apt-get install -y git
+  elif command -v dnf >/dev/null 2>&1; then
+    sudo dnf install -y git
+  elif command -v pacman >/dev/null 2>&1; then
+    sudo pacman -Sy --noconfirm git
+  elif command -v zypper >/dev/null 2>&1; then
+    sudo zypper install -y git
+  else
+    echo "No supported package manager found to install git; install it and re-run." >&2
+    return 1
+  fi
+}
+
 run() {
+  ensure_git
   # Same as the README one-liner, with output teed to the log.
   if command -v chezmoi >/dev/null 2>&1; then
     chezmoi init --apply larstomas

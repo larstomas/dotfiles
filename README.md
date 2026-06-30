@@ -10,26 +10,28 @@ dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/q
 
 ### 1. Bootstrap (no need to install chezmoi first)
 
-chezmoi does not need to be installed beforehand. This command downloads chezmoi,
-clones this repo, and applies it:
+**Fresh macOS (no git yet)** — use `install.sh`. chezmoi needs git to clone this
+repo, and git comes from the Xcode Command Line Tools, so `install.sh` installs
+those first, then installs chezmoi and applies:
+
+```sh
+sh -c "$(curl -fsLS https://raw.githubusercontent.com/larstomas/dotfiles/main/install.sh)"
+```
+
+**If git is already present**, the plain chezmoi one-liner works too:
 
 ```sh
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply larstomas
 ```
 
-No `curl`? Use `wget`:
+(`wget` users: swap in `"$(wget -qO- <url>)"`.)
 
-```sh
-sh -c "$(wget -qO- https://get.chezmoi.io)" -- init --apply larstomas
-```
-
-The downloaded chezmoi is a **throwaway** (it lands in `./bin/chezmoi`). During the
-apply, Homebrew installs the permanent chezmoi (see the `AAB-install-homebrew`
-script), and the `zzz-cleanup-bootstrap-chezmoi` script removes the throwaway
-automatically — no cleanup needed from the command.
-
-(Checking out the repo and running `install.sh` does the same and also tees the run
-to `${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`.)
+Notes:
+- The downloaded chezmoi is a **throwaway** (`./bin/chezmoi`). During apply, Homebrew
+  installs the permanent chezmoi (`AAB-install-homebrew`), and the
+  `zzz-cleanup-bootstrap-chezmoi` script removes the throwaway automatically.
+- `install.sh` tees the whole run to
+  `${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`.
 
 ### 2. Apps and settings
 1. Sign in to App Store first, so apps install via the `mas` command.
