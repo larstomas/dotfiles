@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -eu
+
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
+
+#- Remove the throwaway chezmoi used only for the initial bootstrap.
+# The canonical install command (sh -c "$(curl get.chezmoi.io)" -- init --apply ...)
+# downloads chezmoi to ./bin and runs it; Homebrew then installs the permanent
+# chezmoi during this apply. `exe` is the chezmoi running this apply.
+exe="{{ .chezmoi.executable }}"
+
+# If the running chezmoi already lives in a standard location, it is the permanent
+# install — nothing to clean up.
+case "$exe" in
+  */homebrew/bin/chezmoi | /usr/local/bin/chezmoi | /usr/bin/chezmoi | "$HOME/.local/bin/chezmoi")
+    echo ">>> chezmoi ($exe) is a permanent install — nothing to clean up."
+    exit 0
+    ;;
+esac
+
+# Otherwise it is a throwaway bootstrap binary. Remove it once a permanent chezmoi
+# exists (installed by Homebrew above).
+for permanent in /opt/homebrew/bin/chezmoi /usr/local/bin/chezmoi /usr/bin/chezmoi "$HOME/.local/bin/chezmoi"; do
+  if [ -x "$permanent" ] && [ "$permanent" != "$exe" ]; then
+    echo ">>> Removing throwaway bootstrap chezmoi: $exe (permanent: $permanent)"
+    rm -f "$exe"
+    rmdir "$(dirname "$exe")" 2>/dev/null || true
+    exit 0
+  fi
+done
+
+echo ">>> No permanent chezmoi found yet; leaving bootstrap binary at $exe."

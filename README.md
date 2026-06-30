@@ -10,29 +10,26 @@ dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/q
 
 ### 1. Bootstrap (no need to install chezmoi first)
 
-This single command downloads chezmoi to `~/.local/bin`, clones this repo, and applies it.
-chezmoi does not need to be installed beforehand.
+chezmoi does not need to be installed beforehand. This command downloads chezmoi,
+clones this repo, and applies it:
 
 ```sh
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply larstomas
 ```
 
 No `curl`? Use `wget`:
 
 ```sh
-sh -c "$(wget -qO- https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas
+sh -c "$(wget -qO- https://get.chezmoi.io)" -- init --apply larstomas
 ```
 
-(Equivalent to checking out the repo and running `install.sh`, which does the same bootstrap.)
+The downloaded chezmoi is a **throwaway** (it lands in `./bin/chezmoi`). During the
+apply, Homebrew installs the permanent chezmoi (see the `AAB-install-homebrew`
+script), and the `zzz-cleanup-bootstrap-chezmoi` script removes the throwaway
+automatically — no cleanup needed from the command.
 
-**Logging:** `install.sh` automatically tees the whole bootstrap to
-`${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`. To capture the
-one-line command above instead, append a `tee`:
-
-```sh
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas 2>&1 \
-  | tee "chezmoi-install-$(date +%Y%m%d-%H%M%S).log"
-```
+(Checking out the repo and running `install.sh` does the same and also tees the run
+to `${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`.)
 
 ### 2. Apps and settings
 1. Sign in to App Store first, so apps install via the `mas` command.
