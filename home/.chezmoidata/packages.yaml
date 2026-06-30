@@ -226,3 +226,37 @@ packages:
         - { id: 1295203466, name: "Windows App" }
         - { id: 1451685025, name: "WireGuard" }
         - { id: 497799835, name: "Xcode" }
+  linux:
+    apt:            # base apt packages — every Debian/Ubuntu machine
+      - build-essential
+      - git
+      - curl
+      - unzip
+      - fonts-firacode
+      - zsh
+      - bat
+      - p7zip-full
+      - p7zip-rar
+      - tmux
+      - ripgrep
+      - fd-find
+      - nmap
+      - tree
+      - htop
+      - shellcheck
+      - ncdu
+      - ranger
+      - neovim
+      - open-vm-tools
+      - open-vm-tools-desktop
+    brews:          # Homebrew on Linux — packages apt lacks / are newer via brew
+      - chezmoi
+      - eza
+      - gitleaks
+      - tldr
+      - yt-dlp
+    personal:
+      apt: []       # GUI / desktop apt packages (add as needed)
+      snap:         # snaps are GUI/desktop — personal machines only
+        - { name: btop, classic: false }
+        - { name: code, classic: true }
