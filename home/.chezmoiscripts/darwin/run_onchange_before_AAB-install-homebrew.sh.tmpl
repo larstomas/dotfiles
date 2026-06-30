@@ -2,7 +2,6 @@
 
 #- Error handling
 # [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
-# -e: exit on error
 set -euf -o pipefail
 
 #- Logging: tee all output to a shared log (also stays on the terminal)
@@ -16,20 +15,13 @@ echo "The present working directory is $( pwd; )";
 
 #- Ask for admin password upfront
 sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+# Keep-alive: update existing `sudo` time stamp until the script finishes
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-
-# Inspiration:
-# [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
-
 #- Functions
-function command_exists() {
-  # `command -v` is similar to `which`
-  # https://stackoverflow.com/a/677212/1341838
+command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
-
 
 #- Install Homebrew
 if command_exists brew; then
@@ -46,27 +38,41 @@ else
   fi
 fi
 
-
-#- Installera appar med Homebrew (explicita brew install, ingen brew bundle)
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
-# Taps
+#- Tap(s)
 brew tap 1password/tap
 
-# Formler
-brew install chezmoi eza gitleaks mackup spaceship zsh
+#- Package lists live in .chezmoidata/packages.yaml.
+#  Base = every macOS machine; the personal extras are added only on my own
+#  machines (.personal). A VM / ephemeral box gets just the base set.
+{{ $brews := .packages.darwin.brews -}}
+{{ $casks := .packages.darwin.casks -}}
+{{ if .personal -}}
+{{   $brews = concat $brews .packages.darwin.personal.brews -}}
+{{   $casks = concat $casks .packages.darwin.personal.casks -}}
+{{ end -}}
 
-# Casks
-brew install --cask 1password 1password-cli appcleaner
+#- Install declaratively with a Brewfile generated from those lists (idempotent).
+brew bundle --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
 
-# Mac App Store (kräver mas + att man är inloggad i App Store).
-# Hoppas över om man inte är inloggad (t.ex. i en VM där iCloud/Apple-ID inte går),
-# och en enskild app som inte kan installeras avbryter inte hela bootstrappen.
+{{ if .personal -}}
+#- Mac App Store apps — personal machines only (needs App Store sign-in).
+#  VMs aren't .personal, so they skip this entirely; on a real machine a single
+#  failed app does not abort the bootstrap.
 brew install mas
 if mas account >/dev/null 2>&1; then
-  for app_id in 1569813296 1459809092 937984704; do  # 1Password for Safari, Accelerate, Amphetamine
-    mas install "$app_id" || echo ">>> mas install $app_id misslyckades (hoppar över)"
-  done
+{{ range .packages.darwin.personal.mas -}}
+  mas install {{ .id }} || echo ">>> mas {{ .id }} ({{ .name }}) misslyckades (hoppar över)"
+{{ end -}}
 else
-  echo ">>> Inte inloggad i App Store (t.ex. en VM) — hoppar över mas-appar."
+  echo ">>> Inte inloggad i App Store — hoppar över mas-appar."
 fi
+{{ end -}}

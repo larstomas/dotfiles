@@ -1,0 +1,228 @@
+# Generated from `brew leaves`, `brew list --cask`, `mas list` on skalleper.
+# Edit freely — base = every macOS machine; personal = real machines only.
+packages:
+  darwin:
+    brews:
+      - chezmoi
+      - eza
+      - gitleaks
+      - mackup
+      - spaceship
+      - zsh
+      - bat
+      - fd
+      - fzf
+      - gh
+      - git
+      - git-delta
+      - neovim
+      - ripgrep
+      - shellcheck
+      - tmux
+      - htop
+      - btop
+      - zoxide
+      - coreutils
+      - grep
+    casks:
+      - 1password
+      - 1password-cli
+      - appcleaner
+    personal:
+      brews:
+        - alembic
+        - ansible
+        - ansible-lint
+        - autojump
+        - awscli
+        - azure-cli
+        - bash
+        - bat
+        - black
+        - btop
+        - chezmoi
+        - coreutils
+        - cpufetch
+        - curl
+        - dnscontrol
+        - docker-completion
+        - docker-compose
+        - dust
+        - e2fsprogs
+        - exiftool
+        - eza
+        - fd
+        - ffmpeg
+        - findutils
+        - fzf
+        - gawk
+        - gdu
+        - gh
+        - git
+        - git-delta
+        - git-filter-repo
+        - gitleaks
+        - gnu-getopt
+        - gnu-indent
+        - gnu-tar
+        - go
+        - grep
+        - grex
+        - guile
+        - helm
+        - hl
+        - htop
+        - iperf3
+        - just
+        - kubectx
+        - kubevpn
+        - kustomize
+        - mackup
+        - mas
+        - media-info
+        - midnight-commander
+        - minikube
+        - mkvtoolnix
+        - n
+        - ncdu
+        - neovim
+        - nghttp2
+        - nmap
+        - nnn
+        - node
+        - openshift-cli
+        - opentofu
+        - p7zip
+        - pandoc
+        - plantuml
+        - podman
+        - pspg
+        - python@3.10
+        - python@3.11
+        - qemu
+        - ranger
+        - ripgrep
+        - rsync
+        - ruff
+        - rust
+        - shellcheck
+        - spaceship
+        - ssh-copy-id
+        - streamlink
+        - tailscale
+        - tiger-vnc
+        - tmux
+        - unbound
+        - uv
+        - watch
+        - whisper-cpp
+        - yq
+        - yt-dlp
+        - zlib
+        - zoxide
+        - zsh
+      casks:
+        - 1password
+        - 1password-cli
+        - a-better-finder-rename
+        - alfred
+        - anki
+        - appcleaner
+        - audiobook-builder
+        - balenaetcher
+        - bartender
+        - betterzip
+        - bruno
+        - carbon-copy-cloner
+        - choosy
+        - claude
+        - cryptomator
+        - daisydisk
+        - dbeaver-community
+        - docker-desktop
+        - easyfind
+        - firefox
+        - fluor
+        - font-fira-code
+        - font-fira-code-nerd-font
+        - font-inconsolata
+        - font-meslo-lg-nerd-font
+        - garmin-express
+        - gemini
+        - ghostty
+        - github
+        - google-chrome
+        - hammerspoon
+        - hyperkey
+        - iina
+        - imazing
+        - istat-menus
+        - iterm2
+        - kaleidoscope
+        - keyboard-maestro
+        - mac-mouse-fix
+        - netnewswire
+        - obsidian
+        - onlyoffice
+        - pdf-expert
+        - plexamp
+        - powerphotos
+        - quicklook-video
+        - rectangle
+        - rustdesk
+        - soundsource
+        - spacelauncher
+        - spotify
+        - steam
+        - syncthing-app
+        - syntax-highlight
+        - transmission-remote-gui
+        - transmit
+        - typora
+        - ulbow
+        - vagrant
+        - vagrant-vmware-utility
+        - veracrypt
+        - visual-studio-code
+        - vlc
+        - warp
+      mas:
+        - { id: 1365531024, name: "1Blocker" }
+        - { id: 1569813296, name: "1Password for Safari" }
+        - { id: 1459809092, name: "Accelerate" }
+        - { id: 824183456, name: "Affinity Photo" }
+        - { id: 937984704, name: "Amphetamine" }
+        - { id: 425264550, name: "Blackmagic Disk Speed Test" }
+        - { id: 1575379461, name: "BlockYT" }
+        - { id: 920897043, name: "Daily Wallpaper - for Bing" }
+        - { id: 1276248849, name: "Diagrams" }
+        - { id: 1118909075, name: "DiskMark" }
+        - { id: 1099120373, name: "Exporter" }
+        - { id: 687301476, name: "FineReader OCR Pro" }
+        - { id: 1423210932, name: "Flow" }
+        - { id: 1143437985, name: "GoodTask" }
+        - { id: 945689735, name: "Hash" }
+        - { id: 1492317385, name: "InstaRemind" }
+        - { id: 409183694, name: "Keynote" }
+        - { id: 430255202, name: "Mactracker" }
+        - { id: 1621800675, name: "Mercury" }
+        - { id: 1289197285, name: "MindNode Classic" }
+        - { id: 361304891, name: "Numbers" }
+        - { id: 409203825, name: "Numbers" }
+        - { id: 6720708363, name: "Obsidian Web Clipper" }
+        - { id: 361309726, name: "Pages" }
+        - { id: 1289583905, name: "Pixelmator Pro" }
+        - { id: 1529448980, name: "Reeder" }
+        - { id: 6478323460, name: "Reminder Sync for Obsidian" }
+        - { id: 1557892760, name: "rubiTrack 6" }
+        - { id: 1640236961, name: "Save to Reader" }
+        - { id: 1663047912, name: "Screens 5" }
+        - { id: 803453959, name: "Slack" }
+        - { id: 1475387142, name: "Tailscale" }
+        - { id: 1528890965, name: "TextSniper" }
+        - { id: 1463298887, name: "Userscripts" }
+        - { id: 1591303229, name: "Vinegar" }
+        - { id: 972112040, name: "Voice Dream Reader" }
+        - { id: 1295203466, name: "Windows App" }
+        - { id: 1451685025, name: "WireGuard" }
+        - { id: 497799835, name: "Xcode" }

@@ -1,9 +1,32 @@
+{{/* machine feature tags */}}
+{{- $ephemeral := false -}}{{/* true on throwaway machines: containers, CI, codespaces */}}
+{{- $personal := false -}}{{/* true on my own real machines (full app set) */}}
+
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
 {{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* hostname (scutil is more reliable than .chezmoi.hostname on darwin) */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname = output "scutil" "--get" "LocalHostName" | trim -}}
+{{- end -}}
+
+{{/* ephemeral: containers, codespaces, throwaway/VM users */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{- end -}}
+
+{{/* personal: my own real machines get the full set of apps */}}
+{{- if eq $hostname "skalleper" -}}
+{{-   $personal = true -}}
 {{- end -}}
 
 [data]
     email = {{ promptStringOnce . "email" "1Password account email (lmail)" | quote }}
     onepasswordAccount = "4MRZYKZV3FBLJNPBDUWTF36IF4"
     osid = {{ $osID | quote }}
+    hostname = {{ $hostname | quote }}
+    ephemeral = {{ $ephemeral }}
+    personal = {{ $personal }}
