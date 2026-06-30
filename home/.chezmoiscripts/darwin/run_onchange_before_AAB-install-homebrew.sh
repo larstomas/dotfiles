@@ -59,8 +59,14 @@ brew install chezmoi eza gitleaks mackup spaceship zsh
 # Casks
 brew install --cask 1password 1password-cli appcleaner
 
-# Mac App Store (kräver mas)
+# Mac App Store (kräver mas + att man är inloggad i App Store).
+# Hoppas över om man inte är inloggad (t.ex. i en VM där iCloud/Apple-ID inte går),
+# och en enskild app som inte kan installeras avbryter inte hela bootstrappen.
 brew install mas
-mas install 1569813296  # 1Password for Safari
-mas install 1459809092  # Accelerate
-mas install 937984704   # Amphetamine
+if mas account >/dev/null 2>&1; then
+  for app_id in 1569813296 1459809092 937984704; do  # 1Password for Safari, Accelerate, Amphetamine
+    mas install "$app_id" || echo ">>> mas install $app_id misslyckades (hoppar över)"
+  done
+else
+  echo ">>> Inte inloggad i App Store (t.ex. en VM) — hoppar över mas-appar."
+fi
