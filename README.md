@@ -7,10 +7,36 @@ dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/q
 3. [How To Setup Your Mac Terminal](https://www.josean.com/posts/terminal-setup)
 
 ## Restore Instructions
-1. Sign in to App Store to be able to install apps via `mas` command
-2. Download zipped version of https://github.com/larstomas/dotfiles
-3. Run `install.sh`
-4. In Terminal.app, restore app settings via the wrapper script (it unzips the backup, then runs `mackup restore`):
+
+### 1. Bootstrap (no need to install chezmoi first)
+
+This single command downloads chezmoi to `~/.local/bin`, clones this repo, and applies it.
+chezmoi does not need to be installed beforehand.
+
+```sh
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas
+```
+
+No `curl`? Use `wget`:
+
+```sh
+sh -c "$(wget -qO- https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas
+```
+
+(Equivalent to checking out the repo and running `install.sh`, which does the same bootstrap.)
+
+**Logging:** `install.sh` automatically tees the whole bootstrap to
+`${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`. To capture the
+one-line command above instead, append a `tee`:
+
+```sh
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b ~/.local/bin init --apply larstomas 2>&1 \
+  | tee "chezmoi-install-$(date +%Y%m%d-%H%M%S).log"
+```
+
+### 2. Apps and settings
+1. Sign in to App Store first, so apps install via the `mas` command.
+2. In Terminal.app, restore app settings via the wrapper script (it unzips the backup, then runs `mackup restore`):
    1. Take `mackup-backup.zip` from backup.
    2. Place it in `~/Downloads`
    3. Run: `scripts/mackup-restore-app-settings.zsh` *OBS*: All old settings will be destroyed. (Tip: preview first with `mackup restore --dry-run --verbose`.)
