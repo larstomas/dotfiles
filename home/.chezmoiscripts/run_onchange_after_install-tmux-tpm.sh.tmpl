@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Installera tmux plugin manager (tpm) + de plugins som deklareras i tmux.conf.
 # Utan tpm laddas inga @plugin-rader (de gör tyst ingenting).
@@ -6,6 +6,12 @@
 # tmux.conf-hash: {{ include "private_dot_config/tmux/tmux.conf" | sha256sum }}
 
 set -eu
+
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
 
 # XDG-sökväg: tpm härleder plugin-pathen från ~/.config/tmux/tmux.conf → ~/.config/tmux/plugins/
 TPM_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/tmux/plugins/tpm"

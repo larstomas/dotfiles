@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Bygg om bat:s tema-cache så custom-teman (rose-pine) registreras.
 # Utan detta faller bat tillbaka på default-temat på en ny maskin.
@@ -6,6 +6,12 @@
 # theme-hash: {{ include "private_dot_config/bat/themes/rose-pine.tmTheme" | sha256sum }}
 
 set -eu
+
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
 
 if command -v bat >/dev/null 2>&1; then
   echo ">>> bat cache --build (registrerar custom-teman)"

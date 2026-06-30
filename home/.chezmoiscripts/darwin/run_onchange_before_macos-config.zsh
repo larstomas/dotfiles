@@ -12,6 +12,12 @@
 # -e: exit on error
 set -euf -o pipefail
 
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
+
 echo "Running script has basename $( basename -- "$0"; ), dirname $( dirname -- "$0"; )";
 echo "The present working directory is $( pwd; )";
 

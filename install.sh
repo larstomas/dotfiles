@@ -17,12 +17,19 @@ else
   chezmoi=chezmoi
 fi
 
-# # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
-# script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-# # exec: replace current process with chezmoi init
-# exec "$chezmoi" init --apply "--source=$script_dir"
+#- Log the whole bootstrap to a timestamped file (XDG state dir)
+log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$log_dir"
+log_file="$log_dir/install-$(date +%Y%m%d-%H%M%S).log"
+echo "Logging installation to $log_file"
 
-#- Init and apply with chezmoi
+#- Init and apply with chezmoi, teeing all output to the log.
 # Same command as: chezmoi init --apply https://github.com/larstomas/dotfiles.git
-#chezmoi init --apply larstomas
-exec "$chezmoi" init --apply larstomas
+# tee loses the pipeline's exit status in POSIX sh, so capture it via a temp file.
+status_file="$(mktemp)"
+{ "$chezmoi" init --apply larstomas 2>&1; echo "$?" >"$status_file"; } | tee "$log_file"
+status="$(cat "$status_file")"
+rm -f "$status_file"
+
+echo "chezmoi finished with exit status $status (log: $log_file)"
+exit "$status"
