@@ -27,7 +27,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 function command_exists() {
   # `command -v` is similar to `which`
   # https://stackoverflow.com/a/677212/1341838
-  command -v $1 >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
 
 
@@ -37,7 +37,7 @@ if command_exists brew; then
 else
   echo "brew doesn't exist, continuing with install"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if $(arch) = "i386";then
+  if [ "$(arch)" = "i386" ]; then
     echo "Setup Homebrew for x86"
     eval "$(/usr/local/bin/brew shellenv)"
   else
