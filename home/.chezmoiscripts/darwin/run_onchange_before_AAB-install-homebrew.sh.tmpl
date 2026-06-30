@@ -54,7 +54,9 @@ brew tap 1password/tap
 {{ end -}}
 
 #- Install declaratively with a Brewfile generated from those lists (idempotent).
-brew bundle --file=/dev/stdin <<EOF
+#  --no-upgrade: install what's missing, but don't upgrade already-installed
+#  packages on every run (run `brew upgrade` separately on your own cadence).
+brew bundle --no-upgrade --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
@@ -68,11 +70,9 @@ EOF
 #  VMs aren't .personal, so they skip this entirely; on a real machine a single
 #  failed app does not abort the bootstrap.
 brew install mas
-if mas account >/dev/null 2>&1; then
+# `mas account` is unreliable on modern macOS, so just attempt each install.
+# Already-installed = quick no-op; not signed in = non-fatal skip (logged).
 {{ range .packages.darwin.personal.mas -}}
-  mas install {{ .id }} || echo ">>> mas {{ .id }} ({{ .name }}) misslyckades (hoppar över)"
+mas install {{ .id }} || echo ">>> mas {{ .id }} ({{ .name }}) hoppar över (ej inloggad i App Store?)"
 {{ end -}}
-else
-  echo ">>> Inte inloggad i App Store — hoppar över mas-appar."
-fi
 {{ end -}}
