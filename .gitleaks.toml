@@ -1,0 +1,13 @@
+# gitleaks configuration for this repo.
+# Extends the default ruleset; allowlists non-secret identifiers that are
+# intentionally committed (they are account identifiers, not credentials).
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Non-secret identifiers intentionally committed (1Password account ID is not a credential)"
+regexTarget = "line"
+regexes = [
+  '''onepasswordAccount\s*=''',
+]
