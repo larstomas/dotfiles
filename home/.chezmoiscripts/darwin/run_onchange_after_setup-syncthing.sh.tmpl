@@ -8,9 +8,9 @@ mkdir -p "$chezmoi_log_dir"
 exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
 printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
 
-#- ~/Sync is a Syncthing folder (not chezmoi). On a fresh machine, add the truenas
+#- ~/Sync is a Syncthing folder (not chezmoi). On a fresh machine, add the sync-server
 #  hub device + the "default" (Sync) folder via the Syncthing REST API — the only
-#  manual step left is accepting this device once in truenas. Personal machines only.
+#  manual step left is accepting this device once on the sync server. Personal only.
 {{ if .personal -}}
 sync_dir="$HOME/Sync"
 gui="http://127.0.0.1:8384"
@@ -29,29 +29,38 @@ else
   done
 
   api_key="$(sed -n 's:.*<apikey>\(.*\)</apikey>.*:\1:p' "$cfg" 2>/dev/null | head -1)"
-  truenas_id="{{ onepasswordRead "op://Private/4spu4rrxg55soqoi4nikigolem/Server IDs/truenas" }}"
+  sync_server_id="{{ onepasswordRead "op://Private/4spu4rrxg55soqoi4nikigolem/Server IDs/velour_sync_server_id" }}"
 
-  if [ -n "$api_key" ] && [ -n "$truenas_id" ]; then
+  if [ -n "$api_key" ] && [ -n "$sync_server_id" ]; then
     hdr="X-API-Key: $api_key"
     my_id="$(curl -fsS -H "$hdr" "$gui/rest/system/status" 2>/dev/null \
       | /usr/bin/python3 -c 'import sys,json; print(json.load(sys.stdin).get("myID",""))' 2>/dev/null || true)"
 
-    echo ">>> Adding truenas device (introducer)…"
+    echo ">>> Adding sync server device (introducer)…"
     curl -fsS -H "$hdr" -X POST "$gui/rest/config/devices" \
-      -d "{\"deviceID\":\"$truenas_id\",\"name\":\"truenas\",\"introducer\":true}" >/dev/null 2>&1 \
-      || echo ">>>   (truenas device may already exist — continuing)"
+      -d "{\"deviceID\":\"$sync_server_id\",\"name\":\"sync server\",\"introducer\":true}" >/dev/null 2>&1 \
+      || echo ">>>   (sync server device may already exist — continuing)"
 
     echo ">>> Adding Sync folder…"
-    devices="[{\"deviceID\":\"$truenas_id\"}]"
-    [ -n "$my_id" ] && devices="[{\"deviceID\":\"$truenas_id\"},{\"deviceID\":\"$my_id\"}]"
+    devices="[{\"deviceID\":\"$sync_server_id\"}]"
+    [ -n "$my_id" ] && devices="[{\"deviceID\":\"$sync_server_id\"},{\"deviceID\":\"$my_id\"}]"
     curl -fsS -H "$hdr" -X POST "$gui/rest/config/folders" \
       -d "{\"id\":\"default\",\"label\":\"Sync\",\"path\":\"~/Sync\",\"devices\":$devices}" >/dev/null 2>&1 \
       || echo ">>>   (Sync folder may already exist — continuing)"
 
-    echo ">>> Done via CLI. Final manual step: in truenas' Syncthing, ACCEPT this new"
-    echo ">>>   device — then the Sync folder starts syncing (truenas re-shares it back)."
+    # Open the sync server's Syncthing web GUI so you can accept this new device.
+    sync_server_gui="{{ onepasswordRead "op://Private/phw5trgjeqju3qfvo2g7leexoa/website" }}"
+    if [ -n "$sync_server_gui" ]; then
+      echo ">>> Opening the sync server's Syncthing — accept the new device${my_id:+ ($my_id)} there."
+      open "$sync_server_gui" 2>/dev/null || true
+    else
+      echo ">>> Accept this device in the sync server's Syncthing to start the share." >&2
+    fi
+
+    # Pause so you can accept the device on the sync server and let ~/Sync start syncing.
+    read -r -p ">>> Once the device is accepted and ~/Sync is syncing, press any key to continue... "
   else
-    echo ">>> Couldn't read API key or truenas ID — opening the Syncthing GUI to finish manually." >&2
+    echo ">>> Couldn't read API key or sync server ID — opening the Syncthing GUI to finish manually." >&2
     open "$gui" 2>/dev/null || true
   fi
 fi
