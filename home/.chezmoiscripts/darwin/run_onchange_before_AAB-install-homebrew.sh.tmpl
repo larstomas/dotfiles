@@ -42,6 +42,7 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 #- Tap(s)
 brew tap 1password/tap
+brew trust 1password/tap 2>/dev/null || true  # Homebrew 6.0+ tap-trust; no-op on older brew
 
 #- Rosetta 2: lets Intel-only casks (e.g. garmin-express) install on Apple Silicon.
 #  Non-fatal; idempotent (skips if already installed or on Intel).
