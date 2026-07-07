@@ -18,8 +18,9 @@
 {{-   $ephemeral = true -}}
 {{- end -}}
 
-{{/* personal: my own real machines get the full set of apps */}}
-{{- if eq $hostname "skalleper" -}}
+{{/* personal: my own real machines get the full set of apps (case-insensitive) */}}
+{{- $personalHosts := list "skalleper" "tomass-mac-mini" -}}
+{{- if has (lower $hostname) $personalHosts -}}
 {{-   $personal = true -}}
 {{- end -}}
 
