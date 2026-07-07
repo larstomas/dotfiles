@@ -18,14 +18,17 @@ exe="{{ .chezmoi.executable }}"
 
 is_permanent() {
   case "$1" in
-    */homebrew/bin/chezmoi | /usr/local/bin/chezmoi | /usr/bin/chezmoi | "$HOME/.local/bin/chezmoi") return 0 ;;
+    */homebrew/bin/chezmoi | /usr/local/bin/chezmoi | /usr/bin/chezmoi \
+      | "$HOME/.local/bin/chezmoi" | *linuxbrew/bin/chezmoi) return 0 ;;
     *) return 1 ;;
   esac
 }
 
 # A permanent chezmoi must exist before we remove any throwaway.
 permanent=""
-for p in /opt/homebrew/bin/chezmoi /usr/local/bin/chezmoi /usr/bin/chezmoi "$HOME/.local/bin/chezmoi"; do
+for p in /opt/homebrew/bin/chezmoi /usr/local/bin/chezmoi /usr/bin/chezmoi \
+         "$HOME/.local/bin/chezmoi" /home/linuxbrew/.linuxbrew/bin/chezmoi \
+         "$HOME/.linuxbrew/bin/chezmoi"; do
   [ -x "$p" ] && { permanent="$p"; break; }
 done
 if [ -z "$permanent" ]; then
