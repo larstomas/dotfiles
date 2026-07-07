@@ -41,3 +41,8 @@ for candidate in "$exe" "$HOME/bin/chezmoi"; do
     rmdir "$(dirname "$candidate")" 2>/dev/null || true
   fi
 done
+
+# Remove ~/bin if it is now empty (e.g. the throwaway was already removed manually).
+if [ -d "$HOME/bin" ] && rmdir "$HOME/bin" 2>/dev/null; then
+  echo ">>> Removed empty ~/bin"
+fi
