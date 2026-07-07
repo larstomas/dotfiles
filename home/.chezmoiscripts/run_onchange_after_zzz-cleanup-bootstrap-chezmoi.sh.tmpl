@@ -9,29 +9,35 @@ exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
 printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
 
 #- Remove the throwaway chezmoi used only for the initial bootstrap.
-# The canonical install command (sh -c "$(curl get.chezmoi.io)" -- init --apply ...)
-# downloads chezmoi to ./bin and runs it; Homebrew then installs the permanent
-# chezmoi during this apply. `exe` is the chezmoi running this apply.
+# The install command downloads chezmoi to ./bin and runs it; Homebrew then installs
+# the permanent chezmoi during this apply. We remove both the currently-running
+# throwaway (`.chezmoi.executable`) AND any leftover from a previous (possibly failed)
+# bootstrap — get.chezmoi.io installs to ./bin, and scripts run with CWD=$HOME, so the
+# common leftover is ~/bin/chezmoi. Only removes throwaways, never a permanent install.
 exe="{{ .chezmoi.executable }}"
 
-# If the running chezmoi already lives in a standard location, it is the permanent
-# install — nothing to clean up.
-case "$exe" in
-  */homebrew/bin/chezmoi | /usr/local/bin/chezmoi | /usr/bin/chezmoi | "$HOME/.local/bin/chezmoi")
-    echo ">>> chezmoi ($exe) is a permanent install — nothing to clean up."
-    exit 0
-    ;;
-esac
+is_permanent() {
+  case "$1" in
+    */homebrew/bin/chezmoi | /usr/local/bin/chezmoi | /usr/bin/chezmoi | "$HOME/.local/bin/chezmoi") return 0 ;;
+    *) return 1 ;;
+  esac
+}
 
-# Otherwise it is a throwaway bootstrap binary. Remove it once a permanent chezmoi
-# exists (installed by Homebrew above).
-for permanent in /opt/homebrew/bin/chezmoi /usr/local/bin/chezmoi /usr/bin/chezmoi "$HOME/.local/bin/chezmoi"; do
-  if [ -x "$permanent" ] && [ "$permanent" != "$exe" ]; then
-    echo ">>> Removing throwaway bootstrap chezmoi: $exe (permanent: $permanent)"
-    rm -f "$exe"
-    rmdir "$(dirname "$exe")" 2>/dev/null || true
-    exit 0
+# A permanent chezmoi must exist before we remove any throwaway.
+permanent=""
+for p in /opt/homebrew/bin/chezmoi /usr/local/bin/chezmoi /usr/bin/chezmoi "$HOME/.local/bin/chezmoi"; do
+  [ -x "$p" ] && { permanent="$p"; break; }
+done
+if [ -z "$permanent" ]; then
+  echo ">>> No permanent chezmoi found yet; leaving bootstrap binary in place."
+  exit 0
+fi
+
+# Sweep the running binary + the common leftover location.
+for candidate in "$exe" "$HOME/bin/chezmoi"; do
+  if [ -x "$candidate" ] && ! is_permanent "$candidate"; then
+    echo ">>> Removing throwaway bootstrap chezmoi: $candidate (permanent: $permanent)"
+    rm -f "$candidate"
+    rmdir "$(dirname "$candidate")" 2>/dev/null || true
   fi
 done
-
-echo ">>> No permanent chezmoi found yet; leaving bootstrap binary at $exe."
