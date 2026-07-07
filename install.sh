@@ -73,7 +73,20 @@ run() {
   fi
 }
 
-{ run 2>&1; echo "$?" >"$status_file"; } | tee "$log_file"
+# Homebrew (installed during apply by AAB) puts binaries in these dirs. Put them on
+# PATH up-front so `op` and other brew-installed tools are found by chezmoi and its
+# scripts once installed — the shell that launched this predates Homebrew, so its
+# PATH would otherwise miss them (op-backed templates + AAC need `op`).
+PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+export PATH
+
+# Run chezmoi, teeing output to the log. Capture the real exit status via a temp
+# file (a plain pipe reports tee's status; the `if` keeps `set -e` from aborting
+# before we record it).
+{
+  if run 2>&1; then rc=0; else rc=$?; fi
+  echo "$rc" >"$status_file"
+} | tee "$log_file"
 status="$(cat "$status_file")"
 rm -f "$status_file"
 
