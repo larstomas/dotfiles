@@ -43,6 +43,13 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 #- Tap(s)
 brew tap 1password/tap
 
+#- Rosetta 2: lets Intel-only casks (e.g. garmin-express) install on Apple Silicon.
+#  Non-fatal; idempotent (skips if already installed or on Intel).
+if [ "$(uname -m)" = "arm64" ] && ! arch -x86_64 /usr/bin/true 2>/dev/null; then
+  echo ">>> Installing Rosetta 2 (needed for Intel-only apps)"
+  softwareupdate --install-rosetta --agree-to-license || echo ">>> Rosetta-install misslyckades (Intel-appar hoppas över)"
+fi
+
 #- Package lists live in .chezmoidata/packages.yaml.
 #  Base = every macOS machine; the personal extras are added only on my own
 #  machines (.personal). A VM / ephemeral box gets just the base set.
@@ -56,7 +63,9 @@ brew tap 1password/tap
 #- Install declaratively with a Brewfile generated from those lists (idempotent).
 #  --no-upgrade: install what's missing, but don't upgrade already-installed
 #  packages on every run (run `brew upgrade` separately on your own cadence).
-brew bundle --no-upgrade --file=/dev/stdin <<EOF
+#  Non-fatal (|| echo): a single unavailable app (Rosetta-only, region-locked,
+#  transient) must not abort the whole bootstrap.
+brew bundle --no-upgrade --file=/dev/stdin <<EOF || echo ">>> brew bundle: några paket kunde inte installeras (se ovan) — fortsätter ändå"
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
