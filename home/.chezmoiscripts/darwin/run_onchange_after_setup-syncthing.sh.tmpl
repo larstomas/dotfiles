@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -eu
+
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
+
+#- ~/Sync is provided by Syncthing (the syncthing-app cask), not chezmoi. On a fresh
+#  machine it does not exist until Syncthing is configured to share the folder, so
+#  open the Syncthing config to let you add/accept it. Personal machines only.
+{{ if .personal -}}
+sync_dir="$HOME/Sync"
+if [ -d "$sync_dir" ]; then
+  echo ">>> ~/Sync exists — Syncthing folder already set up."
+else
+  echo ">>> ~/Sync not found — opening Syncthing so you can add the folder sync."
+  open -a Syncthing 2>/dev/null || true          # start the app + daemon if installed
+  for _ in 1 2 3 4 5; do                          # wait for the web GUI to come up
+    curl -fsS -o /dev/null --max-time 1 http://127.0.0.1:8384 && break
+    sleep 1
+  done
+  open "http://127.0.0.1:8384" 2>/dev/null || true
+  echo ">>> In Syncthing: pair with your other device and accept the 'Sync' folder."
+fi
+{{ end -}}
