@@ -60,9 +60,19 @@ ensure_git() {
 
 run() {
   ensure_git
-  # Same as the README one-liner, with output teed to the log.
-  if command -v chezmoi >/dev/null 2>&1; then
+  source_dir="${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi"
+
+  # Re-run on an already-bootstrapped machine: `chezmoi init` does NOT pull an
+  # existing source, so explicitly pull latest, regenerate the config, then apply.
+  # This makes re-running install.sh pick up new commits.
+  if command -v chezmoi >/dev/null 2>&1 && [ -d "$source_dir/.git" ]; then
+    chezmoi git pull -- --autostash --rebase || true
+    chezmoi init
+    chezmoi apply
+  # First run, chezmoi already installed: clone + apply.
+  elif command -v chezmoi >/dev/null 2>&1; then
     chezmoi init --apply larstomas
+  # First run, no chezmoi yet: bootstrap a throwaway one, then clone + apply.
   elif command -v curl >/dev/null 2>&1; then
     sh -c "$(curl -fsSL https://get.chezmoi.io)" -- init --apply larstomas
   elif command -v wget >/dev/null 2>&1; then
