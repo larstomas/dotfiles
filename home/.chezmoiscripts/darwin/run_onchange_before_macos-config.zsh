@@ -209,7 +209,7 @@ if [ -n "$TERMINAL_THEME" ]; then
   # Integer Format" (to stdout, so 2>/dev/null won't hide it) yet still exit 0.
   # Both stdout and stderr are suppressed here; the tweak is best-effort.
   terminal_set() {  # <key> <type> <value>
-    /usr/libexec/PlistBuddy -c "Delete 'Window Settings':${TERMINAL_THEME}:$1" "$TERMINAL_PLIST" >/dev/null 2>&1
+    /usr/libexec/PlistBuddy -c "Delete 'Window Settings':${TERMINAL_THEME}:$1" "$TERMINAL_PLIST" >/dev/null 2>&1 || true
     /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:$1 $2 $3" "$TERMINAL_PLIST" >/dev/null 2>&1 \
       || echo "  ⚠️  skipped Terminal $1 tweak" >&2
   }
