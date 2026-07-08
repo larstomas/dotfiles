@@ -39,6 +39,7 @@ brew install cirruslabs/cli/tart
 | `bootstrap.exp` | host | Drive `install.sh` over `ssh -tt`, capture every prompt, stop at the 1Password wall |
 | `run-idempotency.sh` | VM **GUI Terminal** | Finish apply + full idempotency sequence (needs 1Password GUI auth) |
 | `run-file-idempotency.sh` | VM **GUI Terminal** | File-only idempotency (`--exclude=scripts`), isolates the file layer |
+| `vm-delete.sh` | host | Delete the VM (confirms the name; keeps the cached image by default) |
 
 ## Reproducible run
 
@@ -71,7 +72,8 @@ scp -i "$KEY" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     admin@"$IP":cz-idempotency.log admin@"$IP":cz-file-idempotency.log .
 
 # 6. Teardown (throwaway). Image stays cached, so recreating is cheap.
-tart delete chezmoi-test
+./vm-delete.sh                 # confirms the VM name; -y to skip the prompt
+#   ./vm-delete.sh --remove-key --prune-image   # also drop the key + cached image
 ```
 
 ## Known manual steps / findings this harness surfaces
