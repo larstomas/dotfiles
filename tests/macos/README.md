@@ -49,9 +49,12 @@ cd tests/macos
 # 1. Create the throwaway VM (image pull is the long pole, ~tens of minutes first time)
 VM=chezmoi-test ./vm-create.sh
 IP=$(tart ip chezmoi-test); KEY=~/.ssh/chezmoi-vm-test
+# Note: the ssh/scp options below pin -o IdentitiesOnly=yes -o IdentityAgent=none so
+# an active SSH agent (e.g. 1Password's) can't exhaust sshd's MaxAuthTries with its
+# own keys before the -i key is tried (which would disconnect the VM).
 
 # 2. Clean bootstrap over SSH. Stage the headless CLT helper first, then drive install.sh.
-scp -i "$KEY" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null clt-install.sh admin@"$IP":clt-install.sh
+scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null clt-install.sh admin@"$IP":clt-install.sh
 expect ./bootstrap.exp "$IP" "$KEY" /tmp/bootstrap.log
 #   exit 42 == reached the 1Password wall (expected on a credential-less machine)
 
@@ -61,14 +64,14 @@ expect ./bootstrap.exp "$IP" "$KEY" /tmp/bootstrap.log
 
 # 4. Finish the bootstrap + idempotency test, IN THE VM's GUI Terminal
 #    (op desktop integration only authenticates from the GUI login session):
-scp -i "$KEY" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     run-idempotency.sh run-file-idempotency.sh admin@"$IP":
 #    then, inside the VM Terminal window:
 #      ~/run-idempotency.sh          # full sequence (scripts included)
 #      ~/run-file-idempotency.sh     # file-only idempotency (scripts excluded)
 
 # 5. Read results back over SSH
-scp -i "$KEY" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     admin@"$IP":cz-idempotency.log admin@"$IP":cz-file-idempotency.log .
 
 # 6. Teardown (throwaway). Image stays cached, so recreating is cheap.

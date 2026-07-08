@@ -24,11 +24,14 @@ set email [expr {[llength $argv] > 3 ? [lindex $argv 3] : "tomas@velour.me"}]
 set vmpw  [expr {[llength $argv] > 4 ? [lindex $argv 4] : "admin"}]
 
 log_file -noappend $logf
-set sshopts "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15"
+# IdentitiesOnly + IdentityAgent=none: authenticate with ONLY the -i key. Without
+# these, an active SSH agent (e.g. 1Password's) offers its own keys first and
+# exhausts sshd's MaxAuthTries before our key is tried, so the VM disconnects us.
+set sshopts "-o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15"
 set sudo_prompts 0
 set clt_fired 0
 
-spawn ssh -tt -i $key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15 admin@$ip
+spawn ssh -tt -i $key -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15 admin@$ip
 set timeout 60
 expect {
     -re {admin@[^\r\n]*[%#\$]} {}
