@@ -1,0 +1,96 @@
+#!/usr/bin/expect -f
+# Drive a clean-machine chezmoi bootstrap inside a Tart macOS VM over `ssh -tt`,
+# exactly as documented in install.sh's README one-liner. Captures every prompt.
+#
+# Usage: bootstrap.exp <vm-ip> <keyfile> <logfile> [email] [vm-password]
+#   email        1Password account email answered at the single chezmoi prompt
+#                (default tomas@velour.me)
+#   vm-password  password sent at sudo prompts; the cirruslabs image default is
+#                "admin" (a published throwaway credential, not a real secret)
+#
+# Exit codes:
+#   0   bootstrap completed cleanly (BOOTSTRAP_EXIT=0)
+#   42  reached the 1Password wall (op Secret Key / "Press Enter" prompt) and
+#       stopped WITHOUT entering any credential -- the human must sign in
+#   43  install.sh finished non-zero for another reason
+#   44  inactivity timeout (treated as hung)   45  ssh ended unexpectedly
+#
+# The driver NEVER types 1Password credentials. It answers only: the email
+# prompt, and sudo's password (with the VM's published default).
+set ip    [lindex $argv 0]
+set key   [lindex $argv 1]
+set logf  [lindex $argv 2]
+set email [expr {[llength $argv] > 3 ? [lindex $argv 3] : "tomas@velour.me"}]
+set vmpw  [expr {[llength $argv] > 4 ? [lindex $argv 4] : "admin"}]
+
+log_file -noappend $logf
+set sshopts "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15"
+set sudo_prompts 0
+set clt_fired 0
+
+spawn ssh -tt -i $key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=15 admin@$ip
+set timeout 60
+expect {
+    -re {admin@[^\r\n]*[%#\$]} {}
+    timeout { puts "\nDRIVER: no shell prompt"; exit 1 }
+}
+set timeout 2400
+send "sh -c \"\$(curl -fsLS https://raw.githubusercontent.com/larstomas/dotfiles/main/install.sh)\"; echo BOOTSTRAP_EXIT=\$?\r"
+
+expect {
+    -re {Click .Install. in the dialog} {
+        # install.sh popped the Xcode CLT GUI dialog and is polling for the tools.
+        # On a real machine a human clicks "Install"; here we drive the headless
+        # softwareupdate install so the poll loop completes. This is a FINDING:
+        # a truly hands-off bootstrap is impossible without pre-installed CLT.
+        if {!$clt_fired} {
+            set clt_fired 1
+            puts "\nDRIVER: CLT dialog wait detected -> firing headless CLT install (FINDING: manual dialog on real machines)"
+            exec sh -c "ssh -i $key $sshopts admin@$ip 'bash ~/clt-install.sh' > $logf.clt 2>&1 &"
+        }
+        exp_continue
+    }
+    -re {account email \(lmail\)} {
+        puts "\nDRIVER: answering the single chezmoi prompt (1Password email) with $email"
+        sleep 1
+        send "$email\r"
+        exp_continue
+    }
+    -re {Password:} {
+        # sudo -v in AAB/AAC/macos-config prompts even under NOPASSWD:ALL, because
+        # `sudo -v` credential-validation is not covered by NOPASSWD. FINDING: real
+        # machines prompt for the login password here.
+        incr sudo_prompts
+        puts "\nDRIVER: sudo Password prompt #$sudo_prompts -> sending VM default password (FINDING: sudo -v prompts)"
+        send "$vmpw\r"
+        exp_continue
+    }
+    -re {(Secret Key|secret key)} {
+        puts "\nDRIVER: 1Password Secret Key prompt -- NOT answering (no credentials by the driver). Confirming block."
+        set timeout 90
+        expect {
+            -re {BOOTSTRAP_EXIT=(\d+)} { puts "\nDRIVER: exited after op prompt"; exit 42 }
+            timeout {
+                puts "\nDRIVER: CONFIRMED BLOCKED at 1Password wall. Interrupting."
+                send \003; sleep 3; send \003
+                set timeout 60
+                expect -re {BOOTSTRAP_EXIT=(\d+)} {}
+                exit 42
+            }
+        }
+    }
+    -re {Press Enter once that is done} {
+        puts "\nDRIVER: AAC fallback 'Press Enter' block -- NOT answering. Interrupting."
+        sleep 5; send \003; sleep 3; send \003
+        set timeout 60
+        expect -re {BOOTSTRAP_EXIT=(\d+)} {}
+        exit 42
+    }
+    -re {BOOTSTRAP_EXIT=(\d+)} {
+        set rc $expect_out(1,string)
+        puts "\nDRIVER: bootstrap finished with exit $rc"
+        if {$rc == 0} { exit 0 } else { exit 43 }
+    }
+    timeout { puts "\nDRIVER: inactivity timeout -- treating as hung"; send \003; exit 44 }
+    eof     { puts "\nDRIVER: ssh session ended unexpectedly"; exit 45 }
+}

@@ -1,0 +1,21 @@
+#!/usr/bin/expect -f
+# Install a throwaway public key into a fresh Tart VM using the image's published
+# default credentials (admin/admin). Lets all later automation use key-based SSH.
+# Usage: install-key.exp <vm-ip> <pubkey-path> [vm-password]
+set timeout 60
+set ip      [lindex $argv 0]
+set pubfile [lindex $argv 1]
+set vmpw    [expr {[llength $argv] > 2 ? [lindex $argv 2] : "admin"}]
+set fp [open $pubfile r]
+set pubkey [string trim [read $fp]]
+close $fp
+
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+     -o PreferredAuthentications=password -o PubkeyAuthentication=no admin@$ip \
+     "mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo '$pubkey' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && echo KEY_INSTALLED"
+expect {
+    -re "(?i)password:" { send "$vmpw\r"; exp_continue }
+    "KEY_INSTALLED"     { exit 0 }
+    timeout             { puts "TIMEOUT"; exit 1 }
+    eof                 { catch wait result; exit [lindex $result 3] }
+}
