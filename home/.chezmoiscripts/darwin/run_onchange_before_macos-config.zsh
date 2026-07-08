@@ -21,6 +21,15 @@ printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
 echo "Running script has basename $( basename -- "$0"; ), dirname $( dirname -- "$0"; )";
 echo "The present working directory is $( pwd; )";
 
+# Best-effort `defaults`: some domains (notably Safari's sandboxed container at
+# ~/Library/Containers/com.apple.Safari) reject writes unless the running terminal
+# has Full Disk Access. Under `set -e` a single such failure aborts the whole
+# bootstrap (and, being a run_before script, blocks every later file + script).
+# Wrap those writes so they warn instead of dying.
+defaults_try() {
+  defaults "$@" || echo "  ⚠️  skipped 'defaults $*' — grant the terminal Full Disk Access to apply this" >&2
+}
+
 #- Ask for admin password upfront
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
@@ -189,33 +198,48 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 defaults write com.apple.terminal "Startup Window Settings" -string "Pro"
 defaults write com.apple.terminal "Default Window Settings" -string "Pro"
 
-# Disable bell
+# Disable bell + close-on-clean-exit. A fresh machine may have no
+# com.apple.Terminal.plist / no 'Default Window Settings' yet, so read best-effort
+# and skip (rather than abort under `set -e`) when the theme can't be resolved.
 TERMINAL_PLIST="$HOME/Library/Preferences/com.apple.Terminal.plist"
-TERMINAL_THEME=`/usr/libexec/PlistBuddy -c "Print 'Default Window Settings'" $TERMINAL_PLIST`
-#/usr/libexec/PlistBuddy -c "Set 'SecureKeyboardEntry' YES" $TERMINAL_PLIST
-/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:Bell false" $TERMINAL_PLIST 2>/dev/null || /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:Bell integer 0" $TERMINAL_PLIST
-#/usr/libexec/PlistBuddy -c "Set 'Window Settings':$TERMINAL_THEME:VisualBellOnlyWhenMuted false" $TERMINAL_PLIST
-
-# Terminal > Preferences > Profiles > Pro > Shell > "When the shell exits" : Close terminal if shell exits cleanly
-/usr/libexec/PlistBuddy -c "Set 'Window Settings':${TERMINAL_THEME}:shellExitAction 1" $TERMINAL_PLIST
+TERMINAL_THEME="$(/usr/libexec/PlistBuddy -c "Print 'Default Window Settings'" "$TERMINAL_PLIST" 2>/dev/null || true)"
+if [ -n "$TERMINAL_THEME" ]; then
+  # Delete-then-Add forces the value AND its type. A plain `Set` on a key that
+  # already exists with a different type makes PlistBuddy print "Unrecognized
+  # Integer Format" (to stdout, so 2>/dev/null won't hide it) yet still exit 0.
+  # Both stdout and stderr are suppressed here; the tweak is best-effort.
+  terminal_set() {  # <key> <type> <value>
+    /usr/libexec/PlistBuddy -c "Delete 'Window Settings':${TERMINAL_THEME}:$1" "$TERMINAL_PLIST" >/dev/null 2>&1
+    /usr/libexec/PlistBuddy -c "Add 'Window Settings':${TERMINAL_THEME}:$1 $2 $3" "$TERMINAL_PLIST" >/dev/null 2>&1 \
+      || echo "  ⚠️  skipped Terminal $1 tweak" >&2
+  }
+  terminal_set Bell bool false
+  # "When the shell exits" : Close terminal if shell exits cleanly
+  terminal_set shellExitAction integer 1
+else
+  echo "  ⚠️  skipped Terminal tweaks — no 'Default Window Settings' theme found yet" >&2
+fi
 
 
 
 #- Safari
+# Safari's prefs live in its sandboxed container, which `defaults` cannot write
+# unless the terminal has Full Disk Access — so these are best-effort (see
+# defaults_try above); a fresh machine will skip them with a warning, not abort.
 # Start with all windows from last session
-defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+defaults_try write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
 
-defaults write com.apple.Safari AlwaysShowTabBar -bool true
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari ShowFavoritesBar-v2 -bool true
-defaults write com.apple.Safari ShowStatusBar -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults_try write com.apple.Safari AlwaysShowTabBar -bool true
+defaults_try write com.apple.Safari IncludeDevelopMenu -bool true
+defaults_try write com.apple.Safari ShowFavoritesBar-v2 -bool true
+defaults_try write com.apple.Safari ShowStatusBar -bool true
+defaults_try write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+defaults_try write com.apple.Safari AutoOpenSafeDownloads -bool false
 
 # Make a new tab or window active when it opens.
-defaults write com.apple.Safari OpenNewTabsInFront -bool true
+defaults_try write com.apple.Safari OpenNewTabsInFront -bool true
 
 #- General
 # Expand save panel by default
