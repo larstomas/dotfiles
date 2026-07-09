@@ -1,0 +1,105 @@
+# Packages removed over time — a historical record only, NOT installed by anything.
+# Tier (base vs personal/work) is intentionally not tracked; split only by OS + type so
+# an entry can be re-added to the matching list in packages.yaml.
+archived:
+  darwin:
+    brews:
+      - alembic          # SQLAlchemy database migration tool
+      - ansible          # IT automation & configuration management
+      - ansible-lint     # linter for Ansible playbooks
+      - autojump         # faster directory navigation (j)
+      - awscli           # Amazon Web Services CLI
+      - azure-cli        # Microsoft Azure CLI
+      - black            # opinionated Python code formatter
+      - cpufetch         # pretty CPU architecture info
+      - dnscontrol       # manage DNS zones as code
+      - docker-completion # shell completion for Docker
+      - docker-compose   # define & run multi-container Docker apps
+      - dust             # intuitive du (disk usage)
+      - e2fsprogs        # ext2/3/4 filesystem utilities
+      - exiftool         # read & write media metadata
+      - ffmpeg           # audio/video converter & toolkit
+      - gnu-getopt       # GNU command-line option parser
+      - gnu-indent       # GNU C source code formatter
+      - grex             # generate regexes from examples
+      - guile            # GNU Scheme interpreter
+      - helm             # Kubernetes package manager
+      - iperf3           # network bandwidth measurement
+      - kubectx          # switch kubectl contexts & namespaces
+      - kubevpn          # connect to a Kubernetes cluster network
+      - kustomize        # template-free Kubernetes YAML customization
+      - media-info       # media file technical metadata
+      - midnight-commander # text-based file manager (mc)
+      - minikube         # run a local Kubernetes cluster
+      - mkvtoolnix       # create/inspect Matroska (MKV) files
+      - n                # Node.js version manager
+      - nghttp2          # HTTP/2 tools & library
+      - nnn              # fast terminal file manager
+      - node             # Node.js JavaScript runtime
+      - openshift-cli    # OpenShift CLI (oc)
+      - opentofu         # open-source Terraform fork
+      - pandoc           # universal document converter
+      - plantuml         # text-to-UML diagram generator
+      - pspg             # pager for tables & psql output
+      - python@3.10      # Python 3.10 interpreter
+      - python@3.11      # Python 3.11 interpreter
+      - qemu             # machine emulator & virtualizer
+      - ranger           # vim-like terminal file manager
+      - ruff             # fast Python linter & formatter
+      - streamlink       # pipe online video streams to a player
+      - tiger-vnc        # VNC remote desktop client/server
+      - unbound          # validating recursive DNS resolver
+      - zlib             # compression library
+    casks:
+      - audiobook-builder # assemble audio files into audiobooks
+      - bartender # organize the menu bar
+      - betterzip # archive manager & previewer
+      - bruno # git-friendly API client
+      - carbon-copy-cloner # bootable disk backup & cloning
+      - claude # Claude AI desktop app (Anthropic)
+      - cryptomator # encrypted vaults for cloud storage
+      - dbeaver-community # universal database GUI
+      - docker-desktop # Docker for Mac
+      - garmin-express # manage & update Garmin devices
+      - hammerspoon # macOS automation via Lua
+      - imazing # iOS device manager & backup
+      - kaleidoscope # file & image diff/merge tool
+      - netnewswire # free RSS reader
+      - pdf-expert # PDF reader & editor
+      - plexamp # Plex music player
+      - powerphotos # manage multiple Photos libraries
+      - spacelauncher # launch/switch apps with the space bar
+      - spotify # music streaming
+      - steam # game store & launcher
+      - ulbow # macOS unified log browser (Howard Oakley)
+      - vagrant # manage reproducible dev VMs
+      - vagrant-vmware-utility # Vagrant VMware provider integration
+      - veracrypt # on-the-fly disk encryption
+      - warp # modern terminal with AI features
+    mas:
+      - { id: 1099120373, name: "Exporter" } # export iMessage/WhatsApp chats
+      - { id: 1276248849, name: "Diagrams" } # native diagram & flowchart editor
+      - { id: 1289583905, name: "Pixelmator Pro" } # image editor
+      - { id: 1295203466, name: "Windows App" } # Microsoft Remote Desktop (Windows App)
+      - { id: 1451685025, name: "WireGuard" } # WireGuard VPN client
+      - { id: 1492317385, name: "InstaRemind" } # quick reminders app
+      - { id: 1557892760, name: "rubiTrack 6" } # training & activity log
+      - { id: 1663047912, name: "Screens 5" } # VNC remote desktop client
+      - { id: 361304891, name: "Numbers" } # Apple spreadsheets
+      - { id: 361309726, name: "Pages" } # Apple word processor
+      - { id: 409183694, name: "Keynote" } # Apple presentations
+      - { id: 409203825, name: "Numbers" } # Apple spreadsheets
+      - { id: 425264550, name: "Blackmagic Disk Speed Test" } # measure disk read/write speed
+      - { id: 803453959, name: "Slack" } # team chat
+      - { id: 824183456, name: "Affinity Photo" } # professional photo editor
+  linux:
+    apt:
+      - open-vm-tools      # VMware guest tools
+      - open-vm-tools-desktop # VMware guest tools (desktop/GUI)
+      - ranger             # vim-like terminal file manager
+    brews:
+      - eza                # modern ls replacement
+      - gitleaks           # scan git repos for secrets
+      - tldr # simplified, community man pages
+      - yt-dlp # video/audio downloader (youtube-dl fork)
+    snap: []

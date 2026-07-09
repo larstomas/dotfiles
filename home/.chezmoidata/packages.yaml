@@ -3,260 +3,143 @@
 packages:
   darwin:
     brews:
-      - chezmoi
-      - eza
-      - gitleaks
-      - mackup
-      - spaceship
-      - zsh
-      - bat
-      - fd
-      - fzf
-      - gh
-      - git
-      - git-delta
-      - neovim
-      - ripgrep
-      - shellcheck
-      - tmux
-      - htop
-      - btop
-      - zoxide
-      - coreutils
-      - grep
+      - bat                # cat clone with syntax highlighting
+      - btop               # resource monitor (prettier top)
+      - chezmoi            # dotfile manager
+      - coreutils          # GNU core utilities
+      - curl               # transfer data over many protocols
+      - eza                # modern ls replacement
+      - fd                 # fast, friendly find alternative
+      - fzf                # command-line fuzzy finder
+      - gh                 # GitHub CLI
+      - git                # distributed version control
+      - git-delta          # syntax-highlighting pager for git diffs
+      - gitleaks           # scan git repos for secrets
+      - grep               # GNU grep
+      - htop               # interactive process viewer
+      - mackup             # back up & sync app settings
+      - mas                # Mac App Store command-line interface
+      - neovim             # hyperextensible Vim-based editor
+      - ripgrep            # fast recursive grep (rg)
+      - shellcheck         # shell script static analysis linter
+      - spaceship          # zsh prompt theme
+      - tmux               # terminal multiplexer
+      - zoxide             # smarter cd that learns your habits
+      - zsh                # Z shell
     casks:
-      - 1password
-      - 1password-cli
-      - appcleaner
+      - 1password          # password manager
+      - 1password-cli      # 1Password command-line tool (op)
+      - appcleaner         # thorough app uninstaller
     personal:
       brews:
-        - alembic
-        - ansible
-        - ansible-lint
-        - autojump
-        - awscli
-        - azure-cli
-        - bash
-        - bat
-        - black
-        - btop
-        - chezmoi
-        - coreutils
-        - cpufetch
-        - curl
-        - dnscontrol
-        - docker-completion
-        - docker-compose
-        - dust
-        - e2fsprogs
-        - exiftool
-        - eza
-        - fd
-        - ffmpeg
-        - findutils
-        - fzf
-        - gawk
-        - gdu
-        - gh
-        - git
-        - git-delta
-        - git-filter-repo
-        - gitleaks
-        - gnu-getopt
-        - gnu-indent
-        - gnu-tar
-        - go
-        - grep
-        - grex
-        - guile
-        - helm
-        - hl
-        - htop
-        - iperf3
-        - just
-        - kubectx
-        - kubevpn
-        - kustomize
-        - mackup
-        - mas
-        - media-info
-        - midnight-commander
-        - minikube
-        - mkvtoolnix
-        - n
-        - ncdu
-        - neovim
-        - nghttp2
-        - nmap
-        - nnn
-        - node
-        - openshift-cli
-        - opentofu
-        - p7zip
-        - pandoc
-        - plantuml
-        - podman
-        - pspg
-        - python@3.10
-        - python@3.11
-        - qemu
-        - ranger
-        - ripgrep
-        - rsync
-        - ruff
-        - rust
-        - shellcheck
-        - spaceship
-        - ssh-copy-id
-        - streamlink
-        - tailscale
-        - tiger-vnc
-        - tmux
-        - unbound
-        - uv
-        - watch
-        - whisper-cpp
-        - yq
-        - yt-dlp
-        - zlib
-        - zoxide
-        - zsh
+        - bash             # GNU Bourne-Again shell
+        - findutils        # GNU find, xargs, locate
+        - gawk             # GNU awk text processor
+        - gdu              # fast disk usage analyzer
+        - git-filter-repo  # rewrite git history quickly
+        - gnu-tar          # GNU tar archiver
+        - go               # Go programming language
+        - hl               # fast JSON/logfmt log viewer
+        - just             # command runner (Justfile)
+        - ncdu             # ncurses disk usage analyzer
+        - nmap             # network scanner & port mapper
+        - p7zip            # 7-Zip archiver (CLI)
+        - podman           # daemonless container engine
+        - rsync            # fast incremental file transfer/sync
+        - rust             # Rust programming language
+        - ssh-copy-id      # install your SSH key on a server
+        - tailscale        # WireGuard-based mesh VPN
+        - uv               # fast Python package & project manager
+        - watch            # run a command periodically
+        - whisper-cpp      # OpenAI Whisper speech-to-text (C++)
+        - yq               # YAML/JSON/XML processor (jq for YAML)
+        - yt-dlp           # video/audio downloader (youtube-dl fork)
       casks:
-        - 1password
-        - 1password-cli
-        - a-better-finder-rename
-        - alfred
-        - anki
-        - appcleaner
-        - audiobook-builder
-        - balenaetcher
-        - bartender
-        - betterzip
-        - bruno
-        - carbon-copy-cloner
-        - choosy
-        - claude
-        - cryptomator
-        - daisydisk
-        - dbeaver-community
-        - docker-desktop
-        - easyfind
-        - firefox
-        - fluor
-        - font-fira-code
-        - font-fira-code-nerd-font
-        - font-inconsolata
-        - font-meslo-lg-nerd-font
-        - garmin-express
-        - gemini
-        - ghostty
-        - github
-        - google-chrome
-        - hammerspoon
-        - hyperkey
-        - iina
-        - imazing
-        - istat-menus
-        - iterm2
-        - kaleidoscope
-        - keyboard-maestro
-        - mac-mouse-fix
-        - netnewswire
-        - obsidian
-        - onlyoffice
-        - pdf-expert
-        - plexamp
-        - powerphotos
-        - quicklook-video
-        - rectangle
-        - rustdesk
-        - soundsource
-        - spacelauncher
-        - spotify
-        - steam
-        - syncthing-app
-        - syntax-highlight
-        - transmission-remote-gui
-        - transmit
-        - typora
-        - ulbow
-        - vagrant
-        - vagrant-vmware-utility
-        - veracrypt
-        - visual-studio-code
-        - vlc
-        - warp
+        - a-better-finder-rename # batch file/photo renamer
+        - alfred           # app launcher & productivity workflows
+        - anki             # spaced-repetition flashcards
+        - balenaetcher     # flash OS images to USB/SD cards
+        - choosy           # smart per-link default browser chooser
+        - daisydisk        # visual disk space analyzer
+        - easyfind         # file & folder search utility
+        - firefox          # web browser
+        - fluor            # per-app function-key behavior switcher
+        - font-fira-code   # Fira Code font (programming ligatures)
+        - font-fira-code-nerd-font # Fira Code patched with Nerd Font glyphs
+        - font-inconsolata # Inconsolata monospace font
+        - font-meslo-lg-nerd-font # Meslo LG patched with Nerd Font glyphs
+        - gemini           # duplicate & junk file finder (MacPaw)
+        - ghostty          # GPU-accelerated terminal emulator
+        - github           # GitHub Desktop app
+        - google-chrome    # web browser
+        - hyperkey         # turn Caps Lock into a Hyper key
+        - iina             # modern macOS media player
+        - istat-menus      # system monitor in the menu bar
+        - iterm2           # terminal emulator
+        - keyboard-maestro # macro & automation tool
+        - mac-mouse-fix    # smooth scrolling & mouse gestures
+        - obsidian         # Markdown knowledge base
+        - onlyoffice       # office document suite
+        - quicklook-video  # QuickLook plugin for video files
+        - rectangle        # window snapping/tiling manager
+        - rustdesk         # open-source remote desktop
+        - soundsource      # per-app audio control
+        - syncthing-app    # Syncthing continuous file sync (menu bar)
+        - syntax-highlight # QuickLook source-code highlighting
+        - transmission-remote-gui # remote GUI for Transmission BitTorrent
+        - transmit         # FTP/SFTP/cloud file transfer (Panic)
+        - typora           # minimal Markdown editor
+        - visual-studio-code # code editor
+        - vlc              # media player
       mas:
-        - { id: 1365531024, name: "1Blocker" }
-        - { id: 1569813296, name: "1Password for Safari" }
-        - { id: 1459809092, name: "Accelerate" }
-        - { id: 824183456, name: "Affinity Photo" }
-        - { id: 937984704, name: "Amphetamine" }
-        - { id: 425264550, name: "Blackmagic Disk Speed Test" }
-        - { id: 1575379461, name: "BlockYT" }
-        - { id: 920897043, name: "Daily Wallpaper - for Bing" }
-        - { id: 1276248849, name: "Diagrams" }
-        - { id: 1118909075, name: "DiskMark" }
-        - { id: 1099120373, name: "Exporter" }
-        - { id: 687301476, name: "FineReader OCR Pro" }
-        - { id: 1423210932, name: "Flow" }
-        - { id: 1143437985, name: "GoodTask" }
-        - { id: 945689735, name: "Hash" }
-        - { id: 1492317385, name: "InstaRemind" }
-        - { id: 409183694, name: "Keynote" }
-        - { id: 430255202, name: "Mactracker" }
-        - { id: 1621800675, name: "Mercury" }
-        - { id: 1289197285, name: "MindNode Classic" }
-        - { id: 361304891, name: "Numbers" }
-        - { id: 409203825, name: "Numbers" }
-        - { id: 6720708363, name: "Obsidian Web Clipper" }
-        - { id: 361309726, name: "Pages" }
-        - { id: 1289583905, name: "Pixelmator Pro" }
-        - { id: 1529448980, name: "Reeder" }
-        - { id: 6478323460, name: "Reminder Sync for Obsidian" }
-        - { id: 1557892760, name: "rubiTrack 6" }
-        - { id: 1640236961, name: "Save to Reader" }
-        - { id: 1663047912, name: "Screens 5" }
-        - { id: 803453959, name: "Slack" }
-        - { id: 1475387142, name: "Tailscale" }
-        - { id: 1528890965, name: "TextSniper" }
-        - { id: 1463298887, name: "Userscripts" }
-        - { id: 1591303229, name: "Vinegar" }
-        - { id: 972112040, name: "Voice Dream Reader" }
-        - { id: 1295203466, name: "Windows App" }
-        - { id: 1451685025, name: "WireGuard" }
-        - { id: 497799835, name: "Xcode" }
+        - { id: 1365531024, name: "1Blocker" }             # Safari content & ad blocker
+        - { id: 1569813296, name: "1Password for Safari" } # 1Password browser extension
+        - { id: 1459809092, name: "Accelerate" }           # Apple Health trends & insights
+        - { id: 937984704, name: "Amphetamine" }           # keep your Mac awake
+        - { id: 1575379461, name: "BlockYT" }              # block YouTube distractions in Safari
+        - { id: 920897043, name: "Daily Wallpaper - for Bing" } # Bing daily wallpaper
+        - { id: 1118909075, name: "DiskMark" }             # disk benchmark tool
+        - { id: 687301476, name: "FineReader OCR Pro" }    # OCR & document conversion
+        - { id: 1423210932, name: "Flow" }                 # Pomodoro focus timer
+        - { id: 1143437985, name: "GoodTask" }             # task manager for Reminders & Calendar
+        - { id: 945689735, name: "Hash" }                  # compute file checksums/hashes
+        - { id: 430255202, name: "Mactracker" }            # database of every Apple product
+        - { id: 1621800675, name: "Mercury" }              # weather app
+        - { id: 1289197285, name: "MindNode Classic" }     # mind mapping
+        - { id: 6720708363, name: "Obsidian Web Clipper" } # save web pages to Obsidian (Safari)
+        - { id: 1529448980, name: "Reeder" }               # RSS & read-later reader
+        - { id: 6478323460, name: "Reminder Sync for Obsidian" } # sync Apple Reminders with Obsidian
+        - { id: 1640236961, name: "Save to Reader" }       # save articles to Readwise Reader (Safari)
+        - { id: 1475387142, name: "Tailscale" }            # mesh VPN (App Store build)
+        - { id: 1528890965, name: "TextSniper" }           # OCR text from anything on screen
+        - { id: 1463298887, name: "Userscripts" }          # Safari userscript manager
+        - { id: 1591303229, name: "Vinegar" }              # clean, native YouTube player in Safari
+        - { id: 972112040, name: "Voice Dream Reader" }    # text-to-speech document reader
+        - { id: 497799835, name: "Xcode" }                 # Apple IDE & developer tools
   linux:
     apt:            # base apt packages — every Debian/Ubuntu machine
-      - build-essential
-      - git
-      - curl
-      - unzip
-      - fonts-firacode
-      - zsh
-      - bat
-      - p7zip-full
-      - p7zip-rar
-      - tmux
-      - ripgrep
-      - fd-find
-      - nmap
-      - tree
-      - htop
-      - shellcheck
-      - ncdu
-      - ranger
-      - neovim
-      - open-vm-tools
-      - open-vm-tools-desktop
-    brews:          # Homebrew on Linux — packages apt lacks / are newer via brew
-      - chezmoi
-      - eza
-      - gitleaks
-      - tldr
-      - yt-dlp
+      - bat                # cat clone with syntax highlighting
+      - build-essential    # compiler toolchain (gcc, make)
+      - chezmoi            # dotfile manager
+      - curl               # transfer data over many protocols
+      - fd-find            # fast find alternative (fdfind)
+      - fonts-firacode     # Fira Code font
+      - git                # distributed version control
+      - htop               # interactive process viewer
+      - ncdu               # ncurses disk usage analyzer
+      - neovim             # hyperextensible Vim-based editor
+      - nmap               # network scanner & port mapper
+      - p7zip-full         # 7-Zip archiver
+      - p7zip-rar          # RAR support for 7-Zip
+      - ripgrep            # fast recursive grep (rg)
+      - shellcheck         # shell script static analysis linter
+      - tmux               # terminal multiplexer
+      - tree               # recursive directory tree viewer
+      - unzip              # extract zip archives
+      - zsh                # Z shell
+    brews: []          # Homebrew on Linux — packages apt lacks / are newer via brew
     personal:
       apt: []       # GUI / desktop apt packages (add as needed)
       snap:         # snaps are GUI/desktop — personal machines only
-        - { name: btop, classic: false }
-        - { name: code, classic: true }
+        - { name: btop, classic: false } # resource monitor (prettier top)
+        - { name: code, classic: true } # Visual Studio Code editor
