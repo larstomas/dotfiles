@@ -79,6 +79,14 @@ ssh -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecki
 # 6. Read results back over SSH (only after the run(s) in step 5 have finished)
 scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     admin@"$IP":cz-idempotency.log admin@"$IP":cz-file-idempotency.log .
+#    Pass = APPLY1_RC=0, empty status/diff, APPLY2_RC=0 with no output. Check it:
+grep -E '_RC=|ALL_DONE' cz-idempotency.log                  # WHOAMI_RC=1 is expected & harmless
+#    status/diff/APPLY-2 bodies must be EMPTY — an RC of 0 only means the command ran:
+awk '/chezmoi status  \(idempotency/{f=1;next}/STATUS_RC=/{f=0}f' cz-idempotency.log | grep -c .   # want 0
+awk '/chezmoi diff  \(idempotency/{f=1;next}/DIFF_RC=/{f=0}f'    cz-idempotency.log | grep -c .     # want 0
+grep -iE 'op://|could not read secret|authorization timeout|exit status 1' cz-idempotency.log      # want no output
+#    APPLY 1 should also contain ">>> 1Password CLI is working." and "<<< macOS Setup Complete."
+#    (file-only run: same idea with F-prefixed markers — FAPPLY1_RC=0, empty status/diff, FAPPLY2_RC=0)
 
 # 7. Teardown (throwaway). Image stays cached, so recreating is cheap.
 ./vm-delete.sh                 # confirms the VM name; -y to skip the prompt
