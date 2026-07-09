@@ -84,7 +84,7 @@ grep -E '_RC=|ALL_DONE' cz-idempotency.log                  # WHOAMI_RC=1 is exp
 #    status/diff/APPLY-2 bodies must be EMPTY — an RC of 0 only means the command ran:
 awk '/chezmoi status  \(idempotency/{f=1;next}/STATUS_RC=/{f=0}f' cz-idempotency.log | grep -c .   # want 0
 awk '/chezmoi diff  \(idempotency/{f=1;next}/DIFF_RC=/{f=0}f'    cz-idempotency.log | grep -c .     # want 0
-grep -iE 'op://|could not read secret|authorization timeout|exit status 1' cz-idempotency.log      # want no output
+grep -iE 'could not read secret|authorization timeout|error initializing client|exit status 1' cz-idempotency.log   # want no output
 #    APPLY 1 should also contain ">>> 1Password CLI is working." and "<<< macOS Setup Complete."
 #    (file-only run: same idea with F-prefixed markers — FAPPLY1_RC=0, empty status/diff, FAPPLY2_RC=0)
 
