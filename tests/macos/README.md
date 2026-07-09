@@ -62,23 +62,25 @@ expect ./bootstrap.exp "$IP" "$KEY" /tmp/bootstrap.log
 #    types credentials): open the 1Password app, sign in to backman.1password.com,
 #    enable Settings > Developer > "Integrate with 1Password CLI".
 
-# 4. Finish the bootstrap + idempotency test, IN THE VM's GUI Terminal
-#    (op desktop integration only authenticates from the GUI login session):
+# 4. Copy the idempotency scripts into the VM
 scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     run-idempotency.sh run-file-idempotency.sh admin@"$IP":
-#    then, inside the VM Terminal window:
+
+# 5. Run the test IN THE VM's GUI Terminal window — NOT over SSH
+#    (op desktop integration only authenticates from the GUI login session).
+#    Click into the chezmoi-test VM window, open Terminal, and run:
 #      ~/run-idempotency.sh          # full sequence (scripts included)
 #      ~/run-file-idempotency.sh     # file-only idempotency (scripts excluded)
-#    watch progress live from the host (optional; open a second terminal):
+#    Each writes its log and ends with ALL_DONE (clean = APPLY1_RC=0, empty status/diff, APPLY2_RC=0).
+#    Watch progress live from the host (optional; open a second terminal):
 ssh -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     admin@"$IP" 'tail -n +1 -F ~/cz-idempotency.log' | tr '\r' '\n'
-#    (the run ends with ALL_DONE; clean = APPLY1_RC=0, empty status/diff, APPLY2_RC=0)
 
-# 5. Read results back over SSH
+# 6. Read results back over SSH (only after the run(s) in step 5 have finished)
 scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     admin@"$IP":cz-idempotency.log admin@"$IP":cz-file-idempotency.log .
 
-# 6. Teardown (throwaway). Image stays cached, so recreating is cheap.
+# 7. Teardown (throwaway). Image stays cached, so recreating is cheap.
 ./vm-delete.sh                 # confirms the VM name; -y to skip the prompt
 #   ./vm-delete.sh --remove-key --prune-image   # also drop the key + cached image
 ```
