@@ -69,6 +69,10 @@ scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecki
 #    then, inside the VM Terminal window:
 #      ~/run-idempotency.sh          # full sequence (scripts included)
 #      ~/run-file-idempotency.sh     # file-only idempotency (scripts excluded)
+#    watch progress live from the host (optional; open a second terminal):
+ssh -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+    admin@"$IP" 'tail -n +1 -F ~/cz-idempotency.log' | tr '\r' '\n'
+#    (the run ends with ALL_DONE; clean = APPLY1_RC=0, empty status/diff, APPLY2_RC=0)
 
 # 5. Read results back over SSH
 scp -i "$KEY" -o IdentitiesOnly=yes -o IdentityAgent=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
