@@ -47,7 +47,6 @@ USER_HW_ARC="$(uname -m)"; export USER_HW_ARC
 export USER_CONFIG_HOME="${HOME}/Sync/.config"
 export USER_BIN_HOME="${HOME}/Sync/.local/bin"
 export USER_STATE_HOME="${HOME}/Sync/.local/state"
-export USER_SCRIPTS="${HOME}/Sync/.local/scripts"
 
 ## Editors
 export EDITOR='code --wait'
@@ -99,7 +98,6 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 ## Path configuration (deduplicated later)
 path_prepend "${USER_BIN_HOME}"
-path_prepend_if_exists "${USER_SCRIPTS}"
 path_prepend "${N_PREFIX}/bin"
 path_prepend_if_exists "${HOME}/.local/bin"
 path_prepend_if_exists "/snap/bin"  # snap-verktyg (linux/debian: /snap/bin saknas ofta i PATH by default); no-op på macOS
