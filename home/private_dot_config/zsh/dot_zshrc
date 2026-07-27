@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 
 # --- History ---
 # Ref: https://zsh.sourceforge.io/Doc/Release/Options.html
-HISTFILE="${USER_CONFIG_HOME}/zsh/zsh_history_${HOST}"
+HISTFILE="${USER_STATE_HOME}/zsh/zsh_history_${HOST}"
 HISTSIZE=100000
 SAVEHIST=100000
 HISTORY_IGNORE="(ls|pwd|exit|*sudo -S*)"
