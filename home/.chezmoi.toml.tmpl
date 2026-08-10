@@ -19,7 +19,7 @@
 {{- end -}}
 
 {{/* personal: my own real machines get the full set of apps (case-insensitive) */}}
-{{- $personalHosts := list "skalleper" "tomass-mac-mini" -}}
+{{- $personalHosts := list "skalleper" "lillebror" -}}
 {{- if has (lower $hostname) $personalHosts -}}
 {{-   $personal = true -}}
 {{- end -}}
