@@ -83,6 +83,7 @@ packages:
         - quicklook-video  # QuickLook plugin for video files
         - rectangle        # window snapping/tiling manager
         - rustdesk         # open-source remote desktop
+        - shottr           # screenshot & annotation tool
         - soundsource      # per-app audio control
         - syncthing-app    # Syncthing continuous file sync (menu bar)
         - syntax-highlight # QuickLook source-code highlighting
