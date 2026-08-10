@@ -96,7 +96,7 @@ alias fil='cd ${HOME}/Sync/Valvet/03-projekt/aktiva/file-placement-workflow && c
 
 ## LLM
 export MY_AGENT="claude"
-alias agentcommit='git diff --staged | ${=MY_AGENT} -p "Write a conventional commit message for this diff. Output only the message." | git commit -e -F -'
+alias agentcommit='git diff --staged | ${=MY_AGENT} -p "Write a conventional commit message for this diff. Output only the message." | git commit -F -'
 
 # --- Key Bindings ---
 bindkey -e
