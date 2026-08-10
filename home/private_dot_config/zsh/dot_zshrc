@@ -94,6 +94,10 @@ alias tbls='ls'
 alias cddbeaverscripts='cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/General/Scripts/'
 alias fil='cd ${HOME}/Sync/Valvet/03-projekt/aktiva/file-placement-workflow && claude'
 
+## LLM
+export MY_AGENT="claude"
+alias agentcommit='git diff --staged | ${=MY_AGENT} -p "Write a conventional commit message for this diff. Output only the message." | git commit -e -F -'
+
 # --- Key Bindings ---
 bindkey -e
 autoload -U edit-command-line
