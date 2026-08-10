@@ -43,10 +43,10 @@ packages:
         - just             # command runner (Justfile)
         - ncdu             # ncurses disk usage analyzer
         - nmap             # network scanner & port mapper
-        - p7zip            # 7-Zip archiver (CLI)
         - podman           # daemonless container engine
         - rsync            # fast incremental file transfer/sync
         - rust             # Rust programming language
+        - sevenzip         # 7-Zip archiver (CLI, official; provides 7zz)
         - ssh-copy-id      # install your SSH key on a server
         - tailscale        # WireGuard-based mesh VPN
         - uv               # fast Python package & project manager
