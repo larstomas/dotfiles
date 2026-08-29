@@ -39,6 +39,7 @@ packages:
         - git-filter-repo  # rewrite git history quickly
         - gnu-tar          # GNU tar archiver
         - go               # Go programming language
+        - herdr            # agent multiplexer / terminal workspace manager for AI coding agents
         - hl               # fast JSON/logfmt log viewer
         - just             # command runner (Justfile)
         - ncdu             # ncurses disk usage analyzer
