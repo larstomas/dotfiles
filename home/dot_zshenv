@@ -1,0 +1,10 @@
+
+export ZDOTDIR="${HOME}/.config/zsh"
+# For Oh My Zsh, zinit, etc.
+export ZSH="${ZDOTDIR}"
+
+# hand off to your “real” zshenv kept in ZDOTDIR
+if [ -r "${ZDOTDIR}/.zshenv" ]; then
+  . "${ZDOTDIR}/.zshenv"
+fi
+

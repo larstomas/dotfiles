@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# mac-maint — Homebrew/App Store/zinit maintenance for every Mac (chezmoi-managed copy of
+# ~/Public/.inst-familj/homebrew/maint.sh, the family installer's script). Log: see LOG_FILE.
+set -uo pipefail  # Continue on error (no -e)
+
+# Ask for admin password up front (before logging starts)
+sudo -v
+
+# Set up logging (XDG state dir; this script lives in ~/.local/bin via chezmoi)
+LOG_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/mac-maint"
+mkdir -p "$LOG_DIR"
+LOG_FILE="$LOG_DIR/maint.log"
+exec > >(tee "$LOG_FILE") 2>&1
+exec 3>&1              # Duplicate stdout to fd 3
+BASH_XTRACEFD=3        # Send command traces to fd 3 (stdout/main log)
+set -x
+
+# Log return codes after each command
+trap 'echo "==> Exit code: $?"' DEBUG
+
+# Check if zinit is installed, if installed then update zinit plugins
+if command -v zinit &>/dev/null; then
+  echo "Updating zinit plugins..."
+  zinit self-update
+  zinit update --all --parallel
+fi
+
+# Start maintenance
+brew update
+brew upgrade
+
+# Upgrade all casks without further prompts (and don't re-run brew update)
+brew cu --all --cleanup --no-brew-update --include-mas --yes
+
+# App Store apps
+mas upgrade
+
+# Clean up: remove unused deps, stale downloads, and check for problems
+brew autoremove
+brew cleanup
+brew doctor

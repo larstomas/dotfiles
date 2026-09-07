@@ -1,0 +1,42 @@
+[user]
+	name = {{ onepasswordRead "op://Private/Github/personal-name" }}
+	email = {{ onepasswordRead "op://Private/Github/personal-email" }}
+	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
+
+[credential]
+	helper = osxkeychain
+
+# Commit signing with the SSH key in 1Password
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+	gpgsign = true
+
+[core]
+	editor = vim
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true    # n / N move between diff sections
+	light = false
+	side-by-side = true
+
+[pull]
+	ff = only
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[init]
+	defaultBranch = main
+
+[alias]
+	st = status
+	br = branch
+	co = checkout
+
+[includeIf "gitdir:repos/github/"]
+	path = .gitconfig-github

@@ -1,0 +1,3 @@
+# Host definitions live in ~/Sync/.config/ssh/ (private, Syncthing-synced, outside this public
+# repo). See Valvet/dependencies.md. Add machine-independent options here only.
+Include ~/Sync/.config/ssh/*
