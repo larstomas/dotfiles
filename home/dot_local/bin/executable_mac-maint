@@ -38,4 +38,4 @@ mas upgrade
 # Clean up: remove unused deps, stale downloads, and check for problems
 brew autoremove
 brew cleanup
-brew doctor
+brew doctor || true  # warnings (tap bugs, disabled casks) must not turn a clean maintenance run into a failed one (2026-09-07)
