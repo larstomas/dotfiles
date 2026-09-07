@@ -21,10 +21,16 @@ fi
 
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
-#- Taps
-{{ range .packages.taps -}}
-brew tap {{ . }}
-brew trust --tap {{ . }} 2>/dev/null || true  # Homebrew 6.0+ tap-trust (needs --tap); no-op on older brew
+#- Taps. Trust FIRST: Homebrew 6.0+ refuses to even tap an untrusted tap, and
+#  `brew trust --tap` works before the tap is cloned. Tap failures warn instead of
+#  aborting the bootstrap (a tap that fails brew's syntax audit must not block everything).
+{{- $taps := .packages.taps }}
+{{- if eq .chezmoi.arch "arm64" }}
+{{-   $taps = concat $taps .packages.arm.taps }}
+{{- end }}
+{{ range $taps -}}
+brew trust --tap {{ . }} 2>/dev/null || true  # no-op on pre-6.0 brew
+brew tap {{ . }} || echo ">>> WARNING: brew tap {{ . }} failed — packages from it will be skipped"
 {{ end }}
 #- Packages: the lists live in .chezmoidata/packages.yaml.
 #  base = every Mac; personal = private Macs (not work); bigDisk = system disk >= 400 GB.
@@ -44,6 +50,9 @@ brew trust --tap {{ . }} 2>/dev/null || true  # Homebrew 6.0+ tap-trust (needs -
 {{-   $brews = concat $brews .packages.bigDisk.brews }}
 {{-   $casks = concat $casks .packages.bigDisk.casks }}
 {{-   $mas = concat $mas .packages.bigDisk.mas }}
+{{- end }}
+{{- if eq .chezmoi.arch "arm64" }}
+{{-   $brews = concat $brews .packages.arm.brews }}
 {{- end }}
 brew bundle --no-upgrade --file=/dev/stdin <<EOF || echo ">>> brew bundle: några paket kunde inte installeras (se ovan) — fortsätter ändå"
 {{ range $brews | sortAlpha | uniq -}}

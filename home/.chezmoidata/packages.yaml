@@ -6,8 +6,12 @@
 packages:
   taps:
     - 1password/tap        # 1password-cli cask
-    - cirruslabs/cli       # tart (macOS VMs for tests/macos)
     - buo/cask-upgrade     # brew cu, used by mac-maint
+  arm:                     # Apple Silicon only (tart won't run on Intel)
+    taps:
+      - cirruslabs/cli     # tart (macOS VMs for tests/macos)
+    brews:
+      - cirruslabs/cli/tart # macOS VMs (tests/macos)
   base:
     brews:
       - bash               # newer bash for scripts (macOS ships 3.2)
@@ -36,7 +40,6 @@ packages:
       - sevenzip           # 7-Zip archiver (CLI, official; provides 7zz)
       - shellcheck         # shell script static analysis linter (VS Code extension uses it)
       - spaceship          # zsh prompt theme
-      - cirruslabs/cli/tart # macOS VMs (tests/macos)
       - tmux               # terminal multiplexer
       - tree               # recursive directory tree viewer
       - watch              # run a command periodically (missing from macOS)
