@@ -37,6 +37,18 @@ fi
 
 # Start maintenance
 run brew update
+
+# Intel Macs (Tier 3 since macOS 26): Homebrew ships no x86_64 bottles, so every outdated formula would
+# compile from source for hours. Pin the list in pin-x86_64.txt first; only security-exposed formulae stay
+# unpinned (brew-halsa A3, 2026-09-08). Apple Silicon Macs skip this.
+pin_list="${XDG_CONFIG_HOME:-$HOME/.config}/mac-maint/pin-x86_64.txt"
+if [ "$(uname -m)" = "x86_64" ] && [ -f "$pin_list" ]; then
+  to_pin=()
+  while IFS= read -r formula; do to_pin+=("$formula"); done < <(comm -12 <(grep -v '^#' "$pin_list" | grep -v '^$' | sort) <(brew list --formula -1 | sort))
+  [ "${#to_pin[@]}" -gt 0 ] && run brew pin "${to_pin[@]}"  # already-pinned formulae are a no-op
+  echo "==> Intel: $(brew list --pinned | wc -l | tr -d ' ') formulae pinned, brew upgrade only builds the rest"
+fi
+
 run brew upgrade
 
 # Upgrade every cask, including auto-updating ones (1Password, VS Code, Syncthing …).

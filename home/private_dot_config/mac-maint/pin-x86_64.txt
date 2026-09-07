@@ -1,0 +1,53 @@
+# Formulae that mac-maint pins on Intel Macs (x86_64) before `brew upgrade`.
+# Homebrew builds no x86_64 bottles for macOS 26 (Tier 3), so anything here would compile from
+# source for hours. Only formulae with security exposure are left unpinned (gh, rsync, yt-dlp, certifi).
+# Decided per package in Valvet/03-projekt/aktiva/brew-halsa/a3-skalleper-intel.md (2026-09-08).
+# One name per line; `#` comments. Names not installed are skipped. Ignored on Apple Silicon.
+ada-url
+ansible
+ansible-lint
+awscli
+azure-cli
+black
+bun
+c-ares
+chezmoi
+cryptography
+deno
+eza
+fd
+fmt
+fzf
+gdu
+hdrhistogram_c
+helm
+herdr
+htop
+kubernetes-cli
+kubevpn
+libevent
+libssh
+libtiff
+little-cms2
+luajit
+merve
+minikube
+neovim
+node
+openshift-cli
+pcre2
+python@3.10
+ripgrep
+rpds-py
+ruff
+simdjson
+simdutf
+spaceship
+tmux
+tree-sitter
+unibilium
+uv
+watch
+yq
+zoxide
+zsh

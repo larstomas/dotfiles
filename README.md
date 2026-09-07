@@ -30,7 +30,7 @@ everything in here earned its place by being used (the decision list lives in my
 | `home/private_dot_config/Transmission Remote GUI/` | one symlink: `transgui.ini` → `~/Sync/.config/transgui/transgui.ini` (server profile with password — private and synced, not in this repo) |
 | `home/private_dot_ssh/config` | one line: `Include ~/Sync/.config/ssh/*` — the host inventory is private and synced, not in this repo |
 | `home/dot_claude/`, `home/symlink_dot_agents.tmpl` | Claude Code: `settings.json` is rendered here (*applied*); `CLAUDE.md`, `skills` (via `~/.agents`) and the memory dirs for `~/Sync` and this repo are symlinks into `~/Sync` (*live*, see `CONTEXT.md`). Everything else under `~/.claude` is ignored via `.chezmoiignore` |
-| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew cu`, `mas upgrade`, cleanup, zinit |
+| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew upgrade --cask --greedy`, `mas upgrade`, cleanup, zinit; on Intel it first pins `~/.config/mac-maint/pin-x86_64.txt` (no x86_64 bottles) |
 | `tests/macos/` | Tart VM harness for a true fresh-machine test of `install.sh` (optional) |
 
 ## Fresh Mac
