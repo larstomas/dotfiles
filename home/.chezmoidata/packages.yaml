@@ -72,6 +72,7 @@ packages:
       - hyperkey           # turn Caps Lock into a Hyper key
       - iina               # modern macOS media player
       - istat-menus        # system monitor in the menu bar
+      - karabiner-elements # keyboard customizer (karabiner.json is managed here too)
       - keyboard-maestro   # macro & automation tool
       - mac-mouse-fix      # smooth scrolling & mouse gestures
       - obsidian           # Markdown knowledge base

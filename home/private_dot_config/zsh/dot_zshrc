@@ -217,12 +217,6 @@ if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
 fi
 
-# Load Go environment
-source_if_exists "$HOME/.config/zsh/go.zsh"
-
-# Zinit maintenance tasks
-source_if_exists "$HOME/.config/zsh/zinit-maint.zsh"
-
 # Load iTerm2 shell integration via zinit (only on macOS + inside iTerm2)
 if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == "iTerm.app" ]]; then
   zinit ice wait"1" lucid

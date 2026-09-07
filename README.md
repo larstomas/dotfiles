@@ -26,7 +26,9 @@ everything in here earned its place by being used (the decision list lives in my
 | `home/.chezmoidata/packages.yaml` | what to install: `base` (all Macs), `personal`, `work`, `bigDisk`, `arm` |
 | `home/.chezmoidata/archived.yaml` | everything ever dropped — history only, installs nothing |
 | `home/.chezmoiscripts/` | bootstrap, in order: Touch ID for sudo → Homebrew + packages → 1Password CLI → macOS defaults → Syncthing → cleanup |
-| `home/private_dot_config/homelab/`, `kuma/`, `uptimerobot/` | machine-local secrets for the homelab scripts, rendered from 1Password Secure Notes (`op://Personal/homelab-<fil>/text`) |
+| `home/private_dot_config/homelab/`, `kuma/`, `uptimerobot/`, `healthchecks/` | machine-local secrets for the homelab scripts, rendered from 1Password Secure Notes (`op://Personal/homelab-<fil>/text`) |
+| `home/private_dot_config/{btop,htop,git,karabiner}/` | plain tool configs, identical on every Mac (btop/htop rewrite their file on exit — `chezmoi re-add` after changing settings in the UI) |
+| `home/private_dot_config/Transmission Remote GUI/` | one symlink: `transgui.ini` → `~/Sync/.config/transgui/transgui.ini` (server profile with password — private and synced, not in this repo) |
 | `home/private_dot_ssh/config` | one line: `Include ~/Sync/.config/ssh/*` — the host inventory is private and synced, not in this repo |
 | `home/dot_claude/`, `home/symlink_dot_agents.tmpl` | Claude Code: `settings.json` is rendered here (*applied*); `CLAUDE.md`, `skills` (via `~/.agents`) and the memory dirs for `~/Sync` and this repo are symlinks into `~/Sync` (*live*, see `CONTEXT.md`). Everything else under `~/.claude` is ignored via `.chezmoiignore` |
 | `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew cu`, `mas upgrade`, cleanup, zinit |
