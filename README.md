@@ -1,69 +1,68 @@
 # dotfiles
-dotfiles are managed by chezmoi - [Chezmoi Quick Start](https://www.chezmoi.io/quick-start/)
 
-## Inspiration
-1. [twpayne/dotfiles: My dotfiles, managed with https://chezmoi.io.](https://github.com/twpayne/dotfiles)
-2. [eieioxyz/dotfiles_macos: dotfiles.eieio.xyz](https://github.com/eieioxyz/dotfiles_macos)
-3. [How To Setup Your Mac Terminal](https://www.josean.com/posts/terminal-setup)
+My Macs, managed with [chezmoi](https://www.chezmoi.io). Rebuilt from scratch 2026-09-07:
+everything in here earned its place by being used (the decision list lives in my vault,
+`chezmoi-stadning/`).
 
-## Restore Instructions
+## The model
 
-### 1. Bootstrap (no need to install chezmoi first)
+- **Every Mac gets the same configuration.** Files, macOS `defaults`, scripts, 1Password-backed
+  templates, Syncthing setup — no per-machine branches.
+- **Only the package set differs**, by two traits set at `chezmoi init`:
+  - `personal` — asked once: *private Mac, or work Mac?* Work Macs skip the `personal` lists.
+  - `bigDisk` — derived: system disk ≥ 400 GB. Gates Xcode.
+- **Nothing is decided by hostname.** Anything tied to one named machine (always-on power
+  settings, launchd jobs, display/audio apps for a specific desk) lives in the homelab repo
+  under `hosts/<name>/`, not here.
+- **macOS only.** Linux support was removed in the rebuild (history is in git before it).
 
-**Fresh macOS (no git yet)** — use `install.sh`. chezmoi needs git to clone this
-repo, and git comes from the Xcode Command Line Tools, so `install.sh` installs
-those first, then installs chezmoi and applies:
+## Layout
+
+| Path | What |
+|---|---|
+| `home/.chezmoi.toml.tmpl` | the two traits + 1Password account email (prompted once) |
+| `home/.chezmoidata/packages.yaml` | what to install: `base` (all Macs), `personal`, `bigDisk` |
+| `home/.chezmoidata/archived.yaml` | everything ever dropped — history only, installs nothing |
+| `home/.chezmoiscripts/` | bootstrap, in order: Touch ID for sudo → Homebrew + packages → 1Password CLI → macOS defaults → Syncthing → cleanup |
+| `home/private_dot_config/homelab/`, `kuma/`, `uptimerobot/` | machine-local secrets for the homelab scripts, rendered from 1Password Secure Notes (`op://Personal/homelab-<fil>/text`) |
+| `home/private_dot_ssh/config` | one line: `Include ~/Sync/.config/ssh/*` — the host inventory is private and synced, not in this repo |
+| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew cu`, `mas upgrade`, cleanup, zinit |
+| `tests/macos/` | Tart VM harness for a true fresh-machine test of `install.sh` (optional) |
+
+## Fresh Mac
 
 ```sh
 sh -c "$(curl -fsLS https://raw.githubusercontent.com/larstomas/dotfiles/main/install.sh)"
 ```
 
-**If git is already present**, the plain chezmoi one-liner works too:
+`install.sh` installs the Xcode Command Line Tools (git), a throwaway chezmoi, then runs
+`chezmoi init --apply`. You will be asked for the 1Password account email and whether the Mac
+is private; then sudo once (Touch ID from then on); then 1Password must be signed in with
+*Settings → Developer → Integrate with 1Password CLI* for the `op://` templates. The log is
+`~/.local/state/chezmoi/install-<timestamp>.log`. Sign in to the App Store first so `mas` can
+install the App Store apps.
 
-```sh
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply larstomas
-```
+**Work Mac:** if the machine already has a `chezmoi.toml` from before the rebuild, the old
+`personal = true` is kept — override once with `chezmoi init --promptBool personal=false`.
 
-(`wget` users: swap in `"$(wget -qO- <url>)"`.)
+## Day to day
 
-Notes:
-- The downloaded chezmoi is a **throwaway** (`./bin/chezmoi`). During apply, Homebrew
-  installs the permanent chezmoi (`AAB-install-homebrew`), and the
-  `zzz-cleanup-bootstrap-chezmoi` script removes the throwaway automatically.
-- `install.sh` tees the whole run to
-  `${XDG_STATE_HOME:-~/.local/state}/chezmoi/install-<timestamp>.log`.
+- `chezmoi status` / `chezmoi diff` / `chezmoi apply` (alias `cs` = status).
+- Change what gets installed: edit `packages.yaml`, move dropped entries to `archived.yaml`,
+  `chezmoi apply` (the Homebrew script re-runs when its rendered content changes).
+- `mac-maint` for upgrades. Homebrew never upgrades during `chezmoi apply`.
 
-### 2. Apps and settings
-1. Sign in to App Store first, so apps install via the `mas` command.
-2. In Terminal.app, restore app settings via the wrapper script (it unzips the backup, then runs `mackup restore`):
-   1. Take `mackup-backup.zip` from backup.
-   2. Place it in `~/Downloads`
-   3. Run: `scripts/mackup-restore-app-settings.zsh` *OBS*: All old settings will be destroyed. (Tip: preview first with `mackup restore --dry-run --verbose`.)
+## Secret scanning (pre-commit hook)
 
-## Secret Scanning (pre-commit hook)
-A `gitleaks` pre-commit hook (`.githooks/pre-commit`) blocks commits that introduce
-secrets. `gitleaks` is installed automatically via the Homebrew bootstrap script.
-
-The hook lives in the tracked `.githooks/` directory, but `core.hooksPath` is local
-git config and is **not** cloned. Enable it once per machine:
+A `gitleaks` hook in `.githooks/pre-commit` blocks commits that introduce secrets. The hook
+path is local git config and is not cloned — enable it once per machine:
 
 ```sh
 git config core.hooksPath .githooks
 ```
 
-Bypass for a single commit (use sparingly): `git commit --no-verify`.
+## Decommissioning a Mac
 
-## Decommission Computer
-1. Make a backup of settings with [mackup](https://github.com/lra/mackup)
-   1. Run `scripts/mackup-backup-app-settings.zsh`
-   2. Backup files will be put in `~/Downloads`
-
-Deactivate licenses:
-- Dropbox (Preferences > Account > Unlink)
-- ScreenFlow (Preferences > Licenses > Deactivate)
-- Sign Out of App Store (Menu > Store > Sign Out)
-  - Messages
-  - Facetime
-  - iCloud
-- Music / TV
-- 1Password
+Deactivate licences: Alfred, Keyboard Maestro, ScreenFlow if installed; sign out of the App
+Store, iCloud, Messages, FaceTime, Music/TV, 1Password. Files worth keeping are in `~/Sync`
+(Syncthing), not on the machine.

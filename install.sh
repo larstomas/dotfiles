@@ -18,7 +18,7 @@ status_file="$(mktemp)"
 # On macOS, chezmoi needs git to clone the dotfiles, and git ships with the Xcode
 # Command Line Tools. Install them BEFORE `chezmoi init`, otherwise the clone fails.
 # This must happen here (not in a chezmoi script) because those scripts live inside
-# the repo we cannot clone yet. No-op if the tools are present or on non-macOS.
+# the repo we cannot clone yet. No-op if the tools are present.
 ensure_xcode_clt() {
   [ "$(uname -s)" = "Darwin" ] || return 0
   xcode-select -p >/dev/null 2>&1 && return 0
@@ -34,28 +34,10 @@ ensure_xcode_clt() {
   echo ">>> Xcode Command Line Tools installed."
 }
 
-# Ensure git exists before `chezmoi init` clones the repo. On macOS git ships with
-# the Command Line Tools; on Linux install it with the available package manager
-# (the linux install-packages script installs git too, but that runs post-clone).
+# Ensure git exists before `chezmoi init` clones the repo (macOS only: git ships with the
+# Command Line Tools).
 ensure_git() {
-  if [ "$(uname -s)" = "Darwin" ]; then
-    ensure_xcode_clt
-    return
-  fi
-  command -v git >/dev/null 2>&1 && return 0
-  echo ">>> Installing git (required to clone the dotfiles)..."
-  if command -v apt-get >/dev/null 2>&1; then
-    sudo apt-get update -y && sudo apt-get install -y git
-  elif command -v dnf >/dev/null 2>&1; then
-    sudo dnf install -y git
-  elif command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Sy --noconfirm git
-  elif command -v zypper >/dev/null 2>&1; then
-    sudo zypper install -y git
-  else
-    echo "No supported package manager found to install git; install it and re-run." >&2
-    return 1
-  fi
+  ensure_xcode_clt
 }
 
 run() {
@@ -75,10 +57,8 @@ run() {
   # First run, no chezmoi yet: bootstrap a throwaway one, then clone + apply.
   elif command -v curl >/dev/null 2>&1; then
     sh -c "$(curl -fsSL https://get.chezmoi.io)" -- init --apply larstomas
-  elif command -v wget >/dev/null 2>&1; then
-    sh -c "$(wget -qO- https://get.chezmoi.io)" -- init --apply larstomas
   else
-    echo "To install chezmoi, you must have curl or wget installed." >&2
+    echo "To install chezmoi, you must have curl installed." >&2
     return 1
   fi
 }
