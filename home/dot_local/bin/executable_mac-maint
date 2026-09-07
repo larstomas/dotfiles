@@ -18,24 +18,44 @@ set -x
 # Log return codes after each command
 trap 'echo "==> Exit code: $?"' DEBUG
 
+# Every maintenance step goes through `run`: it remembers the ones that failed for the summary at the end
+# (brew-halsa A13: `set -uo pipefail` without -e continues past errors, so a crashed step must not vanish in the log)
+failed_steps=()
+run() {
+  "$@"
+  local rc=$?
+  [ "$rc" -ne 0 ] && failed_steps+=("$* (exit $rc)")
+  return "$rc"
+}
+
 # Check if zinit is installed, if installed then update zinit plugins
 if command -v zinit &>/dev/null; then
   echo "Updating zinit plugins..."
-  zinit self-update
-  zinit update --all --parallel
+  run zinit self-update
+  run zinit update --all --parallel
 fi
 
 # Start maintenance
-brew update
-brew upgrade
+run brew update
+run brew upgrade
 
-# Upgrade all casks without further prompts (and don't re-run brew update)
-brew cu --all --cleanup --no-brew-update --include-mas --yes
+# Upgrade every cask, including auto-updating ones (1Password, VS Code, Syncthing …).
+# Replaces `brew cu` (buo/cask-upgrade), which broke against Homebrew 6.0.22 — brew-halsa A13, 2026-09-07.
+run brew upgrade --cask --greedy
 
 # App Store apps
-mas upgrade
+run mas upgrade
 
 # Clean up: remove unused deps, stale downloads, and check for problems
-brew autoremove
-brew cleanup
-brew doctor || true  # warnings (tap bugs, disabled casks) must not turn a clean maintenance run into a failed one (2026-09-07)
+run brew autoremove
+run brew cleanup
+run brew doctor || true  # warnings (tap bugs, disabled casks) must not turn a clean maintenance run into a failed one (2026-09-07)
+
+# Summary: every step that returned non-zero (brew doctor's warnings show up here too — read them, they are not errors)
+set +x
+trap - DEBUG
+if [ "${#failed_steps[@]}" -eq 0 ]; then
+  echo "==> mac-maint: all steps OK"
+else
+  printf '==> WARNING: %s\n' "${failed_steps[@]}"
+fi

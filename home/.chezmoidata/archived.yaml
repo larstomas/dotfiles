@@ -5,6 +5,8 @@
 # Valvet/03-projekt/aktiva/chezmoi-stadning/anvandning-2026-09-07.md.
 archived:
   darwin:
+    taps:
+      - buo/cask-upgrade # brew cu — broke against Homebrew 6.0.22, mac-maint uses `brew upgrade --cask --greedy` (brew-halsa A13, 2026-09-07)
     brews:
       - alembic          # SQLAlchemy database migration tool
       - ansible          # IT automation & configuration management

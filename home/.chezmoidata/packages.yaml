@@ -9,7 +9,6 @@
 packages:
   taps:
     - 1password/tap        # 1password-cli cask
-    - buo/cask-upgrade     # brew cu, used by mac-maint
   arm:                     # Apple Silicon only (tart won't run on Intel)
     taps:
       - cirruslabs/cli     # tart (macOS VMs for tests/macos)
