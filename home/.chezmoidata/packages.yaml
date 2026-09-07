@@ -4,6 +4,8 @@
 #   work     = work Macs only (the same prompt answered no — skalleper's keep-decisions 2026-09-07)
 #   bigDisk  = only when the system disk is >= 400 GB (derived at chezmoi init)
 # Removed packages go to archived.yaml (the full history) — never just delete a line.
+# "Claude sessions" in a comment = installed for the Claude Code agents on every Mac (Bash tool);
+#   decided in Valvet/03-projekt/aktiva/claude-over-macarna/snabba-verktyg.md (2026-09-07).
 packages:
   taps:
     - 1password/tap        # 1password-cli cask
@@ -15,13 +17,16 @@ packages:
       - cirruslabs/cli/tart # macOS VMs (tests/macos)
   base:
     brews:
+      - ast-grep           # structural code search/rewrite — Claude sessions (snabba-verktyg V5)
       - bash               # newer bash for scripts (macOS ships 3.2)
       - bat                # cat clone with syntax highlighting
       - btop               # resource monitor (prettier top)
       - chezmoi            # dotfile manager
+      - coreutils          # GNU gtimeout/gdate/gstat/gsort (g-prefix, shadows nothing) — Claude sessions: no timeout on macOS (snabba-verktyg V2)
       - curl               # transfer data over many protocols
+      - dust               # intuitive du in rust — Claude sessions, quick disk-usage answers (snabba-verktyg V6)
       - eza                # modern ls replacement (behind the ll alias)
-      - fd                 # fast, friendly find alternative
+      - fd                 # fast find alternative — Claude sessions use it instead of find (CLAUDE.md "Verktyg i Bash")
       - fzf                # command-line fuzzy finder
       - gdu                # fast disk usage analyzer
       - gh                 # GitHub CLI
@@ -29,19 +34,24 @@ packages:
       - git-delta          # syntax-highlighting pager for git diffs
       - git-filter-repo    # rewrite git history quickly
       - gitleaks           # scan git repos for secrets (pre-commit hook)
+      - gnu-sed            # GNU sed as gsed — Claude sessions: in-place edits without BSD sed pitfalls (snabba-verktyg V3)
       - herdr              # agent multiplexer / terminal workspace manager for AI coding agents
       - hl                 # fast JSON/logfmt log viewer
       - htop               # interactive process viewer
+      - hyperfine          # command-line benchmarking — Claude sessions, measure before claiming "faster" (snabba-verktyg V6)
       - lazygit            # terminal UI for git
       - mas                # Mac App Store command-line interface
       - ncdu               # ncurses disk usage analyzer
       - neovim             # hyperextensible Vim-based editor
-      - ripgrep            # fast recursive grep (rg)
+      - parallel           # GNU parallel — Claude sessions, fan out slow per-file commands (snabba-verktyg V6)
+      - ripgrep            # fast recursive grep (rg) — Claude sessions use it instead of grep (CLAUDE.md "Verktyg i Bash")
       - rsync              # fast incremental file transfer/sync
+      - sd                 # intuitive find & replace — Claude sessions, simpler than sed for literal swaps (snabba-verktyg V4)
       - sevenzip           # 7-Zip archiver (CLI, official; provides 7zz)
       - shellcheck         # shell script static analysis linter (VS Code extension uses it)
       - spaceship          # zsh prompt theme
       - tmux               # terminal multiplexer
+      - tokei              # count code lines fast — Claude sessions, size up a repo (snabba-verktyg V6)
       - tree               # recursive directory tree viewer
       - watch              # run a command periodically (missing from macOS)
       - yq                 # YAML/JSON/XML processor (jq for YAML)
