@@ -106,7 +106,6 @@ archived:
       - { id: 687301476, name: "FineReader OCR Pro" } # OCR & document conversion (rebuild 2026-09-07 — never got installed)
       - { id: 945689735, name: "Hash" } # compute file checksums/hashes (rebuild 2026-09-07 — never opened)
       - { id: 1295203466, name: "Windows App" } # Microsoft Remote Desktop (Windows App)
-      - { id: 1451685025, name: "WireGuard" } # WireGuard VPN client
       - { id: 1492317385, name: "InstaRemind" } # quick reminders app
       - { id: 1557892760, name: "rubiTrack 6" } # training & activity log
       - { id: 1663047912, name: "Screens 5" } # VNC remote desktop client

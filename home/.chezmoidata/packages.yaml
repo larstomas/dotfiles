@@ -124,6 +124,7 @@ packages:
       - { id: 430255202, name: "Mactracker" }            # database of every Apple product
       - { id: 1289197285, name: "MindNode Classic" }     # mind mapping
       - { id: 1475387142, name: "Tailscale" }            # mesh VPN (App Store build)
+      - { id: 1451685025, name: "WireGuard" }            # WireGuard VPN client (Layer10 tunnel, back from archived 2026-09-07)
   work:
     taps:
       - oven-sh/bun        # bun
