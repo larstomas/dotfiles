@@ -42,8 +42,15 @@ is private; then sudo once (Touch ID from then on); then 1Password must be signe
 `~/.local/state/chezmoi/install-<timestamp>.log`. Sign in to the App Store first so `mas` can
 install the App Store apps.
 
-**Work Mac:** if the machine already has a `chezmoi.toml` from before the rebuild, the old
-`personal = true` is kept — override once with `chezmoi init --promptBool personal=false`.
+**Existing machine:** if there is already a `chezmoi.toml` from before the rebuild, its
+`personal` value is kept — `promptBoolOnce` never re-asks, and `--promptBool` cannot override
+a value that is already in the config (it is also keyed on the prompt text, not the variable
+name). To re-answer, drop the line and re-run init:
+
+```sh
+sed -i '' '/personal/d' ~/.config/chezmoi/chezmoi.toml
+chezmoi init --promptBool "Private Mac, not a work Mac=false"   # or =true
+```
 
 ## Day to day
 
