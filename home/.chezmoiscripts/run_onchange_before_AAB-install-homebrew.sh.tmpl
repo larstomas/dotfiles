@@ -24,7 +24,7 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 #- Taps
 {{ range .packages.taps -}}
 brew tap {{ . }}
-brew trust {{ . }} 2>/dev/null || true  # Homebrew 6.0+ tap-trust; no-op on older brew
+brew trust --tap {{ . }} 2>/dev/null || true  # Homebrew 6.0+ tap-trust (needs --tap); no-op on older brew
 {{ end }}
 #- Packages: the lists live in .chezmoidata/packages.yaml.
 #  base = every Mac; personal = private Macs (not work); bigDisk = system disk >= 400 GB.
