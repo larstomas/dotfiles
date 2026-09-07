@@ -26,7 +26,7 @@ bugs. Vanilla ships auto-login + SSH enabled, with default creds `admin` / `admi
 
 ```sh
 # Apple Silicon Mac, macOS 13+.  ~25 GB free for the image.
-brew install cirruslabs/cli/tart
+brew install cirruslabs/cli/tart   # by hand: tart is not in packages.yaml (removed from the fleet 2026-09-08)
 ```
 
 ## Files

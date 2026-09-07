@@ -25,9 +25,6 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 #  `brew trust --tap` works before the tap is cloned. Tap failures warn instead of
 #  aborting the bootstrap (a tap that fails brew's syntax audit must not block everything).
 {{- $taps := .packages.taps }}
-{{- if eq .chezmoi.arch "arm64" }}
-{{-   $taps = concat $taps .packages.arm.taps }}
-{{- end }}
 {{- if not .personal }}
 {{-   $taps = concat $taps .packages.work.taps }}
 {{- end }}
@@ -37,7 +34,7 @@ brew tap {{ . }} || echo ">>> WARNING: brew tap {{ . }} failed — packages from
 {{ end }}
 #- Packages: the lists live in .chezmoidata/packages.yaml.
 #  base = every Mac; personal = private Macs; work = work Macs (not .personal);
-#  bigDisk = system disk >= 400 GB; arm = Apple Silicon only.
+#  bigDisk = system disk >= 400 GB.
 #  Installed declaratively with a Brewfile generated from those lists (idempotent).
 #  --no-upgrade: install what's missing, but don't upgrade already-installed packages on
 #  every run (mac-maint does upgrades). Non-fatal (|| echo): one unavailable app must not
@@ -58,9 +55,6 @@ brew tap {{ . }} || echo ">>> WARNING: brew tap {{ . }} failed — packages from
 {{-   $brews = concat $brews .packages.bigDisk.brews }}
 {{-   $casks = concat $casks .packages.bigDisk.casks }}
 {{-   $mas = concat $mas .packages.bigDisk.mas }}
-{{- end }}
-{{- if eq .chezmoi.arch "arm64" }}
-{{-   $brews = concat $brews .packages.arm.brews }}
 {{- end }}
 brew bundle --no-upgrade --file=/dev/stdin <<EOF || echo ">>> brew bundle: några paket kunde inte installeras (se ovan) — fortsätter ändå"
 {{ range $brews | sortAlpha | uniq -}}

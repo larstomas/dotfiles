@@ -7,6 +7,7 @@ archived:
   darwin:
     taps:
       - buo/cask-upgrade # brew cu — broke against Homebrew 6.0.22, mac-maint uses `brew upgrade --cask --greedy` (brew-halsa A13, 2026-09-07)
+      - cirruslabs/cli   # tart + softnet — tap formulae unreadable under Homebrew 6 (`depends_on macos:` disabled), removed from the fleet 2026-09-08 (brew-halsa A15)
     brews:
       - alembic          # SQLAlchemy database migration tool
       - ansible          # IT automation & configuration management
@@ -17,6 +18,7 @@ archived:
       - black            # opinionated Python code formatter
       - cpufetch         # pretty CPU architecture info
       - dnscontrol       # manage DNS zones as code
+      - cirruslabs/cli/tart # macOS VMs for tests/macos (was the arm tier) — removed from the fleet 2026-09-08, install by hand when the test harness is needed (brew-halsa A15)
       - docker-completion # shell completion for Docker
       - docker-compose   # define & run multi-container Docker apps
       - e2fsprogs        # ext2/3/4 filesystem utilities
