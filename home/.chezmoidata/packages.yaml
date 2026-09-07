@@ -1,0 +1,118 @@
+# What gets installed on a Mac. Three tiers, decided per package (2026-09-07 rebuild):
+#   base     = every Mac (work and private alike)
+#   personal = private Macs only (chezmoi init asks once; work Macs answer no)
+#   bigDisk  = only when the system disk is >= 400 GB (derived at chezmoi init)
+# Removed packages go to archived.yaml (the full history) — never just delete a line.
+packages:
+  taps:
+    - 1password/tap        # 1password-cli cask
+    - cirruslabs/cli       # tart (macOS VMs for tests/macos)
+    - buo/cask-upgrade     # brew cu, used by mac-maint
+  base:
+    brews:
+      - bash               # newer bash for scripts (macOS ships 3.2)
+      - bat                # cat clone with syntax highlighting
+      - btop               # resource monitor (prettier top)
+      - chezmoi            # dotfile manager
+      - curl               # transfer data over many protocols
+      - eza                # modern ls replacement (behind the ll alias)
+      - fd                 # fast, friendly find alternative
+      - fzf                # command-line fuzzy finder
+      - gdu                # fast disk usage analyzer
+      - gh                 # GitHub CLI
+      - git                # distributed version control
+      - git-delta          # syntax-highlighting pager for git diffs
+      - git-filter-repo    # rewrite git history quickly
+      - gitleaks           # scan git repos for secrets (pre-commit hook)
+      - herdr              # agent multiplexer / terminal workspace manager for AI coding agents
+      - hl                 # fast JSON/logfmt log viewer
+      - htop               # interactive process viewer
+      - lazygit            # terminal UI for git
+      - mas                # Mac App Store command-line interface
+      - ncdu               # ncurses disk usage analyzer
+      - neovim             # hyperextensible Vim-based editor
+      - ripgrep            # fast recursive grep (rg)
+      - rsync              # fast incremental file transfer/sync
+      - sevenzip           # 7-Zip archiver (CLI, official; provides 7zz)
+      - shellcheck         # shell script static analysis linter (VS Code extension uses it)
+      - spaceship          # zsh prompt theme
+      - cirruslabs/cli/tart # macOS VMs (tests/macos)
+      - tmux               # terminal multiplexer
+      - tree               # recursive directory tree viewer
+      - watch              # run a command periodically (missing from macOS)
+      - yq                 # YAML/JSON/XML processor (jq for YAML)
+      - yt-dlp             # video/audio downloader (youtube-dl fork)
+      - zoxide             # smarter cd that learns your habits
+      - zsh                # Z shell
+    casks:
+      - 1password          # password manager
+      - 1password-cli      # 1Password command-line tool (op) — chezmoi templates need it
+      - alfred             # app launcher & productivity workflows
+      - alt-tab            # Windows-style app switcher
+      - anki               # spaced-repetition flashcards
+      - appcleaner         # thorough app uninstaller
+      - balenaetcher       # flash OS images to USB/SD cards
+      - bankid             # BankID security app
+      - betterzip          # archive manager & previewer
+      - choosy             # smart per-link default browser chooser
+      - claude             # Claude AI desktop app (Anthropic)
+      - daisydisk          # visual disk space analyzer
+      - firefox            # web browser
+      - font-fira-code     # Fira Code font (programming ligatures)
+      - font-fira-code-nerd-font # Fira Code patched with Nerd Font glyphs
+      - font-inconsolata   # Inconsolata monospace font
+      - font-meslo-lg-nerd-font # Meslo LG patched with Nerd Font glyphs
+      - ghostty            # GPU-accelerated terminal emulator (the terminal)
+      - github             # GitHub Desktop app
+      - google-chrome      # web browser
+      - hyperkey           # turn Caps Lock into a Hyper key
+      - iina               # modern macOS media player
+      - istat-menus        # system monitor in the menu bar
+      - keyboard-maestro   # macro & automation tool
+      - mac-mouse-fix      # smooth scrolling & mouse gestures
+      - obsidian           # Markdown knowledge base
+      - onlyoffice         # office document suite
+      - pdf-expert         # PDF reader & editor
+      - quicklook-video    # QuickLook plugin for video files
+      - shottr             # screenshot & annotation tool
+      - syncthing-app      # Syncthing continuous file sync (menu bar)
+      - syntax-highlight   # QuickLook source-code highlighting
+      - transmit           # FTP/SFTP/cloud file transfer (Panic)
+      - typora             # minimal Markdown editor
+      - visual-studio-code # code editor
+      - vlc                # media player
+    mas:
+      - { id: 1365531024, name: "1Blocker" }             # Safari content & ad blocker
+      - { id: 1569813296, name: "1Password for Safari" } # 1Password browser extension
+      - { id: 1459809092, name: "Accelerate" }           # Apple Health trends & insights
+      - { id: 937984704, name: "Amphetamine" }           # keep your Mac awake
+      - { id: 1575379461, name: "BlockYT" }              # block YouTube distractions in Safari
+      - { id: 920897043, name: "Daily Wallpaper - for Bing" } # Bing daily wallpaper
+      - { id: 1423210932, name: "Flow" }                 # Pomodoro focus timer
+      - { id: 1621800675, name: "Mercury" }              # weather app
+      - { id: 6720708363, name: "Obsidian Web Clipper" } # save web pages to Obsidian (Safari)
+      - { id: 1289583905, name: "Pixelmator Pro" }       # image editor
+      - { id: 1529448980, name: "Reeder" }               # RSS & read-later reader
+      - { id: 1640236961, name: "Save to Reader" }       # save articles to Readwise Reader (Safari)
+      - { id: 1660506599, name: "TabBack" }              # tab switcher for Safari
+      - { id: 1528890965, name: "TextSniper" }           # OCR text from anything on screen
+      - { id: 1463298887, name: "Userscripts" }          # Safari userscript manager
+      - { id: 1591303229, name: "Vinegar" }              # clean, native YouTube player in Safari
+      - { id: 972112040, name: "Voice Dream Reader" }    # text-to-speech document reader
+      - { id: 1662217862, name: "Wipr" }                 # Safari content blocker
+  personal:
+    brews: []
+    casks:
+      - rustdesk           # open-source remote desktop
+      - soundsource        # per-app audio control
+      - transmission-remote-gui # remote GUI for Transmission BitTorrent (cask deprecated upstream — keep until it disappears)
+    mas:
+      - { id: 1143437985, name: "GoodTask" }             # task manager for Reminders & Calendar
+      - { id: 430255202, name: "Mactracker" }            # database of every Apple product
+      - { id: 1289197285, name: "MindNode Classic" }     # mind mapping
+      - { id: 1475387142, name: "Tailscale" }            # mesh VPN (App Store build)
+  bigDisk:
+    brews: []
+    casks: []
+    mas:
+      - { id: 497799835, name: "Xcode" }                 # Apple IDE & developer tools (~15 GB)

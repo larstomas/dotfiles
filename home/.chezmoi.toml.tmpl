@@ -1,0 +1,14 @@
+{{/* Machine traits — the ONLY things that differ between Macs (decision 2026-09-07).
+     Configuration is identical everywhere; only the package set varies.
+     Anything tied to one named machine lives in the homelab repo (hosts/<name>/). */}}
+{{- $bigDisk := false -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $line := output "diskutil" "info" "/" | regexFind "Disk Size:[^\n]*" -}}
+{{-   $bytes := $line | regexFind "[0-9]+ Bytes" | trimSuffix " Bytes" -}}
+{{-   if and $bytes (ge (int64 $bytes) (int64 400000000000)) -}}{{- $bigDisk = true -}}{{- end -}}
+{{- end -}}
+
+[data]
+    email = {{ promptStringOnce . "email" "1Password account email (lmail)" | quote }}
+    personal = {{ promptBoolOnce . "personal" "Private Mac, not a work Mac" }}
+    bigDisk = {{ $bigDisk }}

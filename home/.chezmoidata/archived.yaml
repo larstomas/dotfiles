@@ -1,0 +1,118 @@
+# Packages removed over time — the full history of everything that has ever been installed
+# and later dropped. NOT installed by anything. Split by type only (not by tier) so an entry
+# can be moved back to the matching list in packages.yaml. Keep adding here, never just delete.
+# "(rebuild 2026-09-07)" = dropped in the from-scratch rebuild; usage evidence in
+# Valvet/03-projekt/aktiva/chezmoi-stadning/anvandning-2026-09-07.md.
+archived:
+  darwin:
+    brews:
+      - alembic          # SQLAlchemy database migration tool
+      - ansible          # IT automation & configuration management
+      - ansible-lint     # linter for Ansible playbooks
+      - autojump         # faster directory navigation (j)
+      - awscli           # Amazon Web Services CLI
+      - azure-cli        # Microsoft Azure CLI
+      - black            # opinionated Python code formatter
+      - coreutils        # GNU core utilities (rebuild 2026-09-07 — never used, macOS tools suffice)
+      - cpufetch         # pretty CPU architecture info
+      - dnscontrol       # manage DNS zones as code
+      - docker-completion # shell completion for Docker
+      - docker-compose   # define & run multi-container Docker apps
+      - dust             # intuitive du (disk usage)
+      - e2fsprogs        # ext2/3/4 filesystem utilities
+      - exiftool         # read & write media metadata
+      - ffmpeg           # audio/video converter & toolkit
+      - findutils        # GNU find, xargs, locate (rebuild 2026-09-07 — fd is used instead)
+      - gawk             # GNU awk (rebuild 2026-09-07 — never used)
+      - gnu-getopt       # GNU command-line option parser
+      - gnu-indent       # GNU C source code formatter
+      - gnu-tar          # GNU tar (rebuild 2026-09-07 — never used)
+      - go               # Go programming language (rebuild 2026-09-07 — skalleper only, last 2026-02)
+      - grep             # GNU grep (rebuild 2026-09-07 — rg is used instead)
+      - grex             # generate regexes from examples
+      - guile            # GNU Scheme interpreter
+      - helm             # Kubernetes package manager
+      - iperf3           # network bandwidth measurement
+      - just             # command runner (rebuild 2026-09-07 — never used)
+      - kubectx          # switch kubectl contexts & namespaces
+      - kubevpn          # connect to a Kubernetes cluster network
+      - kustomize        # template-free Kubernetes YAML customization
+      - mackup           # back up & sync app settings (rebuild 2026-09-07 — layer dropped)
+      - media-info       # media file technical metadata
+      - midnight-commander # text-based file manager (mc)
+      - minikube         # run a local Kubernetes cluster
+      - mkvtoolnix       # create/inspect Matroska (MKV) files
+      - n                # Node.js version manager
+      - nghttp2          # HTTP/2 tools & library
+      - nmap             # network scanner & port mapper (rebuild 2026-09-07 — 4 uses, last 2026-02)
+      - nnn              # fast terminal file manager
+      - node             # Node.js JavaScript runtime
+      - openshift-cli    # OpenShift CLI (oc)
+      - opentofu         # open-source Terraform fork
+      - pandoc           # universal document converter
+      - plantuml         # text-to-UML diagram generator
+      - podman           # daemonless container engine (rebuild 2026-09-07 — 1 use 2025-10)
+      - pspg             # pager for tables & psql output
+      - python@3.10      # Python 3.10 interpreter
+      - python@3.11      # Python 3.11 interpreter
+      - qemu             # machine emulator & virtualizer
+      - ranger           # vim-like terminal file manager
+      - ruff             # fast Python linter & formatter
+      - rust             # Rust programming language (rebuild 2026-09-07 — 3 uses, last 2026-04)
+      - ssh-copy-id      # install your SSH key on a server (rebuild 2026-09-07 — macOS ships it)
+      - streamlink       # pipe online video streams to a player
+      - tailscale        # WireGuard-based mesh VPN CLI (rebuild 2026-09-07 — the App Store app is used)
+      - tiger-vnc        # VNC remote desktop client/server
+      - unbound          # validating recursive DNS resolver
+      - uv               # fast Python package & project manager (rebuild 2026-09-07 — never used)
+      - whisper-cpp      # OpenAI Whisper speech-to-text (rebuild 2026-09-07 — never used)
+      - zlib             # compression library
+    casks:
+      - a-better-finder-rename # batch file/photo renamer (rebuild 2026-09-07 — never opened)
+      - audiobook-builder # assemble audio files into audiobooks
+      - bartender # organize the menu bar
+      - betterzip # archive manager & previewer — back in packages.yaml 2026-09-07
+      - bruno # git-friendly API client
+      - carbon-copy-cloner # bootable disk backup & cloning
+      - cryptomator # encrypted vaults for cloud storage
+      - dbeaver-community # universal database GUI
+      - docker-desktop # Docker for Mac
+      - easyfind # file & folder search utility (rebuild 2026-09-07 — never opened)
+      - fluor # per-app function-key behavior switcher (rebuild 2026-09-07 — never opened)
+      - garmin-express # manage & update Garmin devices
+      - gemini # duplicate & junk file finder (rebuild 2026-09-07 — never opened)
+      - hammerspoon # macOS automation via Lua (rebuild 2026-09-07 — never ran; config dropped too)
+      - imazing # iOS device manager & backup
+      - iterm2 # terminal emulator (rebuild 2026-09-07 — Ghostty is the terminal)
+      - kaleidoscope # file & image diff/merge tool
+      - macfuse # filesystem driver for Cryptomator/VeraCrypt (rebuild 2026-09-07)
+      - netnewswire # free RSS reader
+      - pdf-expert # PDF reader & editor — back in packages.yaml 2026-09-07
+      - plexamp # Plex music player
+      - powerphotos # manage multiple Photos libraries
+      - rectangle # window snapping/tiling manager (rebuild 2026-09-07 — never opened)
+      - spacelauncher # launch/switch apps with the space bar
+      - spotify # music streaming
+      - steam # game store & launcher
+      - ulbow # macOS unified log browser (Howard Oakley)
+      - vagrant # manage reproducible dev VMs
+      - vagrant-vmware-utility # Vagrant VMware provider integration
+      - veracrypt # on-the-fly disk encryption
+      - warp # modern terminal with AI features (rebuild 2026-09-07 — Ghostty is the terminal)
+    mas:
+      - { id: 1099120373, name: "Exporter" } # export iMessage/WhatsApp chats — installed on lillebror by hosts/lillebror/setup.sh
+      - { id: 1276248849, name: "Diagrams" } # native diagram & flowchart editor
+      - { id: 687301476, name: "FineReader OCR Pro" } # OCR & document conversion (rebuild 2026-09-07 — never got installed)
+      - { id: 945689735, name: "Hash" } # compute file checksums/hashes (rebuild 2026-09-07 — never opened)
+      - { id: 1295203466, name: "Windows App" } # Microsoft Remote Desktop (Windows App)
+      - { id: 1451685025, name: "WireGuard" } # WireGuard VPN client
+      - { id: 1492317385, name: "InstaRemind" } # quick reminders app
+      - { id: 1557892760, name: "rubiTrack 6" } # training & activity log
+      - { id: 1663047912, name: "Screens 5" } # VNC remote desktop client
+      - { id: 361304891, name: "Numbers" } # Apple spreadsheets
+      - { id: 361309726, name: "Pages" } # Apple word processor
+      - { id: 409183694, name: "Keynote" } # Apple presentations
+      - { id: 409203825, name: "Numbers" } # Apple spreadsheets
+      - { id: 425264550, name: "Blackmagic Disk Speed Test" } # measure disk read/write speed
+      - { id: 803453959, name: "Slack" } # team chat
+      - { id: 824183456, name: "Affinity Photo" } # professional photo editor
