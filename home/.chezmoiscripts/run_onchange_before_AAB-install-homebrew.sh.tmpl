@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#- Error handling
+# [set -e, -u, -o, -x pipefail explanation](https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3945021)
+set -euf -o pipefail
+
+#- Logging: tee all output to a shared log (also stays on the terminal)
+chezmoi_log_dir="${XDG_STATE_HOME:-$HOME/.local/state}/chezmoi"
+mkdir -p "$chezmoi_log_dir"
+exec > >(tee -a "$chezmoi_log_dir/install.log") 2>&1
+printf '\n===== %s  %s =====\n' "$(date '+%F %T')" "$(basename -- "$0")"
+
+#- Install Homebrew (the installer asks for sudo itself)
+if command -v brew >/dev/null 2>&1; then
+  echo ">>> brew exists, skipping install"
+else
+  echo ">>> brew doesn't exist, installing"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+export HOMEBREW_CASK_OPTS="--no-quarantine"
+
+#- Taps
+{{ range .packages.taps -}}
+brew tap {{ . }}
+brew trust {{ . }} 2>/dev/null || true  # Homebrew 6.0+ tap-trust; no-op on older brew
+{{ end }}
+#- Packages: the lists live in .chezmoidata/packages.yaml.
+#  base = every Mac; personal = private Macs (not work); bigDisk = system disk >= 400 GB.
+#  Installed declaratively with a Brewfile generated from those lists (idempotent).
+#  --no-upgrade: install what's missing, but don't upgrade already-installed packages on
+#  every run (mac-maint does upgrades). Non-fatal (|| echo): one unavailable app must not
+#  abort the whole bootstrap.
+{{- $brews := .packages.base.brews }}
+{{- $casks := .packages.base.casks }}
+{{- $mas := .packages.base.mas }}
+{{- if .personal }}
+{{-   $brews = concat $brews .packages.personal.brews }}
+{{-   $casks = concat $casks .packages.personal.casks }}
+{{-   $mas = concat $mas .packages.personal.mas }}
+{{- end }}
+{{- if .bigDisk }}
+{{-   $brews = concat $brews .packages.bigDisk.brews }}
+{{-   $casks = concat $casks .packages.bigDisk.casks }}
+{{-   $mas = concat $mas .packages.bigDisk.mas }}
+{{- end }}
+brew bundle --no-upgrade --file=/dev/stdin <<EOF || echo ">>> brew bundle: några paket kunde inte installeras (se ovan) — fortsätter ändå"
+{{ range $brews | sortAlpha | uniq -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range $casks | sortAlpha | uniq -}}
+cask "{{ . }}"
+{{ end -}}
+{{ range $mas -}}
+mas "{{ .name }}", id: {{ .id }}
+{{ end -}}
+EOF
