@@ -42,6 +42,12 @@ osascript -e 'tell application "System Preferences" to quit'
 # "Play feedback when volume is changed" : true
 defaults write -g "com.apple.sound.beep.feedback" -int 1
 
+# "Play sound on startup" : false (2026-09-08). Lives in NVRAM, so it needs sudo
+# (Touch ID via the AAA script). Best-effort: a missing sudo must not abort the bootstrap.
+if [[ "$(nvram StartupMute 2>/dev/null | awk '{print $2}')" != "%01" ]]; then
+  sudo nvram StartupMute=%01 || echo "  ⚠️  skipped 'nvram StartupMute=%01' — run it with sudo to silence the startup chime" >&2
+fi
+
 #-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
