@@ -214,8 +214,8 @@ SPACESHIP_RPROMPT_ORDER=(
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init --cmd cd zsh)"
 fi
-if command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
+if command -v fzf >/dev/null 2>&1 && [[ -o zle ]]; then
+  eval "$(fzf --zsh)"   # key bindings need zle; without a tty (zsh -ilc) it only prints "can't change option: zle"
 fi
 
 # Load iTerm2 shell integration via zinit (only on macOS + inside iTerm2)
