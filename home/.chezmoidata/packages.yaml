@@ -124,7 +124,6 @@ packages:
       - awscli             # AWS command-line interface
       - azure-cli          # Azure command-line interface
       - black              # Python code formatter
-      - docker-compose     # multi-container Docker orchestration
       - go                 # Go toolchain
       - helm               # Kubernetes package manager
       - kubectx            # switch kubectl contexts/namespaces
