@@ -1,0 +1,21 @@
+{{- /* Claude Code user settings — same on every Mac (decision 2026-09-07, Valvet/claude-over-macarna).
+       Claude Code rewrites this file on /model and /config; afterwards run
+       `chezmoi re-add ~/.claude/settings.json` or `chezmoi apply` to go back to the template.
+       Rules, skills and memory are NOT here — they are symlinks into ~/Sync (see CONTEXT.md: live vs applied). */ -}}
+{
+  "model": "claude-fable-5-1[1m]",
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "theme": "dark",
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true{{ if not .personal }},
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
+  }{{ end }}
+}

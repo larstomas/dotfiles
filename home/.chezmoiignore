@@ -1,0 +1,12 @@
+# ~/.claude is Claude Code's own state (transcripts, history, cache, identity). Only the four
+# things below are managed — everything else must never be `chezmoi add`ed (decision 2026-09-07).
+.claude/**
+!.claude
+!.claude/CLAUDE.md
+!.claude/settings.json
+!.claude/skills
+!.claude/projects
+!.claude/projects/-Users-tomas-Sync
+!.claude/projects/-Users-tomas-Sync/memory
+!.claude/projects/-Users-tomas--local-share-chezmoi
+!.claude/projects/-Users-tomas--local-share-chezmoi/memory
