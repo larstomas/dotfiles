@@ -96,29 +96,37 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # eza (ls) config
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 
-## Path configuration (deduplicated later)
-path_prepend "${USER_BIN_HOME}"
-path_prepend "${N_PREFIX}/bin"
-path_prepend_if_exists "${HOME}/.local/bin"
-path_prepend_if_exists "/snap/bin"  # snap-verktyg (linux/debian: /snap/bin saknas ofta i PATH by default); no-op på macOS
+## Path configuration (deduplicated later). A function, because login shells need it twice:
+## /etc/zprofile's path_helper runs AFTER .zshenv and moves /usr/bin & co. back in front of
+## everything below, so $ZDOTDIR/.zprofile calls user_path_setup again (found 2026-09-07:
+## Apple's git/python3/rsync shadowed brew's on every Mac).
+user_path_setup() {
+  path_prepend "${USER_BIN_HOME}"
+  path_prepend "${N_PREFIX}/bin"
+  path_prepend_if_exists "${HOME}/.local/bin"
+  path_prepend_if_exists "/snap/bin"  # snap-verktyg (linux/debian: /snap/bin saknas ofta i PATH by default); no-op på macOS
 
-if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
-  path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/ansible@9/bin"
-  path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/libpq/bin"
-  path_prepend_if_exists "${HOMEBREW_PREFIX}/bin"
-  path_prepend_if_exists "${HOMEBREW_PREFIX}/sbin"
-  fpath_prepend_if_exists "${HOMEBREW_PREFIX}/share/zsh/site-functions"
-fi
+  if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
+    path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/ansible@9/bin"
+    path_prepend_if_exists "${HOMEBREW_PREFIX}/opt/libpq/bin"
+    path_prepend_if_exists "${HOMEBREW_PREFIX}/bin"
+    path_prepend_if_exists "${HOMEBREW_PREFIX}/sbin"
+    fpath_prepend_if_exists "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+  fi
 
-path_prepend_if_exists "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  path_prepend_if_exists "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-typeset -gU path fpath
+  ## Java
+  if [[ -z ${JAVA_HOME:-} && -n ${HOMEBREW_PREFIX:-} ]]; then
+    _java_prefix="$(brew --prefix openjdk)"
+    export JAVA_HOME="${_java_prefix}"
+    unset _java_prefix
+  fi
+  path_prepend_if_exists "${JAVA_HOME:-}/bin"
 
-## Java
-_java_prefix="$(brew --prefix openjdk)"
-export PATH="${_java_prefix}/bin:$PATH"
-export JAVA_HOME="${_java_prefix}"
-unset _java_prefix
+  typeset -gU path fpath
+}
+user_path_setup
 
 ## Zinit location
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

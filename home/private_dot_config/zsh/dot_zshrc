@@ -55,11 +55,12 @@ timezsh() {
 # --- PATH & Tools ---
 path_prepend_if_exists "${HOME}/.local/bin"
 
-# Python
+# Python — prepend only a Homebrew python3's dir; the old unconditional prepend put /usr/bin
+# first whenever Apple's python3 won the lookup (2026-09-07).
 path_prepend_if_exists "${HOMEBREW_PREFIX:-}/opt/python@3.12/bin"
 if command -v python3 >/dev/null 2>&1; then
   python3_path="$(command -v python3)"
-  path_prepend "${python3_path:h}"
+  [[ -n ${HOMEBREW_PREFIX:-} && $python3_path == "${HOMEBREW_PREFIX}"/* ]] && path_prepend "${python3_path:h}"
   unset python3_path
 fi
 alias python=python3

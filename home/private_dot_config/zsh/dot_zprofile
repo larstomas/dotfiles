@@ -1,0 +1,4 @@
+# Login shells only. Runs after /etc/zprofile, whose path_helper has just moved the system
+# directories (/usr/local/bin, /usr/bin, /bin, …) in front of everything .zshenv prepended.
+# Redo our order so Homebrew, ~/Sync/.local/bin and friends win again (2026-09-07).
+user_path_setup
