@@ -1,6 +1,7 @@
-# What gets installed on a Mac. Three tiers, decided per package (2026-09-07 rebuild):
+# What gets installed on a Mac. Four tiers, decided per package (2026-09-07 rebuild):
 #   base     = every Mac (work and private alike)
 #   personal = private Macs only (chezmoi init asks once; work Macs answer no)
+#   work     = work Macs only (the same prompt answered no — skalleper's keep-decisions 2026-09-07)
 #   bigDisk  = only when the system disk is >= 400 GB (derived at chezmoi init)
 # Removed packages go to archived.yaml (the full history) — never just delete a line.
 packages:
@@ -114,6 +115,40 @@ packages:
       - { id: 430255202, name: "Mactracker" }            # database of every Apple product
       - { id: 1289197285, name: "MindNode Classic" }     # mind mapping
       - { id: 1475387142, name: "Tailscale" }            # mesh VPN (App Store build)
+  work:
+    taps:
+      - oven-sh/bun        # bun
+    brews:
+      - ansible            # IT automation / configuration management
+      - ansible-lint       # linter for Ansible playbooks
+      - awscli             # AWS command-line interface
+      - azure-cli          # Azure command-line interface
+      - black              # Python code formatter
+      - docker-completion  # shell completion for docker
+      - docker-compose     # multi-container Docker orchestration
+      - go                 # Go toolchain
+      - helm               # Kubernetes package manager
+      - kubectx            # switch kubectl contexts/namespaces
+      - kubernetes-cli     # kubectl
+      - kubevpn            # VPN into Kubernetes cluster networks
+      - kustomize          # Kubernetes manifest customization
+      - minikube           # local Kubernetes cluster
+      - n                  # Node.js version manager
+      - node               # Node.js runtime
+      - openshift-cli      # oc, OpenShift CLI
+      - oven-sh/bun/bun    # fast JS runtime/bundler
+      - p7zip              # legacy 7z command (base has sevenzip/7zz; kept where old scripts expect p7zip)
+      - python@3.10        # Python runtime (pinned projects)
+      - python@3.11        # Python runtime (pinned projects)
+      - ruff               # fast Python linter
+      - rust               # Rust toolchain
+      - uv                 # fast Python package/venv manager
+    casks:
+      - dbeaver-community  # database GUI client
+    mas:
+      - { id: 803453959, name: "Slack" }                 # team chat
+      - { id: 1295203466, name: "Windows App" }          # Microsoft Remote Desktop
+      - { id: 1118909075, name: "DiskMark" }             # disk speed test
   bigDisk:
     brews: []
     casks: []

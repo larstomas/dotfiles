@@ -28,12 +28,16 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 {{- if eq .chezmoi.arch "arm64" }}
 {{-   $taps = concat $taps .packages.arm.taps }}
 {{- end }}
+{{- if not .personal }}
+{{-   $taps = concat $taps .packages.work.taps }}
+{{- end }}
 {{ range $taps -}}
 brew trust --tap {{ . }} 2>/dev/null || true  # no-op on pre-6.0 brew
 brew tap {{ . }} || echo ">>> WARNING: brew tap {{ . }} failed — packages from it will be skipped"
 {{ end }}
 #- Packages: the lists live in .chezmoidata/packages.yaml.
-#  base = every Mac; personal = private Macs (not work); bigDisk = system disk >= 400 GB.
+#  base = every Mac; personal = private Macs; work = work Macs (not .personal);
+#  bigDisk = system disk >= 400 GB; arm = Apple Silicon only.
 #  Installed declaratively with a Brewfile generated from those lists (idempotent).
 #  --no-upgrade: install what's missing, but don't upgrade already-installed packages on
 #  every run (mac-maint does upgrades). Non-fatal (|| echo): one unavailable app must not
@@ -45,6 +49,10 @@ brew tap {{ . }} || echo ">>> WARNING: brew tap {{ . }} failed — packages from
 {{-   $brews = concat $brews .packages.personal.brews }}
 {{-   $casks = concat $casks .packages.personal.casks }}
 {{-   $mas = concat $mas .packages.personal.mas }}
+{{- else }}
+{{-   $brews = concat $brews .packages.work.brews }}
+{{-   $casks = concat $casks .packages.work.casks }}
+{{-   $mas = concat $mas .packages.work.mas }}
 {{- end }}
 {{- if .bigDisk }}
 {{-   $brews = concat $brews .packages.bigDisk.brews }}

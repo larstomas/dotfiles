@@ -9,8 +9,10 @@ everything in here earned its place by being used (the decision list lives in my
 - **Every Mac gets the same configuration.** Files, macOS `defaults`, scripts, 1Password-backed
   templates, Syncthing setup — no per-machine branches.
 - **Only the package set differs**, by two traits set at `chezmoi init`:
-  - `personal` — asked once: *private Mac, or work Mac?* Work Macs skip the `personal` lists.
+  - `personal` — asked once: *private Mac, or work Mac?* Private Macs get the `personal` lists,
+    work Macs the `work` lists (k8s/cloud CLIs, dev runtimes, Slack …).
   - `bigDisk` — derived: system disk ≥ 400 GB. Gates Xcode.
+  - (plus a derived `arm` group: Apple Silicon only — gates tart.)
 - **Nothing is decided by hostname.** Anything tied to one named machine (always-on power
   settings, launchd jobs, display/audio apps for a specific desk) lives in the homelab repo
   under `hosts/<name>/`, not here.
@@ -21,7 +23,7 @@ everything in here earned its place by being used (the decision list lives in my
 | Path | What |
 |---|---|
 | `home/.chezmoi.toml.tmpl` | the two traits + 1Password account email (prompted once) |
-| `home/.chezmoidata/packages.yaml` | what to install: `base` (all Macs), `personal`, `bigDisk` |
+| `home/.chezmoidata/packages.yaml` | what to install: `base` (all Macs), `personal`, `work`, `bigDisk`, `arm` |
 | `home/.chezmoidata/archived.yaml` | everything ever dropped — history only, installs nothing |
 | `home/.chezmoiscripts/` | bootstrap, in order: Touch ID for sudo → Homebrew + packages → 1Password CLI → macOS defaults → Syncthing → cleanup |
 | `home/private_dot_config/homelab/`, `kuma/`, `uptimerobot/` | machine-local secrets for the homelab scripts, rendered from 1Password Secure Notes (`op://Personal/homelab-<fil>/text`) |
