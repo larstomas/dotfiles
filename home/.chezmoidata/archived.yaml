@@ -71,6 +71,8 @@ archived:
       - uv               # fast Python package & project manager (rebuild 2026-09-07 — never used)
       - whisper-cpp      # OpenAI Whisper speech-to-text (rebuild 2026-09-07 — never used)
       - zlib             # compression library
+      - kubernetes-cli     # kubectl — work tier emptied 2026-09-08, no Mac assignment (Tomas)
+      - p7zip              # legacy 7z command (base has sevenzip/7zz; kept where old scripts expect p7zip) — work tier emptied 2026-09-08, no Mac assignment (Tomas)
     casks:
       - a-better-finder-rename # batch file/photo renamer (rebuild 2026-09-07 — never opened)
       - audiobook-builder # assemble audio files into audiobooks
@@ -120,3 +122,4 @@ archived:
       - { id: 425264550, name: "Blackmagic Disk Speed Test" } # measure disk read/write speed
       - { id: 803453959, name: "Slack" } # team chat
       - { id: 824183456, name: "Affinity Photo" } # professional photo editor
+      - { id: 1118909075, name: "DiskMark" }             # disk speed test — work tier emptied 2026-09-08, no Mac assignment (Tomas)
