@@ -48,6 +48,15 @@ if [[ "$(nvram StartupMute 2>/dev/null | awk '{print $2}')" != "%01" ]]; then
   sudo nvram StartupMute=%01 || echo "  ⚠️  skipped 'nvram StartupMute=%01' — run it with sudo to silence the startup chime" >&2
 fi
 
+#-- Network
+# Firewall on (System Settings > Network > Firewall). Was off on lillebror 2026-09-08 (swarm check).
+# Needs sudo; best-effort like StartupMute above. Signed apps are still auto-allowed (default),
+# so Syncthing, ssh and screen sharing keep working; unsigned apps get the "allow incoming?" dialog.
+fw=/usr/libexec/ApplicationFirewall/socketfilterfw
+if [[ "$($fw --getglobalstate 2>/dev/null)" != *"enabled"* ]]; then
+  sudo $fw --setglobalstate on || echo "  ⚠️  skipped 'socketfilterfw --setglobalstate on' — run it with sudo to turn the firewall on" >&2
+fi
+
 #-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
