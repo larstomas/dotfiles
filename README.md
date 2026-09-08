@@ -28,9 +28,11 @@ everything in here earned its place by being used (the decision list lives in my
 | `home/private_dot_config/homelab/`, `kuma/`, `uptimerobot/`, `healthchecks/` | machine-local secrets for the homelab scripts, rendered from 1Password Secure Notes (`op://Personal/homelab-<fil>/text`) |
 | `home/private_dot_config/{btop,htop,git}/` | plain tool configs, identical on every Mac (btop/htop rewrite their file on exit — `chezmoi re-add` after changing settings in the UI) |
 | `home/private_dot_config/Transmission Remote GUI/` | one symlink: `transgui.ini` → `~/Sync/.config/transgui/transgui.ini` (server profile with password — private and synced, not in this repo) |
+| `home/.chezmoiscripts/run_onchange_before_macos-config.zsh` | macOS defaults, plus the settings that need sudo (best-effort, guarded, re-run only when the script changes): startup chime off, application firewall on, ssh keys-only (`/etc/ssh/sshd_config.d/200-hardening.conf`, validated with `sshd -t`), legacy VNC password off. Decisions in `Valvet/03-projekt/aktiva/claude-over-macarna/{brandvagg,ssh-vnc-hardning}.md` |
 | `home/private_dot_ssh/config` | one line: `Include ~/Sync/.config/ssh/*` — the host inventory is private and synced, not in this repo |
+| `home/private_dot_ssh/private_authorized_keys` | Tomas's public key → every Mac accepts key login (the private key lives in the 1Password ssh agent); together with the sshd hardening above, ssh is keys-only |
 | `home/dot_claude/`, `home/symlink_dot_agents.tmpl` | Claude Code: `settings.json` is rendered here (*applied*); `CLAUDE.md`, `skills` (via `~/.agents`) and the memory dirs for `~/Sync` and this repo are symlinks into `~/Sync` (*live*, see `CONTEXT.md`). Everything else under `~/.claude` is ignored via `.chezmoiignore` |
-| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew cu`, `mas upgrade`, cleanup, zinit |
+| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew upgrade --cask --greedy`, `mas upgrade`, cleanup, zinit; continues on error and lists failed steps at the end |
 | `tests/macos/` | Tart VM harness for a true fresh-machine test of `install.sh` (optional) |
 
 ## Fresh Mac
