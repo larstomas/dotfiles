@@ -79,6 +79,16 @@ if [[ "$(defaults read /Library/Preferences/com.apple.RemoteManagement VNCLegacy
   sudo $kickstart -configure -clientopts -setvnclegacy -vnclegacy no >/dev/null || echo "  ⚠️  skipped 'kickstart -setvnclegacy -vnclegacy no' — run with sudo to turn the legacy VNC password off" >&2
 fi
 
+# No weak Diffie-Hellman in Apple's Screen Sharing auth either (ssh-vnc-hardning B5, 2026-09-08): allowInsecureDH
+# lets old clients negotiate weak DH; modern macOS clients are unaffected. screensharingd only reads it on restart.
+if [[ "$(defaults read /Library/Preferences/com.apple.RemoteManagement allowInsecureDH 2>/dev/null)" == "1" ]]; then
+  if sudo defaults write /Library/Preferences/com.apple.RemoteManagement allowInsecureDH -bool false; then
+    sudo launchctl kickstart -k system/com.apple.screensharing 2>/dev/null || true
+  else
+    echo "  ⚠️  skipped 'allowInsecureDH -bool false' — run with sudo to turn weak DH off for Screen Sharing" >&2
+  fi
+fi
+
 #-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
