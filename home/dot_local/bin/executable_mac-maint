@@ -21,6 +21,7 @@ trap 'echo "==> Exit code: $?"' DEBUG
 # Every maintenance step goes through `run`: it remembers the ones that failed for the summary at the end
 # (brew-halsa A13: `set -uo pipefail` without -e continues past errors, so a crashed step must not vanish in the log)
 failed_steps=()
+notes=()
 run() {
   "$@"
   local rc=$?
@@ -41,7 +42,15 @@ run brew upgrade
 
 # Upgrade every cask, including auto-updating ones (1Password, VS Code, Syncthing …).
 # Replaces `brew cu` (buo/cask-upgrade), which broke against Homebrew 6.0.22 — brew-halsa A13, 2026-09-07.
+# A greedy run that takes 1password quits the app: the ssh agent and the op CLI are down until Tomas
+# unlocks it again (brew-halsa A17, seen on skalleper 2026-09-08). Relaunch it and say so in the summary.
+onepassword_before=$(brew list --cask --versions 1password 2>/dev/null)
 run brew upgrade --cask --greedy
+onepassword_after=$(brew list --cask --versions 1password 2>/dev/null)
+if [ -n "$onepassword_after" ] && [ "$onepassword_before" != "$onepassword_after" ]; then
+  pgrep -xq 1Password || open -a 1Password
+  notes+=("1Password was upgraded ($onepassword_after) — unlock it: the ssh agent and op CLI are down until you do")
+fi
 
 # App Store apps
 run mas upgrade
@@ -59,3 +68,5 @@ if [ "${#failed_steps[@]}" -eq 0 ]; then
 else
   printf '==> WARNING: %s\n' "${failed_steps[@]}"
 fi
+[ "${#notes[@]}" -gt 0 ] && printf '==> NOTE: %s\n' "${notes[@]}"
+exit 0
