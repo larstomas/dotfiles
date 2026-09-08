@@ -70,6 +70,14 @@ if ! grep -qs '^PasswordAuthentication no' "$sshd_hardening"; then
   fi
 fi
 
+#-- Screen Sharing: no legacy VNC password (ssh-vnc-hardning B1, 2026-09-08). The 8-character DES
+# "VNC viewers may control screen with password" mode lets any VNC client in; macOS-account login
+# (Screen Sharing app, Screens) is unaffected. Guard: the legacy password file, or the pref, says it is on.
+kickstart=/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+if [[ -f /Library/Preferences/com.apple.VNCSettings.txt || "$(defaults read /Library/Preferences/com.apple.RemoteManagement VNCLegacyConnectionsEnabled 2>/dev/null)" == "1" ]]; then
+  sudo $kickstart -configure -clientopts -setvnclegacy -vnclegacy no >/dev/null || echo "  ⚠️  skipped 'kickstart -setvnclegacy -vnclegacy no' — run with sudo to turn the legacy VNC password off" >&2
+fi
+
 #-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
