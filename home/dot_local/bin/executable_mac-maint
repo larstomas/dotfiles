@@ -52,8 +52,15 @@ if [ -n "$onepassword_after" ] && [ "$onepassword_before" != "$onepassword_after
   notes+=("1Password was upgraded ($onepassword_after) — unlock it: the ssh agent and op CLI are down until you do")
 fi
 
-# App Store apps
-run mas upgrade
+# App Store apps — all except Xcode (id 497799835): mas downloads its 2.35 GB and then hangs in the
+# install step (three runs on skalleper 2026-09-08, brew-halsa E2); Xcode is updated in the App Store app.
+mas_ids=()
+while IFS= read -r id; do [ -n "$id" ] && mas_ids+=("$id"); done < <(mas outdated 2>/dev/null | awk '$1 != "497799835" {print $1}')
+if [ "${#mas_ids[@]}" -gt 0 ]; then
+  run mas upgrade "${mas_ids[@]}"
+else
+  echo "==> mas: nothing to upgrade (Xcode excluded, App Store app handles it)"
+fi
 
 # Clean up: remove unused deps, stale downloads, and check for problems
 run brew autoremove

@@ -121,8 +121,7 @@ packages:
       - { id: 1475387142, name: "Tailscale" }            # mesh VPN (App Store build)
       - { id: 1451685025, name: "WireGuard" }            # WireGuard VPN client (Layer10 tunnel, back from archived 2026-09-07)
   work:
-    taps:
-      - oven-sh/bun        # bun
+    taps: []
     brews:
       - ansible            # IT automation / configuration management
       - ansible-lint       # linter for Ansible playbooks
@@ -139,7 +138,6 @@ packages:
       - n                  # Node.js version manager
       - node               # Node.js runtime
       - openshift-cli      # oc, OpenShift CLI
-      - oven-sh/bun/bun    # fast JS runtime/bundler
       - p7zip              # legacy 7z command (base has sevenzip/7zz; kept where old scripts expect p7zip)
       - python@3.10        # Python runtime (pinned projects)
       - python@3.11        # Python runtime (pinned projects)

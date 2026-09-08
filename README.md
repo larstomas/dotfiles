@@ -32,7 +32,7 @@ everything in here earned its place by being used (the decision list lives in my
 | `home/private_dot_ssh/config` | one line: `Include ~/Sync/.config/ssh/*` — the host inventory is private and synced, not in this repo |
 | `home/private_dot_ssh/private_authorized_keys` | Tomas's public key → every Mac accepts key login (the private key lives in the 1Password ssh agent); together with the sshd hardening above, ssh is keys-only |
 | `home/dot_claude/`, `home/symlink_dot_agents.tmpl` | Claude Code: `settings.json` is rendered here (*applied*); `CLAUDE.md`, `skills` (via `~/.agents`) and the memory dirs for `~/Sync` and this repo are symlinks into `~/Sync` (*live*, see `CONTEXT.md`). Everything else under `~/.claude` is ignored via `.chezmoiignore` |
-| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew upgrade --cask --greedy`, `mas upgrade`, cleanup, zinit; continues on error and lists failed steps at the end |
+| `home/dot_local/bin/executable_mac-maint` | maintenance: `brew update/upgrade`, `brew upgrade --cask --greedy`, `mas upgrade` (all but Xcode, which mas cannot install), cleanup, zinit; continues on error and lists failed steps at the end |
 | `tests/macos/` | Tart VM harness for a true fresh-machine test of `install.sh` (optional) |
 
 ## Fresh Mac

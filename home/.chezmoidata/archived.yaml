@@ -7,6 +7,7 @@ archived:
   darwin:
     taps:
       - buo/cask-upgrade # brew cu — broke against Homebrew 6.0.22, mac-maint uses `brew upgrade --cask --greedy` (brew-halsa A13, 2026-09-07)
+      - oven-sh/bun      # bun — no Intel bottle, and building it pulls llvm@20/lld@20/zig from source; used twice since 2023 on skalleper (brew-halsa E1, 2026-09-08)
       - cirruslabs/cli   # tart + softnet — tap formulae unreadable under Homebrew 6 (`depends_on macos:` disabled), removed from the fleet 2026-09-08 (brew-halsa A15)
     brews:
       - alembic          # SQLAlchemy database migration tool
@@ -18,6 +19,7 @@ archived:
       - black            # opinionated Python code formatter
       - cpufetch         # pretty CPU architecture info
       - dnscontrol       # manage DNS zones as code
+      - oven-sh/bun/bun  # fast JS runtime/bundler — removed from the work tier 2026-09-08 (brew-halsa E1, see the tap line)
       - cirruslabs/cli/tart # macOS VMs for tests/macos (was the arm tier) — removed from the fleet 2026-09-08, install by hand when the test harness is needed (brew-halsa A15)
       - docker-completion # shell completion for Docker
       - docker-compose   # define & run multi-container Docker apps
