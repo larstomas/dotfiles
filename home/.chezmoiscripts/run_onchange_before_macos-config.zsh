@@ -57,6 +57,19 @@ if [[ "$($fw --getglobalstate 2>/dev/null)" != *"enabled"* ]]; then
   sudo $fw --setglobalstate on || echo "  ⚠️  skipped 'socketfilterfw --setglobalstate on' — run it with sudo to turn the firewall on" >&2
 fi
 
+#-- Remote Login (ssh): keys only (ssh-vnc-hardning A2, 2026-09-08). ~/.ssh/authorized_keys comes from
+# chezmoi (private_dot_ssh), verified from lillebror against all three Macs before this went in.
+# sshd validates the file before it is kept, so a typo can never lock ssh; Screen Sharing and the
+# console are untouched either way. launchd starts sshd per connection, so no restart is needed.
+sshd_hardening=/etc/ssh/sshd_config.d/200-hardening.conf
+if ! grep -qs '^PasswordAuthentication no' "$sshd_hardening"; then
+  if printf '%s\n' 'PasswordAuthentication no' 'KbdInteractiveAuthentication no' 'PermitRootLogin no' 'MaxAuthTries 3' | sudo tee "$sshd_hardening" >/dev/null; then
+    sudo /usr/sbin/sshd -t || { echo "  ⚠️  sshd rejected $sshd_hardening — removing it, passwords stay enabled" >&2; sudo rm -f "$sshd_hardening"; }
+  else
+    echo "  ⚠️  skipped $sshd_hardening — run chezmoi apply with sudo available to turn ssh passwords off" >&2
+  fi
+fi
+
 #-- Appearance
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
