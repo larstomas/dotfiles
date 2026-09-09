@@ -93,7 +93,6 @@ alias cdchezmoi='cd ${HOME}/.local/share/chezmoi'
 alias cdmybin='cd ${HOME}/Sync/.local/bin'
 alias tbls='ls'
 alias cddbeaverscripts='cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/General/Scripts/'
-alias fil='cd ${HOME}/Sync/Valvet/03-projekt/aktiva/file-placement-workflow && claude'
 
 ## LLM
 export MY_AGENT="claude"
