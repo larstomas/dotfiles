@@ -1,6 +1,7 @@
 {{- /* Claude Code user settings — same on every Mac (decision 2026-09-07, Valvet/claude-over-macarna).
        Claude Code rewrites this file on /model and /config; afterwards run
        `chezmoi re-add ~/.claude/settings.json` or `chezmoi apply` to go back to the template.
+       statusline-command.sh (cwd, branch, model, context, rate limits) is applied next to it.
        Rules, skills and memory are NOT here — they are symlinks into ~/Sync (see CONTEXT.md: live vs applied). */ -}}
 {
   "model": "claude-fable-5-1[1m]",
@@ -13,7 +14,11 @@
   "skipDangerousModePermissionPrompt": true,
   "skipAutoPermissionPrompt": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true{{ if not .personal }},
+  "agentPushNotifEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }{{ if not .personal }},
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   }{{ end }}

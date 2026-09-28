@@ -1,9 +1,10 @@
-# ~/.claude is Claude Code's own state (transcripts, history, cache, identity). Only the four
+# ~/.claude is Claude Code's own state (transcripts, history, cache, identity). Only the five
 # things below are managed — everything else must never be `chezmoi add`ed (decision 2026-09-07).
 .claude/**
 !.claude
 !.claude/CLAUDE.md
 !.claude/settings.json
+!.claude/statusline-command.sh
 !.claude/skills
 !.claude/projects
 !.claude/projects/-Users-tomas-Sync
