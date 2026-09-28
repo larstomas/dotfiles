@@ -96,7 +96,7 @@ archived:
       - pdf-expert # PDF reader & editor — back in packages.yaml 2026-09-07
       - plexamp # Plex music player
       - powerphotos # manage multiple Photos libraries
-      - rectangle # window snapping/tiling manager (rebuild 2026-09-07 — never opened)
+      - rectangle # window snapping/tiling manager (rebuild 2026-09-07 — never opened; tried again 2026-09-28 for VS Code, dropped the same evening: no window grouping like macOS's own tiling — Keyboard Maestro macros trigger the built-in tiling instead)
       - spacelauncher # launch/switch apps with the space bar
       - spotify # music streaming
       - steam # game store & launcher

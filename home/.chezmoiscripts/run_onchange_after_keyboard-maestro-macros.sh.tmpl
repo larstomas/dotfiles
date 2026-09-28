@@ -1,0 +1,26 @@
+#!/bin/bash
+# Import the Keyboard Maestro macro groups kept in ~/.config/keyboard-maestro/*.kmmacros, replacing
+# any group of the same name (delete + import = idempotent). Re-runs only when a file changes:
+# {{ include "private_dot_config/keyboard-maestro/window-tiling.kmmacros" | sha256sum }}
+#
+# Why macros and not Rectangle or the built-in shortcuts alone (2026-09-28): the built-in tiling
+# (System Settings > Keyboard Shortcuts > Windows) is a menu command, and VS Code's own key bindings
+# beat it; Rectangle wins the keys but cannot group windows the way macOS does. A Keyboard Maestro
+# hot key is global, and "Select Menu Item" Window > Move & Resize gives the real macOS tiling.
+# Menu titles are English — the Macs run macOS in English. Group and macro names are the
+# replacement key, so keep them stable across edits.
+set -euo pipefail
+[ -d "/Applications/Keyboard Maestro.app" ] || { echo "keyboard-maestro-macros: Keyboard Maestro not installed, skipping"; exit 0; }
+for f in "$HOME"/.config/keyboard-maestro/*.kmmacros; do
+  [ -e "$f" ] || continue
+  group=$(/usr/libexec/PlistBuddy -c 'Print :0:Name' "$f")
+  osascript - "$f" "$group" <<'APPLESCRIPT'
+on run {macroFile, groupName}
+  tell application "Keyboard Maestro"
+    if exists macro group groupName then deleteMacroGroup groupName
+    importMacros (POSIX file macroFile as text)
+  end tell
+end run
+APPLESCRIPT
+  echo "keyboard-maestro-macros: imported '$group' from $(basename "$f")"
+done

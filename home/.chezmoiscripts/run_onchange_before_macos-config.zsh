@@ -177,25 +177,6 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 \
   '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>60</integer><integer>50</integer><integer>1048576</integer></array></dict></dict>'
 
-#- Rectangle (window tiling, cask in packages.yaml). Global hotkeys, so they also work in VS Code,
-# where the built-in macOS tiling loses to the editor's own Ctrl+Opt+arrow bindings (2026-09-28).
-# Layout mirrors GNOME's Super+arrows: halves left/right, maximize up, restore down, displays with Cmd.
-# Rectangle reads these at launch (restart it after a change). Modifier flags: Ctrl 262144 + Opt 524288
-# = 786432; + Cmd 1048576 = 1835008. Key codes: left 123, right 124, down 125, up 126.
-rect=com.knollsoft.Rectangle
-rect_shortcut() {  # action keycode modifierFlags
-  defaults write $rect "$1" -dict keyCode -float "$2" modifierFlags -float "$3"
-}
-rect_shortcut leftHalf        123 786432
-rect_shortcut rightHalf       124 786432
-rect_shortcut maximize        126 786432
-rect_shortcut restore         125 786432
-rect_shortcut nextDisplay     124 1835008
-rect_shortcut previousDisplay 123 1835008
-defaults write $rect launchOnLogin -bool true
-defaults write $rect SUEnableAutomaticChecks -bool true
-defaults write $rect alternateDefaultShortcuts -bool false   # skip the Rectangle-vs-Spectacle prompt; shortcuts are set above
-
 #- Finder
 # Finder showX settings
 #defaults write com.apple.finder ShowRecentTags -bool false
