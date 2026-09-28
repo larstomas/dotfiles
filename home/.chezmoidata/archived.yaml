@@ -52,7 +52,6 @@ archived:
       - nnn              # fast terminal file manager
       - node             # Node.js JavaScript runtime
       - openshift-cli    # OpenShift CLI (oc)
-      - opentofu         # open-source Terraform fork
       - pandoc           # universal document converter
       - plantuml         # text-to-UML diagram generator
       - podman           # daemonless container engine (rebuild 2026-09-07 — 1 use 2025-10)

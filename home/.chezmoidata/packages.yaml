@@ -109,7 +109,8 @@ packages:
       - { id: 972112040, name: "Voice Dream Reader" }    # text-to-speech document reader
       - { id: 1662217862, name: "Wipr" }                 # Safari content blocker
   personal:
-    brews: []
+    brews:
+      - opentofu           # tofu — homelab VM-skalen (terraform/tofu.sh, ADR 0005/0008); back from archived 2026-09-28, jonatan is born from lillebror
     casks:
       - rustdesk           # open-source remote desktop
       - soundsource        # per-app audio control
