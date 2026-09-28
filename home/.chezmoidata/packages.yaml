@@ -82,6 +82,7 @@ packages:
       - onlyoffice         # office document suite
       - pdf-expert         # PDF reader & editor
       - quicklook-video    # QuickLook plugin for video files
+      - rectangle          # window tiling on Ctrl+Opt+arrows; global hotkeys, so it works in VS Code too (2026-09-28)
       - shottr             # screenshot & annotation tool
       - syncthing-app      # Syncthing continuous file sync (menu bar)
       - syntax-highlight   # QuickLook source-code highlighting
