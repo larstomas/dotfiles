@@ -170,6 +170,13 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Disable popup showing accented characters when holding down a key
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+# "Move focus to next window" (symbolic hotkey 27) bound explicitly to Cmd+< : char 60, key code 50,
+# Cmd = 1048576. Same physical key as the default Cmd+`, but Safari/Reminders on Tahoe match the
+# character instead of the key code, so with the Swedish layout the default does nothing there
+# (2026-09-28, lillebror). Written as a plist fragment because the value is a nested dict.
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 \
+  '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>60</integer><integer>50</integer><integer>1048576</integer></array></dict></dict>'
+
 #- Finder
 # Finder showX settings
 #defaults write com.apple.finder ShowRecentTags -bool false
