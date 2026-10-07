@@ -1,7 +1,7 @@
 [user]
-	name = {{ onepasswordRead "op://Private/Github/personal-name" }}
-	email = {{ onepasswordRead "op://Private/Github/personal-email" }}
-	signingkey = {{ onepasswordRead "op://Private/Github SSH key/public key" }}
+	name = {{ onepasswordRead "op://homelab/Github/personal-name" }}
+	email = {{ onepasswordRead "op://homelab/Github/personal-email" }}
+	signingkey = {{ onepasswordRead "op://homelab/github-ssh-pubkey/text" }}
 
 [credential]
 	helper = osxkeychain

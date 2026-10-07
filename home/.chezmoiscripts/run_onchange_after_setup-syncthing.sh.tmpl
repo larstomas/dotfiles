@@ -28,7 +28,7 @@ else
   done
 
   api_key="$(sed -n 's:.*<apikey>\(.*\)</apikey>.*:\1:p' "$cfg" 2>/dev/null | head -1)"
-  sync_server_id="{{ onepasswordRead "op://Private/4spu4rrxg55soqoi4nikigolem/Server IDs/velour_sync_server_id" }}"
+  sync_server_id="{{ onepasswordRead "op://homelab/4girhtdv3dvgkgu5wn4rx24bza/Server IDs/velour_sync_server_id" }}"
 
   if [ -n "$api_key" ] && [ -n "$sync_server_id" ]; then
     hdr="X-API-Key: $api_key"
@@ -48,7 +48,7 @@ else
       || echo ">>>   (Sync folder may already exist — continuing)"
 
     # Open the sync server's Syncthing web GUI so you can accept this new device.
-    sync_server_gui="{{ onepasswordRead "op://Private/phw5trgjeqju3qfvo2g7leexoa/website" }}"
+    sync_server_gui="{{ onepasswordRead "op://homelab/fq7xjbfbdypjuhatupvki3cql4/website" }}"
     if [ -n "$sync_server_gui" ]; then
       echo ">>> Opening the sync server's Syncthing — accept the new device${my_id:+ ($my_id)} there."
       open "$sync_server_gui" 2>/dev/null || true
