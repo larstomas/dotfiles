@@ -15,6 +15,35 @@
   "skipAutoPermissionPrompt": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: private (local-only repo, no remote configured)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: 1Password (op CLI, vault `homelab`); a NOTAFTER-scoped sudoers drop-in and ssh-agent are managed by a local `autonomy` wrapper script for a narrow command allowlist",
+      "**Default / protected branches**: not queryable (no remote configured; repo is local-only, git history used as the undo mechanism per CLAUDE.md)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer Mac with open internet",
+      "**Source control**: The trusted repo (`~/Sync`, local-only, no remote) — no additional orgs configured",
+      "**Trusted internal domains**: *.velour.rubberdns.net (Grafana, Kuma — seen repeatedly in usage), healthchecks.io",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: Proxmox (download.proxmox.com, PVE API guest-agent-exec fallback), Grafana/Loki (grafana.velour.rubberdns.net, loki CLI), Kuma uptime monitor (kuma.tls.velour.rubberdns.net), healthchecks.io, internal hosts 10.51.71.x/10.51.81.x, hostname `mattis`",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `Valvet/` (personal Obsidian vault — tasks, journal, project/job logs including `04-ansvarsområde/fast2/Jobb-log/`), `AppSettings/Keyboard_Maestro/Keyboard Maestro Macros.kmsync`, `.env`/`.env.local`/`*.key` files, `.local/state/keyboard_maestro/change-in-home-dir-at-*`, `.local/state/auth-logg/` — personal data, share only with Tomas",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace/host/container with `prod`/`production` as a whole word or segment (none observed in this repo's config)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, node-pool resources, and anything tagged `prod`/`production`",
+      "### User-specific",
+      "**Primary use of Claude Code**: personal knowledge-base/homelab management (Obsidian vault maintenance, task automation, homelab/Proxmox fleet operations) — hobby use",
+      "**Trusted repo**: `~/Sync` (this repo; local git, no remote, private) — routine auto-commit of the session's own touched files is pre-authorized per CLAUDE.md, but push/remote operations are moot (no remote configured) and committing in sibling repos (e.g. chezmoi source) requires explicit request",
+      "**Org-specific CLIs**: `anki-ändra.py`, `obsidian-arkivera-klara.py`, `obsidian-navet-idag.py`, `obsidian-randomtask.py`, `auth-logg.sh`, `autonomy` — all in `~/Sync/.local/bin`, routine under this repo's tooling prefix",
+      "**routine under ~/Sync/.local/bin/ prefix**: the project's own helper scripts listed above are routine, non-destructive invocations"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
