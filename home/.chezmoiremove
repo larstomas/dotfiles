@@ -1,2 +1,5 @@
 # Retired 2026-10-10: the TrueNAS admin API key it held was revoked; hosts/mattis/setup.sh uses midclt over ssh.
 .config/homelab/truenas.env
+
+# Retired 2026-10-11: transmission is replaced by qBittorrent (web UI); the transgui profile symlink and its app data go.
+.config/Transmission Remote GUI
