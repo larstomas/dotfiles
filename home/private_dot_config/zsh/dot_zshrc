@@ -97,6 +97,14 @@ alias cddbeaverscripts='cd ${HOME}/Sync/AppSettings/DBeaver/CurrentSettings/Gene
 ## LLM
 export MY_AGENT="claude"
 alias agentcommit='git diff --staged | $MY_AGENT -p "Write a conventional commit message for this diff. Output only the message." | git commit -F -'
+# Inside tmux, pick up the current VS Code extension port before starting claude
+# (running shells keep the stale one after a VS Code restart)
+if [[ -n $TMUX ]]; then
+  claude() {
+    eval "$(tmux show-environment -s CLAUDE_CODE_SSE_PORT 2>/dev/null)"
+    command claude "$@"
+  }
+fi
 
 # --- Key Bindings ---
 bindkey -e
