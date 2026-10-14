@@ -111,6 +111,7 @@ packages:
   personal:
     brews:
       - opentofu           # tofu — homelab VM-skalen (terraform/tofu.sh, ADR 0005/0008); back from archived 2026-09-28, jonatan is born from lillebror
+      - karakeep           # Karakeep CLI - Claude sessions organize the bookmarks on madicken (homelab stacks/karakeep, 2026-10-14)
     casks:
       - rustdesk           # open-source remote desktop
       - soundsource        # per-app audio control
