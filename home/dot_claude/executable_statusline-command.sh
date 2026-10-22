@@ -1,6 +1,7 @@
 #!/bin/bash
-# Claude Code status line: cwd (~ abbreviated, bold-blue as in ~/.bashrc's
-# PS1 \w color) with git branch, followed by model + context-window usage
+# Claude Code status line: session name (from /rename or --name, if set),
+# cwd (~ abbreviated, bold-blue as in ~/.bashrc's PS1 \w color) with git
+# branch, followed by model + context-window usage
 # and Claude.ai rate-limit usage (5h session limit / 7-day weekly limit /
 # 7-day model-specific weekly limit, as shown by /usage).
 #
@@ -21,6 +22,23 @@ if git -C "$cwd" --no-optional-locks rev-parse --is-inside-work-tree >/dev/null 
   branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
 fi
 [ -n "$branch" ] && display_cwd="$display_cwd ($branch)"
+
+session_name=$(echo "$input" | jq -r '.session_name // empty')
+session_str=""
+[ -n "$session_name" ] && session_str="$session_name | "
+
+# Inside tmux, name the window after the session too, cut to 8 characters
+# (only when it differs, so a refresh doesn't spam rename-window).
+# hooks/tmux-window-name.sh adds a leading "*" while Claude works and
+# restores automatic-rename on exit; keep the "*" here so a refresh
+# mid-turn doesn't clear it.
+if [ -n "$session_name" ] && [ -n "$TMUX_PANE" ]; then
+  window_name=$(tmux display-message -p -t "$TMUX_PANE" '#{window_name}' 2>/dev/null)
+  short_name="${session_name:0:8}"
+  busy=""
+  [ "${window_name#\*}" != "$window_name" ] && busy="*"
+  [ "${window_name#\*}" != "$short_name" ] && tmux rename-window -t "$TMUX_PANE" "$busy$short_name"
+fi
 
 model=$(echo "$input" | jq -r '.model.display_name // empty')
 used_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
@@ -66,4 +84,4 @@ rate_str=""
 [ -n "$week" ] && rate_str="$rate_str | wk: $(printf '%.0f' "$week")%"
 [ -n "$model_week" ] && [ -n "$family" ] && rate_str="$rate_str | ${family}: $(printf '%.0f' "$model_week")%"
 
-printf '\033[01;34m%s\033[00m%s%s' "$display_cwd" "$model_str" "$rate_str"
+printf '\033[01;35m%s\033[00m\033[01;34m%s\033[00m%s%s' "$session_str" "$display_cwd" "$model_str" "$rate_str"

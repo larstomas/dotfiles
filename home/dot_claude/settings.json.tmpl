@@ -1,10 +1,11 @@
 {{- /* Claude Code user settings — same on every Mac (decision 2026-09-07, Valvet/claude-over-macarna).
+       No "model" key here: /model owns that choice and writes it into the live file.
        Claude Code rewrites this file on /model and /config; afterwards run
        `chezmoi re-add ~/.claude/settings.json` or `chezmoi apply` to go back to the template.
-       statusline-command.sh (cwd, branch, model, context, rate limits) is applied next to it.
+       statusline-command.sh (session name, cwd, branch, model, context, rate limits) is applied next to it.
+       hooks/tmux-window-name.sh mirrors the session in the tmux window name (busy "*", idle, end).
        Rules, skills and memory are NOT here — they are symlinks into ~/Sync (see CONTEXT.md: live vs applied). */ -}}
 {
-  "model": "opus",
   "effortLevel": "high",
   "tui": "fullscreen",
   "theme": "dark",
@@ -42,6 +43,52 @@
       "**Trusted repo**: `~/Sync` (this repo; local git, no remote, private) — routine auto-commit of the session's own touched files is pre-authorized per CLAUDE.md, but push/remote operations are moot (no remote configured) and committing in sibling repos (e.g. chezmoi source) requires explicit request",
       "**Org-specific CLIs**: `anki-ändra.py`, `obsidian-arkivera-klara.py`, `obsidian-navet-idag.py`, `obsidian-randomtask.py`, `auth-logg.sh`, `autonomy` — all in `~/Sync/.local/bin`, routine under this repo's tooling prefix",
       "**routine under ~/Sync/.local/bin/ prefix**: the project's own helper scripts listed above are routine, non-destructive invocations"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh '{{ .chezmoi.homeDir }}/.claude/hooks/tmux-window-name.sh' busy",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh '{{ .chezmoi.homeDir }}/.claude/hooks/tmux-window-name.sh' idle",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh '{{ .chezmoi.homeDir }}/.claude/hooks/tmux-window-name.sh' idle",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh '{{ .chezmoi.homeDir }}/.claude/hooks/tmux-window-name.sh' end",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
