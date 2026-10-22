@@ -1,0 +1,14 @@
+# tmux plugins, pinned to commits (no TPM). Both repos stopped tagging
+# releases long before their last fixes, so pin master; bump the hash to upgrade.
+# Same pins as the work laptop's dotfiles (2026-10-16).
+[".config/tmux/plugins/tmux-resurrect"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tmux-resurrect/archive/cff343cf9e81983d3da0c8562b01616f12e8d548.tar.gz"
+    exact = true
+    stripComponents = 1
+
+[".config/tmux/plugins/tmux-continuum"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tmux-continuum/archive/0698e8f4b17d6454c71bf5212895ec055c578da0.tar.gz"
+    exact = true
+    stripComponents = 1
