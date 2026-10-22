@@ -73,6 +73,7 @@ archived:
       - kubernetes-cli     # kubectl — work tier emptied 2026-09-08, no Mac assignment (Tomas)
       - p7zip              # legacy 7z command (base has sevenzip/7zz; kept where old scripts expect p7zip) — work tier emptied 2026-09-08, no Mac assignment (Tomas)
     casks:
+      - transmission-remote-gui # remote GUI for Transmission - cask disabled by Homebrew 2026-09-01 (fails Gatekeeper), broke brew bundle on 2026-10-22; was never installed on lillebror
       - a-better-finder-rename # batch file/photo renamer (rebuild 2026-09-07 — never opened)
       - audiobook-builder # assemble audio files into audiobooks
       - bartender # organize the menu bar

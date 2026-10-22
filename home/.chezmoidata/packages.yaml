@@ -117,7 +117,6 @@ packages:
     casks:
       - rustdesk           # open-source remote desktop
       - soundsource        # per-app audio control
-      - transmission-remote-gui # remote GUI for Transmission BitTorrent (cask deprecated upstream — keep until it disappears)
     mas:
       - { id: 1143437985, name: "GoodTask" }             # task manager for Reminders & Calendar
       - { id: 430255202, name: "Mactracker" }            # database of every Apple product
