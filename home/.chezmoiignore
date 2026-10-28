@@ -1,5 +1,6 @@
 # ~/.claude is Claude Code's own state (transcripts, history, cache, identity). Only the five
-# things below are managed — everything else must never be `chezmoi add`ed (decision 2026-09-07).
+# things below are managed, all as symlinks into ~/Sync since 2026-10-28 — everything else must
+# never be `chezmoi add`ed (decision 2026-09-07).
 .claude/**
 !.claude
 !.claude/CLAUDE.md
