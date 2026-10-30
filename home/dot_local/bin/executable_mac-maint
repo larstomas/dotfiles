@@ -62,6 +62,10 @@ else
   echo "==> mas: nothing to upgrade (Xcode excluded, App Store app handles it)"
 fi
 
+# Vault-hosted Claude Code skills (Valvet/scripts/skills/) get their symlinks in ~/.claude/skills
+# refreshed here, so a skill added on another machine is found on this one too (Tomas 2026-10-30).
+[ -x "$HOME/Sync/Valvet/scripts/link-skills.sh" ] && run "$HOME/Sync/Valvet/scripts/link-skills.sh"
+
 # Clean up: remove unused deps, stale downloads, and check for problems
 run brew autoremove
 run brew cleanup
