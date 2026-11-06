@@ -114,6 +114,7 @@ packages:
       - postgresql@17      # local test database for the letaren app (Valvet 03-projekt/aktiva/letaren, 2026-10-16)
       - rustup             # Rust toolchain manager - letaren is a Rust app (2026-10-16)
       - karakeep           # Karakeep CLI - Claude sessions organize the bookmarks on madicken (homelab stacks/karakeep, 2026-10-14)
+      - restic             # quarterly class 1 restore-test from lillebror against birk (homelab docs/runbooks/class1-restore-test.md, 2026-11-06)
     casks:
       - rustdesk           # open-source remote desktop
       - soundsource        # per-app audio control
