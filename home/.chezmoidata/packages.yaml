@@ -37,6 +37,7 @@ packages:
       - mas                # Mac App Store command-line interface
       - ncdu               # ncurses disk usage analyzer
       - neovim             # hyperextensible Vim-based editor
+      - rclone             # cloud storage CLI - read-only inventory of Google Drive/Dropbox/OneDrive (genomgång-alla-filer 2026-11-07)
       - parallel           # GNU parallel — Claude sessions, fan out slow per-file commands (snabba-verktyg V6)
       - ripgrep            # fast recursive grep (rg) — Claude sessions use it instead of grep (CLAUDE.md "Verktyg i Bash")
       - rsync              # fast incremental file transfer/sync
