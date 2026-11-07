@@ -59,6 +59,7 @@ packages:
       - alt-tab            # Windows-style app switcher
       - anki               # spaced-repetition flashcards
       - appcleaner         # thorough app uninstaller
+      - beyond-compare     # file/folder diff + 3-way merge, bcompare CLI drivable from Claude sessions; trial of a Kaleidoscope replacement (2026-11-07)
       - balenaetcher       # flash OS images to USB/SD cards
       - bankid             # BankID security app
       - betterzip          # archive manager & previewer
