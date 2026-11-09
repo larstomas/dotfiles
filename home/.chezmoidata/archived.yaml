@@ -89,6 +89,7 @@ archived:
       - gemini # duplicate & junk file finder (rebuild 2026-09-07 — never opened)
       - hammerspoon # macOS automation via Lua (rebuild 2026-09-07 — never ran; config dropped too)
       - imazing # iOS device manager & backup
+      - istat-menus # system monitor in the menu bar (dropped 2026-11-09, Tomas)
       - iterm2 # terminal emulator (rebuild 2026-09-07 — Ghostty is the terminal)
       - karabiner-elements # keyboard customizer (added and dropped 2026-09-07 — Tomas uses it nowhere; karabiner.json archived in ~/Sync/AppSettings/karabiner-elements)
       - kaleidoscope # file & image diff/merge tool

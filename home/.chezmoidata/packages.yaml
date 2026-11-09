@@ -78,7 +78,6 @@ packages:
       - herdr-app          # Herdr desktop app - GUI for the herdr agent multiplexer (2026-11-07)
       - hyperkey           # turn Caps Lock into a Hyper key
       - iina               # modern macOS media player
-      - istat-menus        # system monitor in the menu bar
       - keyboard-maestro   # macro & automation tool
       - mac-mouse-fix      # smooth scrolling & mouse gestures
       - obsidian           # Markdown knowledge base
