@@ -40,6 +40,10 @@ if [[ -z ${XDG_RUNTIME_DIR:-} ]]; then
   chmod 700 "$XDG_RUNTIME_DIR"
 fi
 
+## herdr core is started by launchd without XDG_RUNTIME_DIR, so it listens under
+# XDG_STATE_HOME; point hc there instead of at the made-up runtime dir above.
+export HC_SOCKET="${HC_SOCKET:-$XDG_STATE_HOME/herdr-core/default/default.sock}"
+
 ## Personal config
 export USER_EMAIL="{{ onepasswordRead "op://homelab/shell/email" }}"
 export USER_ALL_REPOS="${HOME}/repos"
