@@ -6,11 +6,13 @@
 [credential]
 	helper = osxkeychain
 
-# Commit signing with the SSH key in 1Password
+# Commit signing with the SSH key in 1Password. git-ssh-sign signs through the autonomy window
+# when it holds the key (no approval prompt, works over a remote desktop) and otherwise hands
+# over to 1Password's op-ssh-sign.
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+	program = "{{ .chezmoi.homeDir }}/Sync/.local/bin/git-ssh-sign"
 [commit]
 	gpgsign = true
 
