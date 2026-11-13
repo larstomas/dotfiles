@@ -1,9 +1,5 @@
 # 1Password's SSH agent: which keys it offers. Without this file only Personal/Private; with it,
-# only what is listed. The git signing key (gpg.ssh, ~/.gitconfig) lives in vault homelab since
-# 2026-11-13, so it is named alone - the whole vault would offer more keys than sshd's MaxAuthTries.
+# only what is listed. The git signing key "Github SSH key" (gpg.ssh, ~/.gitconfig) is back in
+# Private since 2026-11-13, so the vault alone covers it.
 [[ssh-keys]]
 vault = "Private"
-
-[[ssh-keys]]
-item = "Github SSH key"
-vault = "homelab"
